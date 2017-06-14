@@ -69,6 +69,6 @@ class SectorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sector_params
-      params.fetch(:sector, {})
+      params.require(:sector).permit(:name)
     end
 end
