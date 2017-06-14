@@ -1,5 +1,11 @@
-<h1>New Sector</h1>
-
-<%= render 'form', sector: @sector %>
-
-<%= link_to 'Back', sectors_path %>
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Nova Diretoria</div>
+    <div class="panel-body">
+      <%= render 'form', sector: @sector %>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Voltar', sectors_path, class: 'btn btn-default' %>
+    </div>
+  </div>
+</div>
