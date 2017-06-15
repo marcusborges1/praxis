@@ -19,7 +19,7 @@ class SectorsController < ApplicationController
     @sector = Sector.new(sector_params)
 
     if @sector.save
-      redirect_to @sector, notice: 'Sector was successfully created.'
+      redirect_to @sector, notice: 'Diretoria criada com sucesso.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class SectorsController < ApplicationController
 
   def update
     if @sector.update(sector_params)
-      redirect_to @sector, notice: 'Sector was successfully updated.'
+      redirect_to @sector, notice: 'Diretoria atualizada com sucesso.'
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class SectorsController < ApplicationController
 
   def destroy
     @sector.destroy
-    redirect_to sectors_url, notice: 'Sector was successfully destroyed.'
+    redirect_to sectors_url, notice: 'Diretoria foi excluída com sucesso.'
   end
 
   private
