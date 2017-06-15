@@ -19,3 +19,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+coverage
+rubocop_diff.html
+rubocop_cached.html
