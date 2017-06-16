@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Position, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "Position with empty name should not be valid" do
+    position = Position.new(name: nil)
+    expect(position).not_to be_valid
+  end
 end
