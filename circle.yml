@@ -1,6 +1,4 @@
 test:
-  override:
-    - COVERAGE=true COVERAGE_DIR=$CIRCLE_ARTIFACTS/simple_cov bundle exec rspec --color --require spec_helper spec --format progress --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
   post:
     - bundle exec rubocop --format html -o $CIRCLE_ARTIFACTS/rubocop.html || true
     - bundle exec rails_best_practices -f html --output-file $CIRCLE_ARTIFACTS/best_practices_output.html || true
