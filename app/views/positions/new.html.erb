@@ -1,5 +1,13 @@
-<h1>New Position</h1>
-
-<%= render 'form', position: @position %>
-
-<%= link_to 'Back', positions_path %>
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h1>Novo Cargo</h1>
+    </div>
+    <div class="panel-body">
+      <%= render 'form', position: @position %>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Voltar', positions_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>

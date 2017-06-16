@@ -1,6 +1,15 @@
-<h1>Editing Position</h1>
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h1>Editar Cargo</h1>
+    </div>
+    <div class="panel-body">
+      <%= render 'form', position: @position %>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Ver Detalhes', @position, class: "btn btn-primary" %>
+      <%= link_to 'Voltar', positions_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
 
-<%= render 'form', position: @position %>
-
-<%= link_to 'Show', @position %> |
-<%= link_to 'Back', positions_path %>
