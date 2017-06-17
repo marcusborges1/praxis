@@ -1,0 +1,4 @@
+test:
+  post:
+    - bundle exec rubocop --format html -o $CIRCLE_ARTIFACTS/rubocop.html || true
+    - bundle exec rails_best_practices -f html --output-file $CIRCLE_ARTIFACTS/best_practices_output.html || true
