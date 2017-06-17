@@ -1,0 +1,15 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Diretoria</div>
+    <div class="panel-body">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <b>Nome:</b> <%= @sector.name %>
+      </p>
+
+      <%= link_to 'Editar', edit_sector_path(@sector), class: "btn btn-primary" %>
+      <%= link_to 'Voltar', sectors_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
