@@ -3,7 +3,13 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
 
   let(:valid_attributes) {
-    { name: "Name" }
+    {
+      name: "Name",
+      sector_id: sector.id
+    }
+  }
+  let(:sector) {
+    Sector.create(name: "DAF")
   }
 
   let(:invalid_attributes) {
