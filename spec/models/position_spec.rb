@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Position, type: :model do
-  let(:position) {Position.new(name: "Position")}
+
+  let(:position) { Position.new(name: "Position") }
 
   it "is valid with valid attributes" do
     expect(position).to be_valid
