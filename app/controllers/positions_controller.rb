@@ -3,7 +3,7 @@ class PositionsController < ApplicationController
 
   # GET /positions
   def index
-    @positions = Position.all
+    @positions = Position.all.order(:name)
   end
 
   # GET /positions/1

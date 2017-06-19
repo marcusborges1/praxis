@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "users/new", type: :view do
   before(:each) do
+    @positions = assign(:positions, Position.all)
     assign(:user, User.new())
   end
 

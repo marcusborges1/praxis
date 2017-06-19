@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "positions/edit", type: :view do
+
   before(:each) do
     @position = assign(:position, Position.create!(
       :name => "MyString"

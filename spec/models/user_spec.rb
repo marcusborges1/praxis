@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
-  let(:user) { User.new(name: "name", sector: sector) }
+  let(:user) { User.new(name: "name", position: position, sector: sector) }
+  let(:position) { Position.create(name: "Diretor") }
   let(:sector) { Sector.create(name: "DAF") }
 
   it "is valid with valid attributes" do
@@ -12,6 +12,11 @@ RSpec.describe User, type: :model do
   it "is invalid when name is nil" do
     user.name = nil
     expect(user).to_not be_valid
+  end
+
+  it "has one position" do
+    association = User.reflect_on_association(:position)
+    expect(association.macro).to eq :belongs_to
   end
 
   it "belongs to sectors" do
