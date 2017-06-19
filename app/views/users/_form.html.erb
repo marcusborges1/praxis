@@ -5,7 +5,7 @@
 
       <ul>
         <% user.errors.full_messages.each do |message| %>
-          <%# <li><%= message %1></li> %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
@@ -21,7 +21,7 @@
   <div class="form-group">
     <%= f.label :position_id, "Cargo", class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
-      <%= f.collection_select :position_id, @positions, :id, :name, { prompt: "- Selecione -" }, class: "form-control"  %>
+      <%= f.collection_select :position_id, Position.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control"  %>
     </div>
   </div>
 

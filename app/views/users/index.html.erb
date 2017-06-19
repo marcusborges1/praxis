@@ -16,7 +16,7 @@
           <tr>
             <td><%= link_to user.name, user %></td>
             <td></td>
-            <td><%= user.position_name if user.position_name != nil %> </td>
+            <td><%= user.position_name %></td>
             <td>
               <div class="btn-group">
                 <%= link_to edit_user_path(user), class: "btn btn-default" do %><i class="glyphicon glyphicon-edit"></i><% end %>
