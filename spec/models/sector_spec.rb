@@ -11,4 +11,9 @@ RSpec.describe Sector, type: :model do
     sector.name = nil
     expect(sector).to_not be_valid
   end
+
+  it "has many users" do
+    association = Sector.reflect_on_association(:users)
+    expect(association.macro).to eq :has_many
+  end
 end

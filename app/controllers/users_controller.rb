@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all
+    @users = User.includes(:sector).all
   end
 
   def show
@@ -17,7 +17,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       redirect_to @user, notice: 'Usuário criado com sucesso.'
     else
@@ -44,6 +43,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :position_id)
+      params.require(:user).permit(:name, :sector_id, :position_id)
     end
 end
