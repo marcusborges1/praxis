@@ -4,7 +4,6 @@ RSpec.describe User, type: :model do
   let(:user) { User.new(name: "name", position: position) }
   let(:position) { Position.create(name: "Diretor") }
 
-
   it "is valid with valid attributes" do
     expect(user).to be_valid
   end
