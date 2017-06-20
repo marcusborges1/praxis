@@ -10,6 +10,9 @@
        <p>
          <b>Diretoria:</b> <%= @user.sector_name %>
        </p>
+       <p>
+         <b>Cargo:</b> <%= @user.position_name %>
+       </p>
 
        <%= link_to 'Editar', edit_user_path(@user), class: "btn btn-primary" %>
        <%= link_to 'Voltar', users_path, class: "btn btn-default" %>
