@@ -44,6 +44,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.fetch(:question, {})
+      params.require(:question).permit(:name, :evaluation_factor, :description, :option1,
+                                       :option2, :option3, :option4)
     end
 end

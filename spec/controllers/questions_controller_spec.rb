@@ -3,11 +3,17 @@ require 'rails_helper'
 RSpec.describe QuestionsController, type: :controller do
 
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "foo", description: "bar", evaluation_factor: "baz",
+      option1: "f", option2: "o", option3: "b", option4: "a"
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: "", description: "", evaluation_factor: "",
+      option1: "f", option2: "o", option3: "", option4: "a"
+    }
   }
 
   let(:valid_session) { {} }
@@ -68,14 +74,17 @@ RSpec.describe QuestionsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "bar", description: "foo", evaluation_factor: "baz",
+          option1: "f", option2: "o", option3: "b", option4: "a"
+        }
       }
 
       it "updates the requested question" do
         question = Question.create! valid_attributes
         put :update, params: {id: question.to_param, question: new_attributes}, session: valid_session
         question.reload
-        skip("Add assertions for updated state")
+        expect(question.name).to eq new_attributes[:name]
       end
 
       it "redirects to the question" do

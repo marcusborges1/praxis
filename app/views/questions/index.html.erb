@@ -1,20 +1,34 @@
+<h1>Questões</h1>
+
 <p id="notice"><%= notice %></p>
-
-<h1>Questions</h1>
-
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Nome</th>
+      <th>Fator de Avaliação</th>
+      <th>Descrição</th>
+      <th>Opção 1</th>
+      <th>Opção 2</th>
+      <th>Opção 3</th>
+      <th>Opção 4</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @questions.each do |question| %>
       <tr>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to question.name, question %></td>
+        <td><%= question.evaluation_factor %></td>
+        <td><%= question.description %></td>
+        <td><%= question.option1 %></td>
+        <td><%= question.option2 %></td>
+        <td><%= question.option3 %></td>
+        <td><%= question.option4 %></td>
+        <td>
+          <%= link_to 'Edit', edit_question_path(question) %>
+          <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Tem certeza?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Question', new_question_path %>
+<%= link_to 'Cadastrar nova questão', new_question_path, class: "btn btn-primary" %>
