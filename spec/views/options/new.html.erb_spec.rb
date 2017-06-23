@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "options/new", type: :view do
   before(:each) do
+    question = Question.create(name: "foo1", description: "bar1", evaluation_factor: "baz1")
     assign(:option, Option.new(
-      :description => "MyString"
+      description: "MyString",
+      question: question
     ))
   end
 

@@ -44,6 +44,6 @@ class OptionsController < ApplicationController
     end
 
     def option_params
-      params.require(:option).permit(:description)
+      params.require(:option).permit(:description, :question_id)
     end
 end

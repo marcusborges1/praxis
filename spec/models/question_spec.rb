@@ -23,4 +23,9 @@ RSpec.describe Question, type: :model do
     question.evaluation_factor = nil
     expect(question).to_not be_valid
   end
+
+  it "has many options" do
+    association = Question.reflect_on_association(:options)
+    expect(association.macro).to eq :has_many
+  end
 end

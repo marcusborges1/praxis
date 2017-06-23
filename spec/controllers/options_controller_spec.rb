@@ -2,12 +2,16 @@ require 'rails_helper'
 
 RSpec.describe OptionsController, type: :controller do
 
+  let(:question) {
+    Question.create(name: "foo", description: "bar", evaluation_factor: "baz")
+  }
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { description: "Description", question_id: question.id }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { description: "" }
   }
 
   let(:valid_session) { {} }
@@ -46,6 +50,7 @@ RSpec.describe OptionsController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Option" do
+        debugger
         expect {
           post :create, params: {option: valid_attributes}, session: valid_session
         }.to change(Option, :count).by(1)
@@ -68,14 +73,14 @@ RSpec.describe OptionsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { description: "New Description" }
       }
 
       it "updates the requested option" do
         option = Option.create! valid_attributes
         put :update, params: {id: option.to_param, option: new_attributes}, session: valid_session
         option.reload
-        skip("Add assertions for updated state")
+        expect(option.description).to eq(new_attributes[:description])
       end
 
       it "redirects to the option" do
