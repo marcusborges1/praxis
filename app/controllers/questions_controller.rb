@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    4.times { @question.options.build } if @question.options.empty?
   end
 
   def edit
@@ -44,7 +45,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:name, :evaluation_factor, :description, :option1,
-                                       :option2, :option3, :option4)
+      params.require(:question).permit(:name, :evaluation_factor, :description,
+                                       options_attributes: [:id, :description, :_destroy])
     end
 end

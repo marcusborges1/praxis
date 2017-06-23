@@ -28,9 +28,21 @@
   <div class="form-group">
     <%= f.label :description, "Descrição", class: "col-sm-2 control-label" %>
     <div class="col-sm-4">
-      <%= f.text_area :description, class: "form-control" %>
+      <%= f.text_area :description, class: "form-control"  %>
     </div>
   </div>
 
-  <%= f.submit "Salvar", class: "btn btn-primary" %>
+  <h2>Opções:</h2>
+  <%= f.fields_for :options do |fields_form| %>
+    <div class="form-group">
+      <%= fields_form.label :description, "Opção #{fields_form.index + 1}", class: "col-sm-2 control-label" %>
+      <div class="col-sm-4">
+        <%= fields_form.text_area :description, class:"form-control" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.submit "Salvar", class: "btn btn-primary" %>
+  </div>
 <% end %>
