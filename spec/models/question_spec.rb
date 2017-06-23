@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Question, type: :model do
   let(:question) {
-    Question.new(name: "foo", description: "bar", evaluation_factor: "baz",
-                 option1: "f", option2: "o", option3: "b", option4: "a")
+    Question.new(name: "foo", description: "bar", evaluation_factor: "baz")
   }
 
   it "is expected to be valid" do

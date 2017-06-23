@@ -3,17 +3,11 @@ require 'rails_helper'
 RSpec.describe QuestionsController, type: :controller do
 
   let(:valid_attributes) {
-    {
-      name: "foo", description: "bar", evaluation_factor: "baz",
-      option1: "f", option2: "o", option3: "b", option4: "a"
-    }
+    { name: "foo", description: "bar", evaluation_factor: "baz" }
   }
 
   let(:invalid_attributes) {
-    {
-      name: "", description: "", evaluation_factor: "",
-      option1: "f", option2: "o", option3: "", option4: "a"
-    }
+    { name: "", description: "", evaluation_factor: "" }
   }
 
   let(:valid_session) { {} }
@@ -74,10 +68,7 @@ RSpec.describe QuestionsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        {
-          name: "bar", description: "foo", evaluation_factor: "baz",
-          option1: "f", option2: "o", option3: "b", option4: "a"
-        }
+        { name: "bar", description: "foo", evaluation_factor: "baz" }
       }
 
       it "updates the requested question" do

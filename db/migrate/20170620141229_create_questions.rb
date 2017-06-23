@@ -4,10 +4,6 @@ class CreateQuestions < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :evaluation_factor
       t.text :description
-      t.text :option1
-      t.text :option2
-      t.text :option3
-      t.text :option4
 
       t.timestamps
     end

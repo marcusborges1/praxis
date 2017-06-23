@@ -12,22 +12,6 @@
   <b>Descrição:</b> <%= @question.description %>
 </p>
 
-<p>
-  <b>Opção 1:</b> <%= @question.option1 %>
-</p>
-
-<p>
-  <b>Opção 2:</b> <%= @question.option2 %>
-</p>
-
-<p>
-  <b>Opção 3:</b> <%= @question.option3 %>
-</p>
-
-<p>
-  <b>Opção 4:</b> <%= @question.option4 %>
-</p>
-
 
 <%= link_to 'Editar', edit_question_path(@question), class: "btn btn-primary" %>
 <%= link_to 'Voltar', questions_path, class: "btn btn-default" %>
