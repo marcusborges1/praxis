@@ -50,7 +50,6 @@ RSpec.describe OptionsController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Option" do
-        debugger
         expect {
           post :create, params: {option: valid_attributes}, session: valid_session
         }.to change(Option, :count).by(1)
