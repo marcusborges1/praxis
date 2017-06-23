@@ -12,4 +12,9 @@ RSpec.describe Position, type: :model do
     position.name = nil
     expect(position).not_to be_valid
   end
+
+  it "has many users" do
+    association = Position.reflect_on_association(:users)
+    expect(association.macro).to eq :has_many
+  end
 end

@@ -2,7 +2,7 @@ class SectorsController < ApplicationController
   before_action :set_sector, only: [:show, :edit, :update, :destroy]
 
   def index
-    @sectors = Sector.all
+    @sectors = Sector.includes(:users)
   end
 
   def show
