@@ -12,6 +12,12 @@
   <b>Descrição:</b> <%= @question.description %>
 </p>
 
+<% @question.options.each_with_index do |option, index| %>
+  <p>
+    <b>Opção <%= index + 1 %>:</b> <%= option.description %>
+  </p>
+<% end %>
+
 
 <%= link_to 'Editar', edit_question_path(@question), class: "btn btn-primary" %>
 <%= link_to 'Voltar', questions_path, class: "btn btn-default" %>
