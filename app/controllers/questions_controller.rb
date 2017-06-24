@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-    4.times { @question.options.build } if @question.options.empty?
+    4.times { @question.options.build }
   end
 
   def edit
