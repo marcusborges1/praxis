@@ -3,7 +3,17 @@ require 'rails_helper'
 RSpec.describe QuestionsController, type: :controller do
 
   let(:valid_attributes) {
-    { name: "foo", description: "bar", evaluation_factor: "baz" }
+    {
+      name: "foo",
+      description: "bar",
+      evaluation_factor: "baz",
+      options_attributes: [
+        { description: "option 1" },
+        { description: "option 2" },
+        { description: "option 3" },
+        { description: "option 4" }
+      ]
+    }
   }
 
   let(:invalid_attributes) {
@@ -49,6 +59,7 @@ RSpec.describe QuestionsController, type: :controller do
         expect {
           post :create, params: {question: valid_attributes}, session: valid_session
         }.to change(Question, :count).by(1)
+          .and change(Option, :count).by(4)
       end
 
       it "redirects to the created question" do
@@ -100,6 +111,7 @@ RSpec.describe QuestionsController, type: :controller do
       expect {
         delete :destroy, params: {id: question.to_param}, session: valid_session
       }.to change(Question, :count).by(-1)
+        .and change(Option, :count).by(-4)
     end
 
     it "redirects to the questions list" do
