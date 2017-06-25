@@ -1,3 +1,4 @@
 class Position < ApplicationRecord
-  validates_presence_of :name
+  has_many :users
+  validates :name, presence: true
 end
