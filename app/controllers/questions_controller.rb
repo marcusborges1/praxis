@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to @question, notice: 'Question was successfully created.'
+      redirect_to @question, notice: 'Questão criada com sucesso.'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to @question, notice: 'Question was successfully updated.'
+      redirect_to @question, notice: 'Questão atualizada com sucesso.'
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to questions_url, notice: 'Question was successfully destroyed.'
+    redirect_to questions_url, notice: 'Questão foi excluída com sucesso.'
   end
 
   private
