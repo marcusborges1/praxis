@@ -2,9 +2,16 @@ require 'rails_helper'
 
 RSpec.describe "sectors/index", type: :view do
   before(:each) do
-    assign(:sectors, [
-      Sector.create!(name: "Name"),
-      Sector.create!(name: "Name")
+    director_position = Position.create(name: "Diretor")
+    assign(:director_position, director_position)
+    sectors = [
+      Sector.create!(name: "DAF"),
+      Sector.create!(name: "DEF")
+    ]
+    assign(:sectors, sectors)
+    assign(:users, [
+      User.create(name: "Foo", sector: sectors.first, position: director_position),
+      User.create(name: "Bar", sector: sectors.second, position: director_position)
     ])
   end
 

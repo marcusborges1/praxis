@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Praxis</title>
-    <%= csrf_meta_tags %>
+    <head>
+        <title>Praxis</title>
+        <%= csrf_meta_tags %>
+        <%= stylesheet_link_tag    "application", :media => "all" %>
+        <%= javascript_include_tag "application" %>
+        <%= tag :meta, name: "viewport", content: "width=device-width, initial-scale=1.0" %>
+    </head>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+    <body>
+        <%= render partial: 'layouts/menu' %>
+        <%= yield %>
+    </body>
 </html>
