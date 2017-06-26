@@ -1,6 +1,12 @@
-<h1>Editar Questão</h1>
-
-<%= render 'form', question: @question %>
-
-<%= link_to 'Ver', @question, class: "btn btn-primary" %>
-<%= link_to 'Voltar', questions_path, class: "btn btn-default" %>
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Editar Questão</div>
+    <div class="panel-body">
+      <%= render 'form', question: @question %>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Ver detalhes', @question, class: "btn btn-primary" %>
+      <%= link_to 'Voltar', questions_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
