@@ -2,7 +2,6 @@
   <% if question.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
       <ul>
         <% question.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -13,32 +12,34 @@
 
   <div class="form-group">
     <%= f.label :name, "Nome", class: "col-sm-2 control-label" %>
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <%= f.text_field :name, class: "form-control", placeholder: "Nome da questão" %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :evaluation_factor, "Fator de Avaliação", class: "col-sm-2 control-label" %>
-    <div class="col-sm-4">
+    <div class="col-sm-6">
       <%= f.text_field :evaluation_factor, class: "form-control", placeholder: "Fator a ser avaliado" %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :description, "Descrição", class: "col-sm-2 control-label" %>
-    <div class="col-sm-4">
+    <div class="col-sm-8">
       <%= f.text_area :description, class: "form-control", placeholder: "Enunciado da questão"  %>
     </div>
   </div>
 
-  <h2 class="fields">Opções:</h2>
+  <hr/>
   <%= f.fields_for :options do |fields_form| %>
     <%= render "option_fields", f: fields_form %>
   <% end %>
 
   <div class="col-sm-offset-2">
-    <%= link_to_add_association 'Adicionar opção', f, :options, class: "btn btn-primary" %>
+    <%= link_to_add_association f, :options, class: "btn btn-success" do %>
+      <i class="glyphicon glyphicon-plus"></i> Adicionar opção
+    <% end %>
   </div>
   <div>
     <%= f.submit "Salvar", class: "btn btn-primary" %>

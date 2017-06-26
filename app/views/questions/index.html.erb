@@ -1,31 +1,33 @@
-<h1>Questões</h1>
-
-<p id="notice"><%= notice %></p>
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Fator de Avaliação</th>
-      <th>Descrição</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @questions.each do |question| %>
+<div class="col-md-6 col-md-offset-3">
+  <div class="page-header">
+    <h1>Questões</h1>
+  </div>
+  <p id="notice"><%= notice %></p>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= link_to question.name, question %></td>
-        <td><%= question.evaluation_factor %></td>
-        <td><%= question.description %></td>
-        <td>
-          <%= link_to 'Edit', edit_question_path(question) %>
-          <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Tem certeza?' } %>
-        </td>
+        <th>Nome</th>
+        <th>Fator de Avaliação</th>
+        <th>Descrição</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'Cadastrar nova questão', new_question_path, class: "btn btn-primary" %>
+    <tbody>
+      <% @questions.each do |question| %>
+        <tr>
+          <td><%= link_to question.name, question %></td>
+          <td><%= question.evaluation_factor %></td>
+          <td><%= question.description %></td>
+          <td>
+            <div class="btn-toolbar pull-right">
+              <%= link_to edit_question_path(question), class: "btn btn-default" do %><i class="glyphicon glyphicon-edit"></i><% end %>
+              <%= link_to question, method: :delete, data: { confirm: 'Tem certeza?' }, class: "btn btn-danger" do %><i class="glyphicon glyphicon-trash"></i><% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'Cadastrar nova questão', new_question_path, class: "btn btn-primary" %>
+</div>
