@@ -1,13 +1,12 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
-      <%= image_tag "praxis-logo.png", class: "center-block" %>
-      <h2 class="text-center">Sistema de Gestão de Pessoas</h2>
-    </div>
-  </div>
+  <%= render "devise/shared/header" %>
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4 well">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <% unless alert.nil? %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+
         <div class="form-group">
           <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control" %>
         </div>
