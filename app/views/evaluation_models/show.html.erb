@@ -1,36 +1,38 @@
 <div class="col-md-6 col-md-offset-3">
-  <div class="panel panel-primary">
-    <div class="panel-heading">Modelo de Avaliação - Detalhes</div>
-    <p id="notice"><%= notice %></p>
-    <p>
-      <strong>Nome:</strong>
-      <%= @evaluation_model.name %>
-    </p>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Modelo de Avaliação - Detalhes</div>
+        <p id="notice"><%= notice %></p>
+        <div class="panel-body">
+            <p>
+                <strong>Nome:</strong>
+                <%= @evaluation_model.name %>
+            </p>
 
-    <div id="accordion" role="tablist" aria-multiselectable="true">
-      <% @evaluation_model.questions.each_with_index do |question, index| %>
-        <% index_name = (index+1).humanize.capitalize %>
-        <div class="card">
-          <div class="card-header" role="tab" id="headingOne">
-            <h5 class="mb-0">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index_name %>" aria-expanded="true" aria-controls="collapse<%= index_name %>">
-                Questão <%=" #{ index + 1 }: #{ question.name }" %>
-              </a>
-            </h5>
-          </div>
-          <div id="collapse<%= index_name %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= index_name %>">
-            <div class="card-block">
-              <%= question.description %>
+            <div id="accordion" role="tablist" aria-multiselectable="true">
+                <% @evaluation_model.questions.each_with_index do |question, index| %>
+                    <% index_name = (index+1).humanize.capitalize %>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="heading<%= index_name %>">
+                            <h5 class="mb-0">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index_name %>" aria-expanded="true" aria-controls="collapse<%= index_name %>">
+                                    Questão <%=" #{ index + 1 }: #{ question.name }" %>
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse<%= index_name %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= index_name %>">
+                            <div class="card-block">
+                                <%= question.description %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
             </div>
-          </div>
         </div>
-      <% end %>
-    </div>
 
 
-    <div class="panel-footer">
-      <%= link_to 'Editar', edit_evaluation_model_path(@evaluation_model), class: "btn btn-primary" %>
-      <%= link_to 'Back', evaluation_models_path, class: "btn btn-default" %>
+        <div class="panel-footer">
+            <%= link_to 'Editar', edit_evaluation_model_path(@evaluation_model), class: "btn btn-primary" %>
+            <%= link_to 'Back', evaluation_models_path, class: "btn btn-default" %>
+        </div>
     </div>
-  </div>
 </div>
