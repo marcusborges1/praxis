@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe PositionsController, type: :controller do
-
+  login_user
+  
   let(:user) { User.create(name: "User") }
 
   let(:valid_attributes) { { name: "Diretor" } }

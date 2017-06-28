@@ -1,18 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  login_user
 
   let(:position) { Position.create(name: "Membro") }
   let(:sector) { Sector.create(name: "DAF") }
-  
+
   let(:valid_attributes) {
-    { 
+    {
       name: "Name",
       position_id: position.id,
       sector_id: sector.id
     }
   }
-  
+
 
   let(:invalid_attributes) {
     { name: "" }
