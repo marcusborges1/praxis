@@ -34,6 +34,7 @@ gem 'pg', '~> 0.20.0'
 gem 'devise', '~> 4.3'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'cocoon', '~> 1.2'
+gem 'devise', '~> 4.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
