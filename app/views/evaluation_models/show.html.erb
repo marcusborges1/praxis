@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @evaluation_model.name %>
+
+  <div>
+    <% @evaluation_model.questions.each do |question| %>
+      <%= question.name %>
+    <% end %>
+  </div>
+</p>
+
+<%= link_to 'Edit', edit_evaluation_model_path(@evaluation_model) %> |
+<%= link_to 'Back', evaluation_models_path %>

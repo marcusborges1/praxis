@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170623141432) do
+ActiveRecord::Schema.define(version: 20170627212928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "evaluation_models", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "options", force: :cascade do |t|
     t.string   "description"
@@ -33,8 +39,10 @@ ActiveRecord::Schema.define(version: 20170623141432) do
     t.string   "name"
     t.string   "evaluation_factor"
     t.text     "description"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "evaluation_model_id"
+    t.index ["evaluation_model_id"], name: "index_questions_on_evaluation_model_id", using: :btree
   end
 
   create_table "sectors", force: :cascade do |t|
@@ -54,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170623141432) do
   end
 
   add_foreign_key "options", "questions"
+  add_foreign_key "questions", "evaluation_models"
   add_foreign_key "users", "positions"
   add_foreign_key "users", "sectors"
 end

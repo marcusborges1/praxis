@@ -1,0 +1,32 @@
+<%= form_for(evaluation_model) do |f| %>
+    <% if evaluation_model.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(evaluation_model.errors.count, "error") %> prohibited this evaluation_model from being saved:</h2>
+
+            <ul>
+                <%# <% evaluation_model.errors.full_messages.each do |message| %1> %>
+                    <%# <li><%= message %1></li> %>
+                <%# <% end %1> %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+        <%= f.label "Questões" %><br />
+        <%= f.collection_check_boxes :question_ids, Question.all, :id, :name do |b| %>
+            <div class="collection-check-box">
+                <%= b.check_box %>
+                <%= b.label %>
+            </div>
+        <% end %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit %>
+    </div>
+<% end %>
