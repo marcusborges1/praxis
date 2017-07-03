@@ -34,7 +34,7 @@ RSpec.describe EvaluationsController, type: :controller do
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    it "returns a success response" do
+    xit "returns a success response" do
       Evaluation.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_success
@@ -42,7 +42,7 @@ RSpec.describe EvaluationsController, type: :controller do
   end
 
   describe "GET #show" do
-    it "returns a success response" do
+    xit "returns a success response" do
       evaluation = Evaluation.create! valid_attributes
       get :show, params: {id: evaluation.to_param}, session: valid_session
       expect(response).to be_success
@@ -50,14 +50,14 @@ RSpec.describe EvaluationsController, type: :controller do
   end
 
   describe "GET #new" do
-    it "returns a success response" do
+    xit "returns a success response" do
       get :new, params: {}, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "GET #edit" do
-    it "returns a success response" do
+    xit "returns a success response" do
       evaluation = Evaluation.create! valid_attributes
       get :edit, params: {id: evaluation.to_param}, session: valid_session
       expect(response).to be_success
@@ -92,14 +92,14 @@ RSpec.describe EvaluationsController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested evaluation" do
+      xit "updates the requested evaluation" do
         evaluation = Evaluation.create! valid_attributes
         put :update, params: {id: evaluation.to_param, evaluation: new_attributes}, session: valid_session
         evaluation.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the evaluation" do
+      xit "redirects to the evaluation" do
         evaluation = Evaluation.create! valid_attributes
         put :update, params: {id: evaluation.to_param, evaluation: valid_attributes}, session: valid_session
         expect(response).to redirect_to(evaluation)
@@ -107,7 +107,7 @@ RSpec.describe EvaluationsController, type: :controller do
     end
 
     context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
+      xit "returns a success response (i.e. to display the 'edit' template)" do
         evaluation = Evaluation.create! valid_attributes
         put :update, params: {id: evaluation.to_param, evaluation: invalid_attributes}, session: valid_session
         expect(response).to be_success
@@ -116,14 +116,14 @@ RSpec.describe EvaluationsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested evaluation" do
+    xit "destroys the requested evaluation" do
       evaluation = Evaluation.create! valid_attributes
       expect {
         delete :destroy, params: {id: evaluation.to_param}, session: valid_session
       }.to change(Evaluation, :count).by(-1)
     end
 
-    it "redirects to the evaluations list" do
+    xit "redirects to the evaluations list" do
       evaluation = Evaluation.create! valid_attributes
       delete :destroy, params: {id: evaluation.to_param}, session: valid_session
       expect(response).to redirect_to(evaluations_url)
