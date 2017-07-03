@@ -6,6 +6,7 @@ RSpec.describe UsersController, type: :controller do
   let(:position) { FactoryGirl.create(:position) }
   let(:sector) { FactoryGirl.create(:sector) }
 
+
   let(:valid_attributes) {
     {
       name: Faker::Name.name,
