@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Sector, type: :model do
-  let(:sector) { Sector.new(name: 'Name') }
+  let(:sector) { FactoryGirl.build(:sector) }
 
   it "is expected to be valid" do
     expect(sector).to be_valid
@@ -18,12 +18,12 @@ RSpec.describe Sector, type: :model do
   end
 
   describe ".director" do
-    let(:some_position) { Position.create(name: "Bar") }
-    let(:director_position) { Position.create(name: "Diretor") }
+    let(:some_position) { FactoryGirl.create(:position) }
+    let(:director_position) { FactoryGirl.create(:position, name: "Diretor") }
+
     before(:each) do
-      User.create(name: "user1", position: some_position, sector: sector)
-      User.create(name: "user2", position: some_position, sector: sector)
-      @director = User.create(name: "user3", position: director_position, sector: sector)
+      FactoryGirl.create_list(:user, 2, position: some_position, sector: sector)
+      @director = FactoryGirl.create(:user, position: director_position, sector: sector)
     end
 
     it "returns the director of that sector" do

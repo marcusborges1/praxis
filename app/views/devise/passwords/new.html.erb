@@ -1,0 +1,22 @@
+<div class="container">
+  <%= render "devise/shared/header" %>
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4 well">
+      <h2>Esqueceu sua senha?</h2>
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="form-group">
+          <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Envie-me instruções para mudar a senha", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

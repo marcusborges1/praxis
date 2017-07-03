@@ -34,6 +34,7 @@ gem 'pg', '~> 0.20.0'
 gem 'devise', '~> 4.3'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'cocoon', '~> 1.2'
+gem 'devise', '~> 4.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -59,6 +60,7 @@ end
 group :test do
   gem 'shoulda-matchers', '~> 3.1', require: false
   gem 'database_cleaner', '~> 1.6'
+  gem 'faker', '~> 1.6'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
