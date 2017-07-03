@@ -7,7 +7,7 @@ RSpec.describe "evaluation_models/edit", type: :view do
     ))
   end
 
-  it "renders the edit evaluation_model form" do
+  xit "renders the edit evaluation_model form" do
     render
 
     assert_select "form[action=?][method=?]", evaluation_model_path(@evaluation_model), "post" do
