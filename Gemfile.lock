@@ -237,9 +237,9 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   database_cleaner (~> 1.6)
   devise (~> 4.3)
-  humanize
   factory_girl_rails (~> 4.8)
   faker (~> 1.6)
+  humanize
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
