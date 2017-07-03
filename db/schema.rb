@@ -25,15 +25,6 @@ ActiveRecord::Schema.define(version: 20170703020815) do
     t.index ["sector_id"], name: "index_evaluation_models_on_sector_id", using: :btree
   end
 
-  create_table "evaluations", force: :cascade do |t|
-    t.date     "start_date"
-    t.date     "finish_date"
-    t.integer  "evaluation_model_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.index ["evaluation_model_id"], name: "index_evaluations_on_evaluation_model_id", using: :btree
-  end
-
   create_table "options", force: :cascade do |t|
     t.string   "description"
     t.datetime "created_at",  null: false
@@ -88,7 +79,6 @@ ActiveRecord::Schema.define(version: 20170703020815) do
 
   add_foreign_key "evaluation_models", "positions"
   add_foreign_key "evaluation_models", "sectors"
-  add_foreign_key "evaluations", "evaluation_models"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "evaluation_models"
   add_foreign_key "users", "positions"
