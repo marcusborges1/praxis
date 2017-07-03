@@ -2,13 +2,11 @@ class EvaluationsController < ApplicationController
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
 
   # GET /evaluations
-  # GET /evaluations.json
   def index
     @evaluations = Evaluation.all
   end
 
   # GET /evaluations/1
-  # GET /evaluations/1.json
   def show
   end
 
@@ -22,43 +20,31 @@ class EvaluationsController < ApplicationController
   end
 
   # POST /evaluations
-  # POST /evaluations.json
   def create
     @evaluation = Evaluation.new(evaluation_params)
 
     respond_to do |format|
       if @evaluation.save
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
-        format.json { render :show, status: :created, location: @evaluation }
+        redirect_to @evaluation, notice: 'Evaluation was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @evaluation.errors, status: :unprocessable_entity }
+        render :new
       end
     end
   end
 
   # PATCH/PUT /evaluations/1
-  # PATCH/PUT /evaluations/1.json
   def update
-    respond_to do |format|
       if @evaluation.update(evaluation_params)
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @evaluation }
+        redirect_to @evaluation, notice: 'Evaluation was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @evaluation.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
   # DELETE /evaluations/1
-  # DELETE /evaluations/1.json
   def destroy
     @evaluation.destroy
-    respond_to do |format|
-      format.html { redirect_to evaluations_url, notice: 'Evaluation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to evaluations_url, notice: 'Evaluation was successfully destroyed.'
   end
 
   private
