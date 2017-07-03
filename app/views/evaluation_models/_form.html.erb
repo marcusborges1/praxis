@@ -1,0 +1,50 @@
+<%= form_for(evaluation_model, html: { class: "form-horizontal" }) do |f| %>
+  <% if evaluation_model.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(evaluation_model.errors.count, "error") %> prohibited this evaluation_model from being saved:</h2>
+      <ul>
+        <% evaluation_model.errors.full_messages.each do |message| %>
+          <%# <li><%= message %1></li> %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, "Nome", class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :name, class: "form-control", placeholder: "Nome do Modelo de Avaliação" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :sector_id, "Diretoria Alvo", class: "col-sm-2 control-label" %>
+    <div class="col-sm-3">
+      <%= f.collection_select :sector_id, Sector.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :position_id, "Cargo Alvo", class: "col-sm-2 control-label" %>
+    <div class="col-sm-3">
+      <%= f.collection_select :position_id, Position.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Questões", class: "col-sm-2 control-label" %><br />
+    <div class="form-check">
+      <div class="col-sm-6">
+        <%= f.collection_check_boxes :question_ids, Question.all, :id, :name do |b| %>
+          <div>
+            <%= b.check_box(class: "form-check-input") %>
+            <%= b.label(class: "form-check-label") %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div>
+    <%= f.submit "Salvar", class: "btn btn-primary pull-right" %>
+  </div>
+<% end %>

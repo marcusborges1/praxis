@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :evaluation_models
   root "welcome#index"
   
   devise_for :users
