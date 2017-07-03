@@ -91,8 +91,6 @@ ActiveRecord::Schema.define(version: 20170703020815) do
   add_foreign_key "evaluation_models", "sectors"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "evaluation_models"
-  add_foreign_key "evaluation_models", "positions"
-  add_foreign_key "evaluation_models", "sectors"
   add_foreign_key "users", "positions"
   add_foreign_key "users", "sectors"
 end
