@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SectorsController, type: :controller do
+  login_user
 
   let(:valid_attributes) { { name: "Valid" } }
   let(:invalid_attributes) { { name: "Not invalid yet" } }

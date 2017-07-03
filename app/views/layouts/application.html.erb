@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <%= render partial: 'layouts/menu' %>
+        <%= render partial: 'layouts/menu' if user_signed_in? %>
         <%= yield %>
     </body>
 </html>

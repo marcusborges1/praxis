@@ -35,6 +35,7 @@ gem 'devise', '~> 4.3'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'cocoon', '~> 1.2'
 gem 'humanize'
+gem 'devise', '~> 4.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -42,6 +43,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.6'
+  gem 'factory_girl_rails', '~> 4.8'
 end
 
 group :development do
@@ -54,6 +56,12 @@ group :development do
   # Code metric and analyzer
   gem 'rails_best_practices', '~> 1.18'
   gem 'rubocop', '~> 0.49.1', require: false
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 3.1', require: false
+  gem 'database_cleaner', '~> 1.6'
+  gem 'faker', '~> 1.6'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
-
+  login_user
+  
   let(:valid_attributes) {
     {
       name: "foo",
