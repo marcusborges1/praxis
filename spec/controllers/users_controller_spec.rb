@@ -3,14 +3,17 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   login_user
 
-  let(:position) { Position.create(name: "Membro") }
-  let(:sector) { Sector.create(name: "DAF") }
+  let(:position) { FactoryGirl.create(:position) }
+  let(:sector) { FactoryGirl.create(:sector) }
 
   let(:valid_attributes) {
     {
-      name: "Name",
+      name: Faker::Name.name,
       position_id: position.id,
-      sector_id: sector.id
+      sector_id: sector.id,
+      email: Faker::Internet.email,
+      password: "123qwe!@#",
+      password_confirmation: "123qwe!@#"
     }
   }
 
@@ -26,7 +29,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      # user = User.create! valid_attributes
+      user = User.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
@@ -57,13 +60,13 @@ RSpec.describe UsersController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      skip "creates a new User" do
+      it "creates a new User" do
         expect {
           post :create, params: {user: valid_attributes}, session: valid_session
         }.to change(User, :count).by(1)
       end
 
-      skip "redirects to the created user" do
+      it "redirects to the created user" do
         post :create, params: {user: valid_attributes}, session: valid_session
         expect(response).to redirect_to(User.last)
       end
@@ -80,14 +83,16 @@ RSpec.describe UsersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "New Name"
+        }
       }
 
       it "updates the requested user" do
         user = User.create! valid_attributes
         put :update, params: {id: user.to_param, user: new_attributes}, session: valid_session
         user.reload
-        skip("Add assertions for updated state")
+        expect(user.name).to eq(new_attributes[:name])
       end
 
       it "redirects to the user" do
