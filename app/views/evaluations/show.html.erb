@@ -1,19 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Modelo de Avaliação - Detalhes</div>
+        <p id="notice"><%= notice %></p>
+        <div class="panel-body">
+            <p>
+                <strong>Data de Inicio:</strong>
+                <%= @evaluation.start_date %>
+            </p>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @evaluation.start_date %>
-</p>
+            <p>
+                <strong>Data de Termino:</strong>
+                <%= @evaluation.finish_date %>
+            </p>
 
-<p>
-  <strong>Finish date:</strong>
-  <%= @evaluation.finish_date %>
-</p>
+            <p>
+                <strong>Modelo de Avaliação:</strong>
+                <%= @evaluation.evaluation_model.name %>
+            </p>
+        </div>
 
-<p>
-  <strong>Evaluation model:</strong>
-  <%= @evaluation.evaluation_model %>
-</p>
-
-<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
-<%= link_to 'Back', evaluations_path %>
+        <div class="panel-footer">
+            <%= link_to 'Editar', edit_evaluation_path(@evaluation), class: "btn btn-primary" %>
+            <%= link_to 'Back', evaluations_path, class: "btn btn-default" %>
+        </div>
+    </div>
+</div>
