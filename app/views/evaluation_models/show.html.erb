@@ -8,6 +8,16 @@
                 <%= @evaluation_model.name %>
             </p>
 
+            <p>
+                <strong>Diretoria Alvo:</strong>
+                <%= @evaluation_model.sector_name %>
+            </p>
+
+            <p>
+                <strong>Cargo Alvo:</strong>
+                <%= @evaluation_model.position_name %>
+            </p>
+
             <div id="accordion" role="tablist" aria-multiselectable="true">
                 <% @evaluation_model.questions.each_with_index do |question, index| %>
                     <% index_name = (index+1).humanize.capitalize %>
