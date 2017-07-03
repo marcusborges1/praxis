@@ -4,15 +4,15 @@ RSpec.describe UsersController, type: :controller do
 
   let(:position) { Position.create(name: "Membro") }
   let(:sector) { Sector.create(name: "DAF") }
-  
+
   let(:valid_attributes) {
-    { 
+    {
       name: "Name",
       position_id: position.id,
       sector_id: sector.id
     }
   }
-  
+
 
   let(:invalid_attributes) {
     { name: "" }
