@@ -1,21 +1,23 @@
 <nav class="navbar navbar-default">
   <a class="navbar-brand pull-right" href="#">Sistema de Avaliação de Desempenho</a>
   <div class="collapse navbar-collapse pull-left" id="navbarSupportedContent">
-    <ul class="nav navbar-nav mr-auto">
-      <li class="nav-item">
+    <ul class="nav navbar-nav">
+      <li>
         <%= link_to "Membros", users_path, class: "nav-link" %>
       </li>
-      <li class="nav-item">
+      <li>
         <%= link_to "Cargos", positions_path, class: "nav-link" %>
       </li>
-      <li class="nav-item">
+      <li>
         <%= link_to "Diretorias", sectors_path, class: "nav-link" %>
       </li>
-      <li class="nav-item">
+      <li>
         <%= link_to "Questões", questions_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
         <%= link_to "Modelos de Avaliação", evaluation_models_path, class: "nav-link" %>
+      <li>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
       </li>
       <li class="nav-item">
         <%= link_to "Avaliações", evaluations_path, class: "nav-link" %>

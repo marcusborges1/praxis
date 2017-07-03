@@ -33,16 +33,7 @@ ActiveRecord::Schema.define(version: 20170703020815) do
     t.datetime "updated_at",          null: false
     t.index ["evaluation_model_id"], name: "index_evaluations_on_evaluation_model_id", using: :btree
   end
-
-  create_table "evaluations", force: :cascade do |t|
-    t.date     "start_date"
-    t.date     "finish_date"
-    t.integer  "evaluation_model_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.index ["evaluation_model_id"], name: "index_evaluations_on_evaluation_model_id", using: :btree
-  end
-
+  
   create_table "options", force: :cascade do |t|
     t.string   "description"
     t.datetime "created_at",  null: false
@@ -75,15 +66,29 @@ ActiveRecord::Schema.define(version: 20170703020815) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "sector_id"
     t.integer  "position_id"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["position_id"], name: "index_users_on_position_id", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["sector_id"], name: "index_users_on_sector_id", using: :btree
   end
 
   add_foreign_key "evaluations", "evaluation_models"
+  add_foreign_key "evaluation_models", "positions"
+  add_foreign_key "evaluation_models", "sectors"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "evaluation_models"
   add_foreign_key "evaluation_models", "positions"

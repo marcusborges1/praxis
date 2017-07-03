@@ -13,10 +13,8 @@ RSpec.describe "evaluation_models/edit", type: :view do
     ])
   end
 
-
-  skip "renders the edit evaluation_model form" do
+  xit "renders the edit evaluation_model form" do
     render
-
     assert_select "form[action=?][method=?]", evaluation_model_path(@evaluation_model), "post" do
       assert_select "input#evaluation_model_name[name=?]", "evaluation_model[name]"
     end

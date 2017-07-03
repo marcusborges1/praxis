@@ -13,11 +13,9 @@ RSpec.describe "evaluation_models/new", type: :view do
     ])
   end
 
-  skip "renders new evaluation_model form" do
+  xit "renders new evaluation_model form" do
     render
-
     assert_select "form[action=?][method=?]", evaluation_models_path, "post" do
-
       assert_select "input#evaluation_model_name[name=?]", "evaluation_model[name]"
     end
   end
