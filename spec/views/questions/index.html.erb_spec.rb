@@ -2,10 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "questions/index", type: :view do
   before(:each) do
-    assign(:questions, [
-      Question.create!(name: "foo", description: "bar", evaluation_factor: "baz"),
-      Question.create!(name: "foo", description: "bar", evaluation_factor: "baz")
-    ])
+    assign(:questions, FactoryGirl.create_list(:question, 2))
   end
 
   it "renders a list of questions" do

@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
   login_user
-  
+
   let(:valid_attributes) {
     {
-      name: "foo",
       description: "bar",
       evaluation_factor: "baz",
       options_attributes: [
@@ -80,14 +79,14 @@ RSpec.describe QuestionsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        { name: "bar", description: "foo", evaluation_factor: "baz" }
+        { description: "foo", evaluation_factor: "baz" }
       }
 
       it "updates the requested question" do
         question = Question.create! valid_attributes
         put :update, params: {id: question.to_param, question: new_attributes}, session: valid_session
         question.reload
-        expect(question.name).to eq new_attributes[:name]
+        expect(question.description).to eq new_attributes[:description]
       end
 
       it "redirects to the question" do
