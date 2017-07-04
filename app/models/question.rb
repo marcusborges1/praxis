@@ -3,5 +3,5 @@ class Question < ApplicationRecord
   accepts_nested_attributes_for :options, allow_destroy: true,
                                 reject_if: :all_blank
 
-  validates_presence_of :name, :description, :evaluation_factor
+  validates_presence_of :description, :evaluation_factor
 end
