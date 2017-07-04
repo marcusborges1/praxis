@@ -6,7 +6,6 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Nome</th>
         <th>Fator de Avaliação</th>
         <th>Descrição</th>
         <th></th>
@@ -16,8 +15,7 @@
     <tbody>
       <% @questions.each do |question| %>
         <tr>
-          <td><%= link_to question.name, question %></td>
-          <td><%= question.evaluation_factor %></td>
+          <td><%= link_to question.evaluation_factor, question %></td>
           <td><%= question.description %></td>
           <td>
             <div class="btn-toolbar pull-right">
