@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+  root "welcome#index"
+
+  devise_for :users
+
+  resources :sectors
+  resources :users
+  resources :positions
+  resources :questions
   resources :evaluations
   resources :evaluation_models
-  root "welcome#index"  
-  devise_for :users
-  resources :positions
-  resources :users
-  resources :sectors
-  resources :questions
-  resources :evaluation_models
+  resources :projects
 end
