@@ -1,9 +1,16 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Projeto - Detalhes</div>
+    <div class="panel-body">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+      <p>
+        <strong>Name: </strong><%= @project.name %>
+      </p>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Editar Projeto', edit_project_path(@project), class: "btn btn-primary" %>
+      <%= link_to 'Voltar', projects_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
