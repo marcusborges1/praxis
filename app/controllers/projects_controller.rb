@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params.except(:user_ids))
 
     if @project.save
-      @project.users << User.find(project_params[:user_ids])
+      @project.users << User.find(project_params[:user_ids]) unless project_params[:user_ids].nil?
       redirect_to @project, notice: "Projeto criado com sucesso."
     else
       render :new
