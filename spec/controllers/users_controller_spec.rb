@@ -18,7 +18,6 @@ RSpec.describe UsersController, type: :controller do
     }
   }
 
-
   let(:invalid_attributes) {
     { name: "" }
   }

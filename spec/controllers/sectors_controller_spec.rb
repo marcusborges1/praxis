@@ -10,7 +10,7 @@ RSpec.describe SectorsController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      sector = Sector.create! valid_attributes
+      Sector.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
@@ -64,7 +64,7 @@ RSpec.describe SectorsController, type: :controller do
         sector = Sector.create! valid_attributes
         put :update, params: {id: sector.to_param, sector: new_attributes}, session: valid_session
         sector.reload
-        skip("Add assertions for updated state")
+        expect(sector.name).to eq new_attributes[:name]
       end
 
       it "redirects to the sector" do

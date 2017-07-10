@@ -23,22 +23,20 @@ class EvaluationsController < ApplicationController
   def create
     @evaluation = Evaluation.new(evaluation_params)
 
-    respond_to do |format|
-      if @evaluation.save
-        redirect_to @evaluation, notice: 'Evaluation was successfully created.'
-      else
-        render :new
-      end
+    if @evaluation.save
+      redirect_to @evaluation, notice: 'Evaluation was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /evaluations/1
   def update
-      if @evaluation.update(evaluation_params)
-        redirect_to @evaluation, notice: 'Evaluation was successfully updated.'
-      else
-        render :edit
-      end
+    if @evaluation.update(evaluation_params)
+      redirect_to @evaluation, notice: 'Evaluation was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   # DELETE /evaluations/1
@@ -48,13 +46,13 @@ class EvaluationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_evaluation
-      @evaluation = Evaluation.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_evaluation
+    @evaluation = Evaluation.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def evaluation_params
-      params.require(:evaluation).permit(:start_date, :finish_date, :evaluation_model_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def evaluation_params
+    params.require(:evaluation).permit(:start_date, :finish_date, :evaluation_model_id)
+  end
 end

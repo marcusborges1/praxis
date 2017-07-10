@@ -34,9 +34,9 @@
   <div class="form-group">
     <%= f.label "Questões", class: "col-sm-2 control-label" %><br />
     <div class="form-check">
-      <div class="col-sm-6">
-        <%= f.collection_check_boxes :question_ids, Question.all, :id, :name do |b| %>
-          <div>
+      <div class="col-sm-8">
+        <%= f.collection_check_boxes :question_ids, Question.all, :id, :description do |b| %>
+          <div> 
             <%= b.check_box(class: "form-check-input") %>
             <%= b.label(class: "form-check-label") %>
           </div>
