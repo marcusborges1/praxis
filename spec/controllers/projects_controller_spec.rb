@@ -3,17 +3,8 @@ require 'rails_helper'
 RSpec.describe ProjectsController, type: :controller do
   login_user
 
-  let(:valid_attributes) {
-    {
-      name: "Projeto Six"
-    }
-  }
-
-  let(:invalid_attributes)  {
-    {
-      name: ""
-    }
-  }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:project_with_users) }
+  let(:invalid_attributes)  { { name: "" } }
 
   let(:valid_session) { {} }
 
@@ -72,15 +63,13 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { { name: "Novo nome" } }
 
       it "updates the requested project" do
         project = Project.create! valid_attributes
         put :update, params: {id: project.to_param, project: new_attributes}, session: valid_session
         project.reload
-        skip("Add assertions for updated state")
+        expect(project.name).to eq(new_attributes[:name])
       end
 
       it "redirects to the project" do
