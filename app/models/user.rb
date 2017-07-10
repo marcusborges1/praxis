@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   belongs_to :position
   belongs_to :sector
+  has_many :project_allocations
+  has_many :projects, through: :project_allocations
 
   validates :name, presence: true
 

@@ -1,0 +1,33 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="page-header">
+    <h1>Projetos</h1>
+  </div>
+  <p id="notice"><%= notice %></p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.name, project %></td>
+          <td>
+            <div class="pull-right">
+              <%= link_to edit_project_path(project), class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-edit"></span>
+              <% end %>
+              <%= link_to project, method: :delete, data: { confirm: 'Tem certeza?' },
+                class: "btn btn-danger" do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%= link_to 'Cadastrar novo projeto', new_project_path, class: "btn btn-primary" %>

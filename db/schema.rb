@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170703174841) do
+ActiveRecord::Schema.define(version: 20170708010406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20170703174841) do
     t.datetime "updated_at",          null: false
     t.index ["evaluation_model_id"], name: "index_evaluations_on_evaluation_model_id", using: :btree
   end
-  
+
   create_table "options", force: :cascade do |t|
     t.string   "description"
     t.datetime "created_at",  null: false
@@ -43,6 +43,20 @@ ActiveRecord::Schema.define(version: 20170703174841) do
   end
 
   create_table "positions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_allocations", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id", "user_id"], name: "index_project_allocations_on_project_id_and_user_id", using: :btree
+  end
+
+  create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -85,9 +99,9 @@ ActiveRecord::Schema.define(version: 20170703174841) do
     t.index ["sector_id"], name: "index_users_on_sector_id", using: :btree
   end
 
-  add_foreign_key "evaluations", "evaluation_models"
   add_foreign_key "evaluation_models", "positions"
   add_foreign_key "evaluation_models", "sectors"
+  add_foreign_key "evaluations", "evaluation_models"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "evaluation_models"
   add_foreign_key "users", "positions"
