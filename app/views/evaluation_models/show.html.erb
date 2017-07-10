@@ -25,13 +25,16 @@
                         <div class="card-header" role="tab" id="heading<%= index_name %>">
                             <h5 class="mb-0">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index_name %>" aria-expanded="true" aria-controls="collapse<%= index_name %>">
-                                    Questão <%=" #{ index + 1 }: #{ question.name }" %>
+                                    Questão <%=" #{ index + 1 }" %>
                                 </a>
                             </h5>
                         </div>
                         <div id="collapse<%= index_name %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= index_name %>">
                             <div class="card-block">
-                                <%= question.description %>
+                                <b>Descrição:</b> <%= question.description %>
+                            </div>
+                            <div class="card-block">
+                                <b>Fator de avaliação:</b> <%= question.evaluation_factor %>
                             </div>
                         </div>
                     </div>

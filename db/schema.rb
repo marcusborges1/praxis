@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20170703174841) do
     t.datetime "updated_at",          null: false
     t.index ["evaluation_model_id"], name: "index_evaluations_on_evaluation_model_id", using: :btree
   end
-  
+
   create_table "options", force: :cascade do |t|
     t.string   "description"
     t.datetime "created_at",  null: false
@@ -85,9 +85,9 @@ ActiveRecord::Schema.define(version: 20170703174841) do
     t.index ["sector_id"], name: "index_users_on_sector_id", using: :btree
   end
 
-  add_foreign_key "evaluations", "evaluation_models"
   add_foreign_key "evaluation_models", "positions"
   add_foreign_key "evaluation_models", "sectors"
+  add_foreign_key "evaluations", "evaluation_models"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "evaluation_models"
   add_foreign_key "users", "positions"
