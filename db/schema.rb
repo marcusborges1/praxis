@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710065244) do
+ActiveRecord::Schema.define(version: 20170710072752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20170710065244) do
     t.integer  "user_id"
     t.index ["evaluation_id"], name: "index_answer_groups_on_evaluation_id", using: :btree
     t.index ["user_id"], name: "index_answer_groups_on_user_id", using: :btree
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id"
+    t.integer  "option_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["option_id"], name: "index_answers_on_option_id", using: :btree
+    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
   end
 
   create_table "evaluation_models", force: :cascade do |t|
@@ -99,6 +108,8 @@ ActiveRecord::Schema.define(version: 20170710065244) do
 
   add_foreign_key "answer_groups", "evaluations"
   add_foreign_key "answer_groups", "users"
+  add_foreign_key "answers", "options"
+  add_foreign_key "answers", "questions"
   add_foreign_key "evaluation_models", "positions"
   add_foreign_key "evaluation_models", "sectors"
   add_foreign_key "evaluations", "evaluation_models"
