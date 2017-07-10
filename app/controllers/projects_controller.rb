@@ -16,9 +16,10 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
+    @project = Project.new(project_params.except(:user_ids))
 
     if @project.save
+      @project.users << User.find(project_params[:user_ids])
       redirect_to @project, notice: "Projeto criado com sucesso."
     else
       render :new
@@ -44,6 +45,6 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name)
+      params.require(:project).permit(:name, user_ids: [])
     end
 end
