@@ -10,7 +10,6 @@ RSpec.describe UsersController, type: :controller do
   let(:valid_attributes) {
     {
       name: Faker::Name.name,
-      position_id: position.id,
       sector_id: sector.id,
       email: Faker::Internet.email,
       password: "123qwe!@#",

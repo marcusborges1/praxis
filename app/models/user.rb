@@ -14,5 +14,4 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   delegate :name, to: :sector, prefix: true
-  delegate :name, to: :position, prefix: true
 end

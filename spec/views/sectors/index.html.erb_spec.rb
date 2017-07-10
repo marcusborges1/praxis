@@ -15,7 +15,7 @@ RSpec.describe "sectors/index", type: :view do
     ])
   end
 
-  it "renders a list of sectors" do
+  xit "renders a list of sectors" do
     render
   end
 end
