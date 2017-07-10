@@ -4,7 +4,7 @@
       <h2><%= pluralize(evaluation_model.errors.count, "error") %> prohibited this evaluation_model from being saved:</h2>
       <ul>
         <% evaluation_model.errors.full_messages.each do |message| %>
-          <%# <li><%= message %1></li> %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
@@ -36,7 +36,7 @@
     <div class="form-check">
       <div class="col-sm-8">
         <%= f.collection_check_boxes :question_ids, Question.all, :id, :description do |b| %>
-          <div> 
+          <div>
             <%= b.check_box(class: "form-check-input") %>
             <%= b.label(class: "form-check-label") %>
           </div>

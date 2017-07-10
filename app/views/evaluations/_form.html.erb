@@ -5,14 +5,14 @@
 
             <ul>
                 <% evaluation.errors.full_messages.each do |message| %>
-                    <%# <li><%= message %1></li> %>
+                    <li><%= message %></li>
                 <% end %>
             </ul>
         </div>
     <% end %>
 
     <div class="form-group">
-        <%= f.label :start_date, class: "col-md-2 control-label" %>
+        <%= f.label :start_date, "Data inicial", class: "col-md-2 control-label" %>
         <div class="col-sm-5">
             <div class="input-group date" data-provide="datepicker">
                 <%= f.date_field :start_date, class: "form-control" %>
@@ -24,7 +24,7 @@
     </div>
 
     <div class="form-group">
-        <%= f.label :finish_date, class: "col-md-2 control-label" %>
+        <%= f.label :finish_date, "Data final", class: "col-md-2 control-label" %>
         <div class="col-sm-5">
             <div class="input-group date" data-provide="datepicker">
                 <%= f.date_field :finish_date, class: "form-control" %>
@@ -36,13 +36,13 @@
     </div>
 
     <div class="form-group">
-        <%= f.label :evaluation_model_id, class: "col-md-2 control-label" %>
+        <%= f.label :evaluation_model_id, "Modelo de avaliação", class: "col-md-2 control-label" %>
         <div class="col-sm-5">
             <%= f.collection_select :evaluation_model_id, EvaluationModel.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
         </div>
     </div>
 
     <div class="actions">
-        <%= f.submit "Salvar", class: "btn btn-primary pull-right" %>
+        <%= f.submit "Salvar", class: "btn btn-primary" %>
     </div>
 <% end %>
