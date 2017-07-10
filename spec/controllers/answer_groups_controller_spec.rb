@@ -4,17 +4,19 @@ RSpec.describe AnswerGroupsController, type: :controller do
 
   login_user
 
+  let(:evaluation) { FactoryGirl.create(:evaluation) }
+  let(:user) { FactoryGirl.create(:user) }
   let(:valid_attributes) {
     {
-      evaluation: FactoryGirl.create(:evaluation),
-      user: FactoryGirl.create(:user)
+      evaluation_id: evaluation.id,
+      user_id: user.id
     }
   }
 
   let(:invalid_attributes) {
     {
-      evaluation: nil,
-      user: nil
+      evaluation_id: nil,
+      user_id: nil
     }
   }
 
@@ -78,15 +80,16 @@ RSpec.describe AnswerGroupsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
+      let(:evaluation) { FactoryGirl.create(:evaluation) }
       let(:new_attributes) {
-        { evaluation: FactoryGirl.create(:evaluation) }
+        { evaluation_id: evaluation.id }
       }
 
       it "updates the requested answer_group" do
         answer_group = AnswerGroup.create! valid_attributes
         put :update, params: {id: answer_group.to_param, answer_group: new_attributes}, session: valid_session
         answer_group.reload
-        skip("Add assertions for updated state")
+        expect(answer_group.evaluation_id).to eq new_attributes[:evaluation_id]
       end
 
       it "redirects to the answer_group" do
