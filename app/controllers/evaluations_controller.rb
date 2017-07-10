@@ -53,6 +53,6 @@ class EvaluationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def evaluation_params
-    params.require(:evaluation).permit(:start_date, :finish_date, :evaluation_model_id)
+    params.require(:evaluation).permit(:name, :start_date, :finish_date, :evaluation_model_id)
   end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :answer_groups
   resources :evaluations
   resources :evaluation_models
   root "welcome#index"  

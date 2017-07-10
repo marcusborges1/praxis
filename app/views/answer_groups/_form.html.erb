@@ -1,0 +1,31 @@
+<%= form_for(answer_group) do |f| %>
+  <% if answer_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(answer_group.errors.count, "error") %> prohibited this answer_group from being saved:</h2>
+
+      <ul>
+        <% answer_group.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :evaluation_id, class: "col-md-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.collection_select :evaluation_id, Evaluation.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :user_id, class: "col-md-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.collection_select :user_id, User.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

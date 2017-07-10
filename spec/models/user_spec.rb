@@ -21,4 +21,6 @@ RSpec.describe User, type: :model do
     association = User.reflect_on_association(:sector)
     expect(association.macro).to eq :belongs_to
   end
+
+  it { should have_many(:answer_groups)}
 end

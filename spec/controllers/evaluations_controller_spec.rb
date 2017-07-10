@@ -11,6 +11,7 @@ RSpec.describe EvaluationsController, type: :controller do
 
   let(:valid_attributes) {
     {
+      name: Faker::Name.name,
       start_date:  Faker::Date.between(3.days.ago, Date.today),
       finish_date:  Faker::Date.between(2.days.ago, Date.tomorrow) ,
       evaluation_model_id: evaluation_model.id
