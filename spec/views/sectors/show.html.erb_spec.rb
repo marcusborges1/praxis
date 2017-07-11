@@ -5,7 +5,7 @@ RSpec.describe "sectors/show", type: :view do
     @sector = assign(:sector, FactoryGirl.create(:sector))
   end
 
-  xit "renders attributes in <p>" do
+  it "renders attributes in <p>" do
     render
   end
 end

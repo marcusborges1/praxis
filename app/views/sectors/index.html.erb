@@ -16,7 +16,7 @@
       <% @sectors.each do |sector| %>
         <tr>
           <td><%= link_to sector.name, sector %></td>
-          <td><%= sector.director.name unless sector.director.nil? %></td>
+          <td><%#= sector.director.name unless sector.director.nil? %></td>
           <td>
             <div class="btn-toolbar pull-right">
               <%= link_to edit_sector_path(sector), class: "btn btn-default" do %><i class="glyphicon glyphicon-edit"></i><% end %>

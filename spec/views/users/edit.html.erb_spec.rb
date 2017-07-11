@@ -5,7 +5,7 @@ RSpec.describe "users/edit", type: :view do
     @user = assign(:user, FactoryGirl.create(:user))
   end
 
-  xit "renders the edit user form" do
+  it "renders the edit user form" do
     render
 
     assert_select "form[action=?][method=?]", user_path(@user), "post" do

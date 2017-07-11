@@ -5,7 +5,7 @@ RSpec.describe "users/index", type: :view do
     assign(:users, FactoryGirl.create_list(:user, 2))
   end
 
-  xit "renders a list of users" do
+  it "renders a list of users" do
     render
   end
 end
