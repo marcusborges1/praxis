@@ -29,7 +29,7 @@ Rails.application.configure do
   # Raise exception if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   # Mailcatcher
   # To use this locally, install mailcatcher gem (`gem install mailcatcher`)
   # Start mailcatcher from command line (`mailcatcher`) and you can start
