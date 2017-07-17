@@ -5,5 +5,5 @@ class Position < ApplicationRecord
   validates :name, presence: true
   validates :context, presence: true
 
-  enum context: [:institutional, :project], _prefix: true
+  enum context: [:institutional, :project], _suffix: true
 end
