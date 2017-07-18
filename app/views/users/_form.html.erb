@@ -19,20 +19,9 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :position_id, "Cargo Institucional", class: "col-sm-2 control-label" %>
+    <%= f.label :position_ids, "Cargo Institucional", class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
-      <%= f.collection_select :position_ids, Position.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :position_id, "Alocado no Projeto", class: "col-sm-2 control-label" %>
-    <div class="col-sm-3">
-      <%= f.collection_select :position_ids, Position.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
-    </div>
-    <%= f.label :position_id, "como", class: "col-sm-2 control-label" %>
-    <div class="col-sm-3">
-      <%= f.collection_select :position_ids, Position.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
+      <%= f.collection_select :position_ids, Position.institutional_context, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
     </div>
   </div>
 
