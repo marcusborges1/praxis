@@ -6,6 +6,9 @@
       <p>
         <b>Nome: </b> <%= @position.name %>
       </p>
+      <p>
+        <b>Tipo de cargo: </b> <%= translate_context(@position.context) %>
+      </p>
     </div>
     <div class="panel-footer">
       <%= link_to 'Editar Cargo', edit_position_path(@position), class: "btn btn-primary" %>
