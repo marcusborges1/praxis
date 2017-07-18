@@ -6,6 +6,6 @@ class Sector < ApplicationRecord
 
   # def director
   #   "Diretor" will be refactored
-  #   users.select { |user| user.position_name == "Diretor" }.first
+  #   users.select { |user| user.position.institutional_context.first.name == "Diretor" }.first
   # end
 end
