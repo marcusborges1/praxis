@@ -2,15 +2,9 @@ require 'rails_helper'
 
 RSpec.describe PositionsController, type: :controller do
   login_user
-  
-  let(:user) { User.create(name: "User") }
 
-  let(:valid_attributes) { { name: "Diretor" } }
-
-  let(:invalid_attributes) {
-    {name: nil}
-  }
-
+  let(:valid_attributes) { FactoryGirl.attributes_for(:position, context: 1) }
+  let(:invalid_attributes) { FactoryGirl.attributes_for(:position, name: nil, context: nil) }
   let(:valid_session) { {} }
 
   describe "GET #index" do
