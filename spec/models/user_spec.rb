@@ -22,5 +22,5 @@ RSpec.describe User, type: :model do
     expect(association.macro).to eq :belongs_to
   end
 
-  it { should have_many(:answer_groups)}
+  it { should have_many(:answer_groups).dependent(:destroy) }
 end
