@@ -23,7 +23,6 @@ class EvaluationModelsController < ApplicationController
   # POST /evaluation_models
   def create
     @evaluation_model = EvaluationModel.new(evaluation_model_params)
-    byebug
     if @evaluation_model.save
       redirect_to @evaluation_model, notice: 'Modelo de Avalição criado com sucesso'
     else
