@@ -5,6 +5,6 @@ FactoryGirl.define do
     password                "123qwe!@#"
     password_confirmation   "123qwe!@#"
     sector                  { FactoryGirl.create(:sector) }
-    position                { FactoryGirl.create(:position) }
+    positions               { FactoryGirl.create_list(:position, 1) }
   end
 end

@@ -7,12 +7,14 @@
     <thead>
       <tr>
         <th>Nome</th>
+        <th>Tipo de Cargo</th>
       </tr>
     </thead>
     <tbody>
       <% @positions.each do |position| %>
         <tr>
           <td><%= link_to position.name, position %></td>
+          <td><%= translate_context(position.context) %></td>
           <td>
             <div class="btn-toolbar pull-right">
               <%= link_to edit_position_path(position), class: "btn btn-default" do %>

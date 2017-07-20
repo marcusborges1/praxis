@@ -1,23 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Sector, type: :model do
-  let(:sector) { FactoryGirl.build(:sector) }
+  it { is_expected.to have_many(:users) }
+  it { is_expected.to validate_presence_of(:name) }
 
-  it "is expected to be valid" do
-    expect(sector).to be_valid
-  end
-
-  it "is not valid when name is nil" do
-    sector.name = nil
-    expect(sector).to_not be_valid
-  end
-
-  it "has many users" do
-    association = Sector.reflect_on_association(:users)
-    expect(association.macro).to eq :has_many
-  end
-
-  describe ".director" do
+  xdescribe ".director" do
+    let(:sector) { FactoryGirl.create(:sector) }
     let(:some_position) { FactoryGirl.create(:position) }
     let(:director_position) { FactoryGirl.create(:position, name: "Diretor") }
 
