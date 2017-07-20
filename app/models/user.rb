@@ -14,18 +14,18 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   validate :has_at_least_one_position
-  # validate :has_exactly_one_institutional_position
+  validate :has_exactly_one_institutional_position, on: :update
 
   delegate :name, to: :sector, prefix: true
 
   private
   def has_at_least_one_position
-    errors.add(:positions, "must have at least one position") if position_ids.blank?
+    errors.add(:positions, "must be at least one") if position_ids.blank?
   end
 
   def has_exactly_one_institutional_position
     if positions.institutional_context.length != 1
-      errors.add(:positions, "must have exactly one institutional position")
+      errors.add(:positions, "must contain exactly one institutional user")
     end
   end
 end
