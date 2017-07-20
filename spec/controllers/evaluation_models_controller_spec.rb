@@ -3,14 +3,18 @@ require 'rails_helper'
 RSpec.describe EvaluationModelsController, type: :controller do
   login_user
 
-  let(:position) { FactoryGirl.create(:position) }
   let(:sector) { FactoryGirl.create(:sector) }
+  let!(:question_1) { FactoryGirl.create(:question) }
+  let!(:question_2) { FactoryGirl.create(:question) }
 
   let(:valid_attributes) {
     {
       name: Faker::Name.name,
-      position_id: position.id,
-      sector_id: sector.id
+      sector_id: sector.id,
+      question_values_attributes: [
+        { value: 1, question_id: question_1.id },
+        { value: 2, question_id: question_2.id }
+      ]
     }
   }
 
