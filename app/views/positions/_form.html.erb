@@ -1,4 +1,4 @@
-<%= form_for(position) do |f| %>
+<%= form_for(position, html: { class: "form-horizontal" }) do |f| %>
   <% if position.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(position.errors.count, "error") %> prohibited this position from being saved:</h2>
@@ -16,6 +16,16 @@
     <div class="col-sm-6">
       <%= f.text_field :name, class: "form-control", placeholder: "Nome do Cargo" %>
     </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :context, "Tipo de Cargo", class: "col-sm-2 control-label" %>
+
+    <%= f.collection_radio_buttons :context, Position.contexts, :first, :first do |b| %>
+      <div class="radio">
+        <%= b.label("data-value": b.value) { b.radio_button + translate_context(b.text) } %>
+      </div>
+    <% end %>
   </div>
 
   <div class="actions">
