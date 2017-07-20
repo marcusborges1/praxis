@@ -1,8 +1,8 @@
 require 'rails_helper'
 require 'cancan/matchers'
 
-RSpec.describe "Authorizations for Admin" do
-  let(:admin_position) { FactoryGirl.create(:position, name: "Gerente") }
+RSpec.describe 'Authorizations for Admin' do
+  let(:admin_position) { FactoryGirl.create(:position, name: 'Gerente') }
 
   before(:each) do
     @admin = FactoryGirl.create(:user)
@@ -10,28 +10,28 @@ RSpec.describe "Authorizations for Admin" do
     @ability = Ability.new(@admin)
   end
 
-  it "Admin can manage Sectors" do
-    expect(@ability).to be_able_to(:manage, Sector )
+  it 'Admin can manage Sectors' do
+    expect(@ability).to be_able_to(:manage, Sector)
   end
 
-  it "Admin can manage Positions" do
-    expect(@ability).to be_able_to(:manage, Position )
+  it 'Admin can manage Positions' do
+    expect(@ability).to be_able_to(:manage, Position)
   end
 
-  it "Admin can manage Users" do
+  it 'Admin can manage Users' do
     expect(@ability).to be_able_to(:manage, User)
   end
 
-  it "Admin can manage Evaluation Models" do
-    expect(@ability).to be_able_to(:manage, EvaluationModel )
+  it 'Admin can manage Evaluation Models' do
+    expect(@ability).to be_able_to(:manage, EvaluationModel)
   end
 
-  it "Admin can manage Questions" do
-    expect(@ability).to be_able_to(:manage, Question )
+  it 'Admin can manage Questions' do
+    expect(@ability).to be_able_to(:manage, Question)
   end
 
-  it "Admin can manage Evaluations" do
-    expect(@ability).to be_able_to(:manage, Evaluation )
+  it 'Admin can manage Evaluations' do
+    expect(@ability).to be_able_to(:manage, Evaluation)
   end
 
   #
@@ -39,7 +39,7 @@ RSpec.describe "Authorizations for Admin" do
   # let(:position) { Position.create(name: 'Assessor')}
   # user.update_attributes(position: position)
   #
-  # it "should be true" do
+  # it 'should be true' do
   #   puts user.position
   #   ability = Ability.new(user)
   #   expect(ability).to be_able_to(:manage, User.new)
