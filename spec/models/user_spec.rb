@@ -10,8 +10,10 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of(:name) }
 
   let(:user) { FactoryGirl.create(:user) }
+  let(:position) { FactoryGirl.create(:position)}
   it 'boolean return of user position' do
     expect(user.is_position?(user.positions.first)).to eq(true)
+    expect(user.is_position?(position)).to eq(false)
   end
 
 end

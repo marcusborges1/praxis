@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
 
-    if user.is_position?(Position.find_by(name: 'Gerente'))
+    if user.is_position?(Position.find_by(name: 'Diretor'))
       can :manage, [Sector, Position, User, EvaluationModel, Question, Evaluation]
     end
     # Define abilities for the passed in user here. For example:

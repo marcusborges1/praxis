@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'cancan/matchers'
 
 RSpec.describe 'Authorizations for Admin' do
-  let(:admin_position) { FactoryGirl.create(:position, name: 'Gerente') }
+  let(:admin_position) { FactoryGirl.create(:position, name: 'Diretor') }
 
   before(:each) do
     @admin = FactoryGirl.create(:user)
