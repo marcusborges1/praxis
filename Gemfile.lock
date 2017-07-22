@@ -49,7 +49,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
-    cancan (1.6.10)
+    cancancan (2.0.0)
     cocoon (1.2.10)
     code_analyzer (0.4.7)
       sexp_processor
@@ -234,7 +234,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
-  cancan
+  cancancan (~> 2.0)
   cocoon (~> 1.2)
   coffee-rails (~> 4.2)
   database_cleaner (~> 1.6)
