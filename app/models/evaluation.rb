@@ -7,6 +7,10 @@ class Evaluation < ApplicationRecord
 
   after_create :create_answer_groups
 
+  def questions
+    QuestionValue.where(evaluation_model_id: evaluation_model.id)
+  end
+
   private
 
   def create_answer_groups

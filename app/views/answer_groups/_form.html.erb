@@ -25,6 +25,10 @@
     </div>
   </div>
 
+  <%= f.fields_for :answers do |fields_form| %>
+    <%= render "answer_fields", f: fields_form %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
