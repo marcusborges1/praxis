@@ -1,0 +1,24 @@
+class AnswerGroupsController < ApplicationController
+  before_action :set_answer_group
+
+  def edit
+  end
+
+  def update
+    if @answer_group.update(answer_group_params)
+      redirect_to @answer_group.evaluation, notice: 'Avaliação atualizada com sucesso'
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def set_answer_group
+    @answer_group = AnswerGroup.find(params[:id])
+  end
+
+  def answer_group_params
+    params.require(:answer_group).permit(:evaluation_id, :user_id, answers_attributes: [:id, :question_value_id, :option_id, :_destroy] )
+  end
+end
