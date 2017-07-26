@@ -18,6 +18,11 @@ class User < ApplicationRecord
 
   delegate :name, to: :sector, prefix: true
 
+  def has_position?  (position)
+    return false if position == nil
+    user_positions.find_by(position_id: position.id).present?
+  end
+
   private
   def has_at_least_one_position
     errors.add(:positions, "must be at least one") if position_ids.blank?
