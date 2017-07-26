@@ -12,8 +12,8 @@ RSpec.describe User, type: :model do
   let(:user) { FactoryGirl.create(:user) }
   let(:position) { FactoryGirl.create(:position)}
   it 'boolean return of user position' do
-    expect(user.is_position?(user.positions.first)).to eq(true)
-    expect(user.is_position?(position)).to eq(false)
+    expect(user.has_position?(user.positions.first)).to eq(true)
+    expect(user.has_position?(position)).to eq(false)
   end
 
 end
