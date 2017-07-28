@@ -2,6 +2,8 @@ class AnswerGroupsController < ApplicationController
   before_action :set_answer_group
 
   def edit
+    evaluation = Evaluation.find(@answer_group.evaluation_id)
+    @question_values = QuestionValue.where(evaluation_model_id: evaluation.evaluation_model_id)
   end
 
   def update

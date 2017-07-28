@@ -1,1 +1,11 @@
-Placeholder
+<div class="nested-fields">
+    <div class="form-group">
+        <%= question_value.question.description %>
+        <div class="form-group">
+            <%= f.label :option, "Opção", class: "col-sm-2 control-label" %>
+            <div class="col-sm-3">
+                <%= f.collection_select :option_id, question_value.options, :id, :description, { prompt: "- Selecione -" }, class: "form-control" %>
+            </div>
+        </div>
+    </div>
+</div>

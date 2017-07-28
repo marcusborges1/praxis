@@ -11,22 +11,10 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :evaluation_id, class: "col-md-2 control-label" %>
-    <div class="col-sm-5">
-      <%= f.collection_select :evaluation_id, Evaluation.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :user_id, class: "col-md-2 control-label" %>
-    <div class="col-sm-5">
-      <%= f.collection_select :user_id, User.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
-    </div>
-  </div>
-
   <%= f.fields_for :answers do |fields_form| %>
-    <%= render "answer_fields", f: fields_form %>
+    <% @question_values.each do |question_value| %>
+      <%= render "answer_fields", f: fields_form, question_value: question_value %>
+    <% end %>
   <% end %>
 
   <div class="actions">

@@ -4,4 +4,8 @@ class QuestionValue < ApplicationRecord
   belongs_to :question
 
   validates_presence_of :value
+
+  def options
+    Option.where(question: question)
+  end
 end

@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
-  get 'answer_groups/edit'
-
-  get 'answer_groups/update'
-
-  get 'answer_group/edit'
-
-  get 'answer_group/update'
-
-  resources :answer_groups
+  resources :answer_groups, only: [:edit, :update]
   resources :evaluations
   resources :evaluation_models
   root "welcome#index"  
