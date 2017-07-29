@@ -6,4 +6,6 @@ class Position < ApplicationRecord
   validates :context, presence: true
 
   enum context: [:institutional, :project], _suffix: true
+
+  scope :acessor, -> { find_by(name: 'Acessor') }
 end

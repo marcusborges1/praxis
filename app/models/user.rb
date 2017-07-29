@@ -24,6 +24,14 @@ class User < ApplicationRecord
     user_positions.find_by(position_id: position.id).present?
   end
 
+  def self.sector_acessors(sector)
+     acessors = []
+    User.where(sector: sector).each do |user|
+      acessors.push(user) if user.has_position? (position)
+    end
+    return acessors
+  end
+
   private
   def has_at_least_one_position
     errors.add(:positions, "must be at least one") if position_ids.blank?
