@@ -6,5 +6,6 @@ FactoryGirl.define do
     password_confirmation   "123qwe!@#"
     sector                  { FactoryGirl.create(:sector) }
     positions               { FactoryGirl.create_list(:position, 1) }
+    monitor_id				nil
   end
 end
