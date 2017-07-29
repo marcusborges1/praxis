@@ -4,7 +4,7 @@ RSpec.describe UsersController, type: :controller do
   login_user
 
   let(:sector_id) { FactoryGirl.create(:sector).id }
-  let(:position_ids) { FactoryGirl.create_list(:position, 1).map(&:id) }
+  let(:position_ids) { FactoryGirl.create_list(:position, 1).map(&:id).first }
 
   let(:valid_attributes) {
     {
