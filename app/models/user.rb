@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :sector
+  belongs_to :monitor, class_name: "User"
 
   has_many :project_allocations
   has_many :projects, through: :project_allocations
