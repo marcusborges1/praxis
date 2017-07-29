@@ -19,9 +19,8 @@ class User < ApplicationRecord
 
   delegate :name, to: :sector, prefix: true
 
-  def has_position?  (position)
-    return false if position == nil
-    user_positions.find_by(position_id: position.id).present?
+  def has_position?(position)
+    positions.include?(position)
   end
 
   def self.sector_acessors(sector)

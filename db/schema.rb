@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 20170729180534) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "leader_id"
+    t.index ["leader_id"], name: "index_projects_on_leader_id", using: :btree
   end
 
   create_table "questions", force: :cascade do |t|
@@ -113,6 +115,7 @@ ActiveRecord::Schema.define(version: 20170729180534) do
   add_foreign_key "evaluation_models", "sectors"
   add_foreign_key "evaluations", "evaluation_models"
   add_foreign_key "options", "questions"
+  add_foreign_key "projects", "users", column: "leader_id"
   add_foreign_key "questions", "evaluation_models"
   add_foreign_key "user_positions", "positions"
   add_foreign_key "user_positions", "users"
