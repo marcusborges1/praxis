@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_monitors, only: [:edit, :new]
+  before_action :set_monitors
   load_and_authorize_resource
 
   def index
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def set_monitors
-    if current_user.sector = Sector.people_management_sector
+    if current_user.sector == Sector.people_management_sector
       @monitors = User.sector_acessors(Sector.org_pres_sector)
     else
       @monitors = User.sector_acessors(Sector.people_management_sector)
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :sector_id, :password_confirmation,
+      params.require(:user).permit(:name, :email, :password, :sector_id, :password_confirmation, :monitor_id,
                                    position_ids: [])
     end
 end

@@ -35,7 +35,7 @@
   <div class="form-group">
     <%= f.label :sector_id, "Acompanhante", class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
-      <%= f.collection_select :monitor_id, @monitors, :id, :name, { prompt: "- Selecione -" }, class: "form-control"  %>
+      <%= f.collection_select :monitor_id, current_user.define_monitors , :id, :name, { prompt: "- Selecione -" }, class: "form-control"  %>
     </div>
   </div>
 

@@ -25,12 +25,24 @@ class User < ApplicationRecord
   end
 
   def self.sector_acessors(sector)
-     acessors = []
+    return nil if sector == nil
+    acessors = []
     User.where(sector: sector).each do |user|
-      acessors.push(user) if user.has_position? (position)
+      acessors.push(user) if user.has_position? (Position.institutional_context.acessor)
     end
     return acessors
   end
+
+  def define_monitors
+    if sector == Sector.people_management_sector
+      monitors = User.sector_acessors(Sector.org_pres_sector)
+    else
+      monitors = User.sector_acessors(Sector.people_management_sector)
+    end
+
+    return monitors
+  end
+
 
   private
   def has_at_least_one_position
