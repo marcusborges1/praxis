@@ -10,7 +10,7 @@ RSpec.describe Evaluation, type: :model do
   it { should validate_presence_of(:finish_date) }
 
   it { should belong_to(:evaluation_model) }
-  it { should have_many(:answer_groups) }
+  it { should have_many(:answer_groups).dependent(:destroy) }
 
   it "should create answer groups" do
     expect { evaluation.save }.to change(AnswerGroup, :count).by 2
