@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "users/edit", type: :view do
   before(:each) do
     @user = assign(:user, FactoryGirl.create(:user))
+    allow(view).to receive(:current_user).and_return(FactoryGirl.build(:user))
   end
 
   it "renders the edit user form" do
