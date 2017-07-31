@@ -8,7 +8,12 @@ class AnswerGroupsController < ApplicationController
 
   def update
     if @answer_group.update(answer_group_params)
-      redirect_to @answer_group.evaluation, notice: 'Avaliação atualizada com sucesso'
+      if @answer_group.finished?
+        @answer_group.update(answered: true)
+        redirect_to @answer_group.evaluation, notice: 'Avaliação atualizada com sucesso'
+      else
+        redirect_to @answer_group.evaluation, notice: 'Avaliação atualizada com sucesso'
+      end
     else
       render :edit
     end
@@ -21,6 +26,6 @@ class AnswerGroupsController < ApplicationController
   end
 
   def answer_group_params
-    params.require(:answer_group).permit(:evaluation_id, :user_id, answers_attributes: [:id, :question_value_id, :option_id, :_destroy] )
+    params.require(:answer_group).permit(:answered, :evaluation_id, :user_id, answers_attributes: [:id, :question_value_id, :option_id] )
   end
 end
