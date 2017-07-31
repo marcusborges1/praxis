@@ -1,5 +1,5 @@
 class QuestionValue < ApplicationRecord
-  has_many :answers
+  has_many :answers, dependent: :destroy
   belongs_to :evaluation_model, inverse_of: :question_values
   belongs_to :question
 
@@ -7,5 +7,9 @@ class QuestionValue < ApplicationRecord
 
   def options
     Option.where(question: question)
+  end
+
+  def description
+    question.description
   end
 end

@@ -1,6 +1,9 @@
 class AnswerGroupsController < ApplicationController
   before_action :set_answer_group
 
+  def show
+  end
+
   def edit
     evaluation = Evaluation.find(@answer_group.evaluation_id)
     @question_values = QuestionValue.where(evaluation_model_id: evaluation.evaluation_model_id)
@@ -10,7 +13,7 @@ class AnswerGroupsController < ApplicationController
     if @answer_group.update(answer_group_params)
       if @answer_group.finished?
         @answer_group.update(answered: true)
-        redirect_to @answer_group.evaluation, notice: 'Avaliação atualizada com sucesso'
+        redirect_to @answer_group.evaluation, notice: 'Avaliação finalizada com sucesso'
       else
         redirect_to @answer_group.evaluation, notice: 'Avaliação atualizada com sucesso'
       end
