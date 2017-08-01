@@ -3,3 +3,7 @@
 %w(Consultor Assessor Presidente Diretor Gerente Coordenador).each do |position_name|
   Position.create(name: position_name)
 end
+
+%w(DAF DIPRO MKT GP PRESI NEG Trainee).each do |sector_name|
+  Sector.create(name: sector_name)
+end
