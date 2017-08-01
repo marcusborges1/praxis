@@ -22,4 +22,25 @@ RSpec.describe User, type: :model do
       expect(user.has_position? wrong_position).to be false
     end
   end
+
+  describe "#monitors" do
+    before(:each) do
+      advisor_position = FactoryGirl.create(:position, :advisor)
+      organizational_presidency = FactoryGirl.create(:sector, :organizational_presidency)
+      @people_management_member = FactoryGirl.create(:user, :people_management, positions: [advisor_position])
+      @organizational_presidency_members = FactoryGirl.create_pair(:user, sector: organizational_presidency, positions: [advisor_position])
+    end
+
+    context "when user belongs to people management sector" do
+      it "returns advisors of organizational presidency" do
+        expect(@people_management_member.monitors).to match_array(@organizational_presidency_members)
+      end
+    end
+
+    context "when user does not belongs to people management sector" do
+      it "returns advisors of people management sector" do
+        expect(@organizational_presidency_members.first.monitors).to contain_exactly(@people_management_member)
+      end
+    end
+  end
 end

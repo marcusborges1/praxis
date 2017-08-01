@@ -4,10 +4,15 @@ class Sector < ApplicationRecord
 
   delegate :name, to: :evaluation_model, prefix: true
 
- 	scope :people_management_sector, -> {find_by(name: 'Gestão de Pessoas')}
- 	scope :org_pres_sector, -> {find_by(name: 'Presidência Organizacional')}
+ 	scope :people_management, -> { find_by(name: "GP") }
+ 	scope :organizational_presidency, -> { find_by(name: "PRESI") }
+
+  def advisors
+    users.joins(:positions).where(positions: { name: "Assessor" })
+  end
+
   # def director
   #   "Diretor" will be refactored
-  #   users.select { |user| user.position.institutional_context.first.name == "Diretor" }.first
+  #   users.select { |user| user.position.institutional_context.first.name == "SDiretor" }.first
   # end
 end
