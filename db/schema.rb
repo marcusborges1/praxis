@@ -147,8 +147,8 @@ ActiveRecord::Schema.define(version: 20170719204202) do
   add_foreign_key "options", "questions"
   add_foreign_key "question_values", "evaluation_models"
   add_foreign_key "question_values", "questions"
-  add_foreign_key "users", "answer_groups"
   add_foreign_key "user_positions", "positions"
   add_foreign_key "user_positions", "users"
+  add_foreign_key "users", "answer_groups"
   add_foreign_key "users", "sectors"
 end

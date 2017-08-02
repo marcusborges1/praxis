@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   has_many :answer_groups, dependent: :destroy
-  belongs_to :position
   belongs_to :sector
 
   has_many :project_allocations
@@ -20,7 +19,7 @@ class User < ApplicationRecord
 
   delegate :name, to: :sector, prefix: true
 
-  def has_position?  (position)
+  def has_position?(position)
     return false if position == nil
     user_positions.find_by(position_id: position.id).present?
   end
