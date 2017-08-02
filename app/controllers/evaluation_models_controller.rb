@@ -1,5 +1,6 @@
 class EvaluationModelsController < ApplicationController
   before_action :set_evaluation_model, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /evaluation_models
   def index

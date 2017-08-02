@@ -10,7 +10,7 @@
         <b>Diretoria:</b> <%= @user.sector_name %>
       </p>
       <p>
-        <b>Cargo:</b> <%= @user.position_name %>
+        <b>Cargo Institucional:</b> <%= @user.positions.institutional_context.first.name %>
       </p>
     </div>
     <div class="panel-footer">

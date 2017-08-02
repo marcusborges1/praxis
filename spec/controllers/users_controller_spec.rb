@@ -3,28 +3,21 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   login_user
 
-  let(:position) { FactoryGirl.create(:position) }
-  let(:sector) { FactoryGirl.create(:sector) }
-
+  let(:sector_id) { FactoryGirl.create(:sector).id }
+  let(:position_ids) { FactoryGirl.create_list(:position, 1).map(&:id).first }
 
   let(:valid_attributes) {
     {
       name: Faker::Name.name,
-      position_id: position.id,
-      sector_id: sector.id,
+      sector_id: sector_id,
+      position_ids: position_ids,
       email: Faker::Internet.email,
       password: "123qwe!@#",
       password_confirmation: "123qwe!@#"
     }
   }
 
-  let(:invalid_attributes) {
-    { name: "" }
-  }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # UsersController. Be sure to keep this updated too.
+  let(:invalid_attributes) { { name: "" } }
   let(:valid_session) { {} }
 
   describe "GET #index" do

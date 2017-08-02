@@ -1,20 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Position, type: :model do
+  it { is_expected.to have_many(:user_positions) }
+  it { is_expected.to have_many(:users).through(:user_positions) }
 
-  let(:position) { Position.new(name: "Position") }
-
-  it "is valid with valid attributes" do
-    expect(position).to be_valid
-  end
-
-  it "is invalid when name is nil" do
-    position.name = nil
-    expect(position).not_to be_valid
-  end
-
-  it "has many users" do
-    association = Position.reflect_on_association(:users)
-    expect(association.macro).to eq :has_many
-  end
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_presence_of(:context) }
+  it { is_expected.to define_enum_for(:context) }
 end

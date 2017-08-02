@@ -4,7 +4,7 @@
       <h2><%= pluralize(evaluation_model.errors.count, "error") %> prohibited this evaluation_model from being saved:</h2>
       <ul>
         <% evaluation_model.errors.full_messages.each do |message| %>
-          <%# <li><%= message %1></li> %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>

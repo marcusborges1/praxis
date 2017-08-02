@@ -31,11 +31,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'pg', '~> 0.20.0'
-gem 'devise', '~> 4.3'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'cocoon', '~> 1.2'
 gem 'humanize'
 gem 'devise', '~> 4.3'
+gem 'cancancan', '~> 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -44,6 +44,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.6'
   gem 'factory_girl_rails', '~> 4.8'
+  gem 'sendgrid-ruby'
 end
 
 group :development do
