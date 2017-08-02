@@ -9,6 +9,9 @@
         <strong>Name: </strong><%= @project.name %>
       </p>
       <p>
+        <strong>Líder do projeto: </strong><%= @project.leader.name %>
+      </p>
+      <p>
         <strong>Membros alocados:</strong>
         <ul>
           <% @project.users.each do |user| %>
