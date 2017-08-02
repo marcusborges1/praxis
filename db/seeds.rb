@@ -8,5 +8,5 @@ end
   Sector.create(name: sector_name)
 end
 
-User.create(user: "teste", email: "teste@praxisconsultoria.org.br", password: "teste123",
+User.create(username: "teste", email: "teste@praxisconsultoria.org.br", password: "teste123",
   sector: Sector.first, positions: [Position.find(3)])
