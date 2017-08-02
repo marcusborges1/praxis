@@ -7,8 +7,8 @@ RSpec.describe AnswerGroup, type: :model do
   let!(:question_values) { FactoryGirl.create_list(:question_value, 2,
                                                    evaluation_model: evaluation_model) }
 
-  it { should belong_to(:evaluation) }
-  it { should belong_to(:user) }
+  it { is_expected.to belong_to(:evaluation) }
+  it { is_expected.to belong_to(:user) }
 
   it "should create answers" do
     expect { answer_group.save }.to change(Answer, :count).by 2
