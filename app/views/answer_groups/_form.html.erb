@@ -1,0 +1,23 @@
+<%= form_for(answer_group, html: { class: "form-horizontal" }) do |f| %>
+    <% if answer_group.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(answer_group.errors.count, "error") %> prohibited this answer_group from being saved:</h2>
+
+            <ul>
+                <% answer_group.errors.full_messages.each do |message| %>
+                    <li><%= message if message.exists? %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <% question_values = @question_values.to_a %>
+    <%= f.fields_for :answers do |fields_form| %>
+        <%= render "answer_fields", f: fields_form, question_value: question_values.first %>
+        <% question_values.delete_at(0) %>
+    <% end %>
+
+    <div class="actions">
+        <%= f.submit "Salvar", class: "btn btn-primary" %>
+    </div>
+<% end %>

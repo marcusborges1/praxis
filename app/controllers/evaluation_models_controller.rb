@@ -14,6 +14,7 @@ class EvaluationModelsController < ApplicationController
   # GET /evaluation_models/new
   def new
     @evaluation_model = EvaluationModel.new
+    2.times { @evaluation_model.question_values.build }
   end
 
   # GET /evaluation_models/1/edit
@@ -53,6 +54,6 @@ class EvaluationModelsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def evaluation_model_params
-    params.require(:evaluation_model).permit(:name,:sector_id,:position_id, question_ids:[])
+    params.require(:evaluation_model).permit(:name, :sector_id, question_values_attributes: [ :id, :value, :question_id, :_destroy ] )
   end
 end
