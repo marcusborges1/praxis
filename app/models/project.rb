@@ -5,8 +5,4 @@ class Project < ApplicationRecord
   belongs_to :leader, class_name: "User"
 
   validates :name, presence: true
-
-  def all_allocated_users
-    users << leader
-  end
 end
