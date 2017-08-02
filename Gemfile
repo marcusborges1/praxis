@@ -31,7 +31,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'pg', '~> 0.20.0'
-gem 'devise', '~> 4.3'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'cocoon', '~> 1.2'
 gem 'humanize'
