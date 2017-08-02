@@ -11,5 +11,6 @@
     <body>
         <%= render partial: 'layouts/menu' if user_signed_in? %>
         <%= yield %>
+        <%= yield :javascript %>
     </body>
 </html>
