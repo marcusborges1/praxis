@@ -10,5 +10,10 @@ FactoryGirl.define do
     trait :advisor do
       name    "Assessor"
     end
+
+    trait :director do
+      name    "Diretor"
+    end
+
   end
 end

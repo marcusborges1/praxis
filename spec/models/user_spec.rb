@@ -6,7 +6,6 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:projects).through(:project_allocations) }
   it { is_expected.to have_many(:user_positions) }
   it { is_expected.to have_many(:positions).through(:user_positions) }
-
   it { is_expected.to validate_presence_of(:name) }
 
   describe "#has_position?(position)" do
@@ -22,6 +21,22 @@ RSpec.describe User, type: :model do
       expect(user.has_position? wrong_position).to be false
     end
   end
+
+  describe '#admins' do
+    let(:admin_position) { FactoryGirl.create(:position, :director) }
+    before(:each) do 
+      @admin =  FactoryGirl.create(:user, :admin)
+      @user = FactoryGirl.create(:user)
+      @admin.positions << admin_position
+    end
+
+    it "returns true if user has admin privileges" do
+      expect(@user.has_admin_privileges).to be false
+      expect(@admin.has_admin_privileges).to be true
+    end
+
+  end
+
 
   describe "#monitors" do
     before(:each) do

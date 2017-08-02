@@ -23,6 +23,11 @@ class User < ApplicationRecord
     positions.include?(position)
   end
 
+  def has_admin_privileges
+    return true if has_position?(Position.institutional_context.find_by(name: 'Diretor')) && sector == Sector.people_management
+    return false
+  end
+
   def monitors
     return Sector.organizational_presidency.advisors if sector == Sector.people_management
     Sector.people_management.advisors
