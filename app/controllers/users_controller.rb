@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     @users = User.includes(:sector).all
@@ -45,6 +46,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :sector_id, :password_confirmation,
-                                   position_ids: [])
+                                   :position_ids)
     end
 end

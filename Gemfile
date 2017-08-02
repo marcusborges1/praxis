@@ -36,6 +36,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'cocoon', '~> 1.2'
 gem 'humanize'
 gem 'devise', '~> 4.3'
+gem 'cancancan', '~> 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
