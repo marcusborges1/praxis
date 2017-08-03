@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719204202) do
+ActiveRecord::Schema.define(version: 20170729180534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,9 +130,9 @@ ActiveRecord::Schema.define(version: 20170719204202) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.integer  "answer_group_id"
-    t.index ["answer_group_id"], name: "index_users_on_answer_group_id", using: :btree
+    t.integer  "monitor_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["monitor_id"], name: "index_users_on_monitor_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["sector_id"], name: "index_users_on_sector_id", using: :btree
   end
@@ -149,6 +149,5 @@ ActiveRecord::Schema.define(version: 20170719204202) do
   add_foreign_key "question_values", "questions"
   add_foreign_key "user_positions", "positions"
   add_foreign_key "user_positions", "users"
-  add_foreign_key "users", "answer_groups"
   add_foreign_key "users", "sectors"
 end
