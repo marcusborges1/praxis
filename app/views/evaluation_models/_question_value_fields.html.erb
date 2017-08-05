@@ -1,0 +1,16 @@
+<div class="nested-fields">
+  <div class="form-group">
+    <%= f.label :question_id, "Questão", class: "col-md-2 control-label" %>
+    <div class="col-sm-5">
+      <%= f.collection_select :question_id, Question.all, :id, :description, { prompt: "- Selecione -" }, class: "form-control" %>
+    </div>
+    <%= f.label :value, "Peso", class: "col-sm-2 control-label field" %>
+    <div class="col-md-1">
+      <%= f.number_field :value, class:"form-control" %>
+    </div>
+    <%= link_to_remove_association f, class: "btn btn-danger" do %>
+      <i class="glyphicon glyphicon-remove"></i> Remover
+    <% end %>
+  </div>
+</div>
+

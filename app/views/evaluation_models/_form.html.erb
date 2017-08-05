@@ -24,26 +24,16 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :position_id, "Cargo Alvo", class: "col-sm-2 control-label" %>
-    <div class="col-sm-3">
-      <%= f.collection_select :position_id, Position.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
-    </div>
+  <%= f.fields_for :question_values do |fields_form| %>
+    <%= render "question_value_fields", f: fields_form %>
+  <% end %>
+
+  <div class="col-sm-offset-2">
+    <%= link_to_add_association f, :question_values, class: "btn btn-success" do %>
+      <i class="glyphicon glyphicon-plus"></i> Adicionar Questão
+    <% end %>
   </div>
 
-  <div class="form-group">
-    <%= f.label "Questões", class: "col-sm-2 control-label" %><br />
-    <div class="form-check">
-      <div class="col-sm-8">
-        <%= f.collection_check_boxes :question_ids, Question.all, :id, :description do |b| %>
-          <div>
-            <%= b.check_box(class: "form-check-input") %>
-            <%= b.label(class: "form-check-label") %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
   <div>
     <%= f.submit "Salvar", class: "btn btn-primary pull-right" %>
   </div>

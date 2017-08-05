@@ -13,13 +13,8 @@
                 <%= @evaluation_model.sector_name %>
             </p>
 
-            <p>
-                <strong>Cargo Alvo:</strong>
-                <%= @evaluation_model.position_name %>
-            </p>
-
             <div id="accordion" role="tablist" aria-multiselectable="true">
-                <% @evaluation_model.questions.each_with_index do |question, index| %>
+                <% @evaluation_model.question_values.each_with_index do |question_value, index| %>
                     <% index_name = (index+1).humanize.capitalize %>
                     <div class="card">
                         <div class="card-header" role="tab" id="heading<%= index_name %>">
@@ -31,10 +26,13 @@
                         </div>
                         <div id="collapse<%= index_name %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= index_name %>">
                             <div class="card-block">
-                                <b>Descrição:</b> <%= question.description %>
+                                <b>Descrição:</b> <%= question_value.question.description %>
                             </div>
                             <div class="card-block">
-                                <b>Fator de avaliação:</b> <%= question.evaluation_factor %>
+                                <b>Peso:</b> <%= question_value.value %>
+                            </div>
+                            <div class="card-block">
+                                <b>Fator de avaliação:</b> <%= question_value.question.evaluation_factor %>
                             </div>
                         </div>
                     </div>

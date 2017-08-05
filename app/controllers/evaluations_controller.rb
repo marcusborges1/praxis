@@ -22,9 +22,8 @@ class EvaluationsController < ApplicationController
   # POST /evaluations
   def create
     @evaluation = Evaluation.new(evaluation_params)
-
     if @evaluation.save
-      redirect_to @evaluation, notice: 'Evaluation was successfully created.'
+      redirect_to @evaluation, notice: 'Avaliação criada com sucesso'
     else
       render :new
     end
@@ -33,7 +32,7 @@ class EvaluationsController < ApplicationController
   # PATCH/PUT /evaluations/1
   def update
     if @evaluation.update(evaluation_params)
-      redirect_to @evaluation, notice: 'Evaluation was successfully updated.'
+      redirect_to @evaluation, notice: 'Avaliação atualizada com sucesso'
     else
       render :edit
     end
@@ -42,7 +41,7 @@ class EvaluationsController < ApplicationController
   # DELETE /evaluations/1
   def destroy
     @evaluation.destroy
-    redirect_to evaluations_url, notice: 'Evaluation was successfully destroyed.'
+    redirect_to evaluations_url, notice: 'Avaliação destruída com sucesso'
   end
 
   private
@@ -53,6 +52,6 @@ class EvaluationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def evaluation_params
-    params.require(:evaluation).permit(:start_date, :finish_date, :evaluation_model_id)
+    params.require(:evaluation).permit(:name, :start_date, :finish_date, :evaluation_model_id)
   end
 end
