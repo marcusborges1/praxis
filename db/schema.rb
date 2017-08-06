@@ -132,8 +132,6 @@ ActiveRecord::Schema.define(version: 20170723045920) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.integer  "answer_group_id"
-    t.index ["answer_group_id"], name: "index_users_on_answer_group_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["sector_id"], name: "index_users_on_sector_id", using: :btree
@@ -148,11 +146,9 @@ ActiveRecord::Schema.define(version: 20170723045920) do
   add_foreign_key "evaluations", "evaluation_models"
   add_foreign_key "options", "questions"
   add_foreign_key "projects", "users", column: "leader_id"
-  add_foreign_key "questions", "evaluation_models"
   add_foreign_key "question_values", "evaluation_models"
   add_foreign_key "question_values", "questions"
   add_foreign_key "user_positions", "positions"
   add_foreign_key "user_positions", "users"
-  add_foreign_key "users", "answer_groups"
   add_foreign_key "users", "sectors"
 end
