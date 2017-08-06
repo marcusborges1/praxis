@@ -3,7 +3,13 @@ require 'rails_helper'
 RSpec.describe ProjectsController, type: :controller do
   login_user
 
-  let(:valid_attributes) { FactoryGirl.attributes_for(:project_with_users) }
+  let(:valid_attributes) {
+    {
+      name:       Faker::App.name,
+      leader_id:  FactoryGirl.create(:user).id,
+      user_ids:   FactoryGirl.create_list(:user, 3).map(&:id)
+    }
+  }
   let(:invalid_attributes)  { { name: "" } }
 
   let(:valid_session) { {} }
