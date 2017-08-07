@@ -1,6 +1,8 @@
 class Evaluation < ApplicationRecord
   has_many :answer_groups, dependent: :destroy
   belongs_to :evaluation_model
+  belongs_to :evaluation_cycle
+
   validates_presence_of :name
   validates_presence_of :start_date
   validates_presence_of :finish_date
