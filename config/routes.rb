@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
-  resources :evaluation_cycles
-  resources :answer_groups, only: [:edit, :update, :show]
-  resources :evaluations
-  resources :evaluation_models
   root "welcome#index"
   devise_for :users
-  resources :sectors
+
   resources :users
+  resources :sectors
+  resources :projects
   resources :positions
   resources :questions
   resources :evaluations
   resources :evaluation_models
-  resources :projects
+  resources :evaluation_cycles
+  resources :answer_groups, only: [:edit, :update, :show]
 end
