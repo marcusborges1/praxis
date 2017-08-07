@@ -1,4 +1,4 @@
-<%= form_for(evaluation_cycle) do |f| %>
+<%= form_for(evaluation_cycle, html: { class: "form-horizontal" }) do |f| %>
   <% if evaluation_cycle.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(evaluation_cycle.errors.count, "error") %> prohibited this evaluation_cycle from being saved:</h2>
@@ -11,17 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :initial_date %>
-    <%= f.datetime_select :initial_date %>
+  <div class="form-group">
+    <%= f.label :initial_date, "Data inicial", class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.datetime_select :initial_date %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :end_date %>
-    <%= f.datetime_select :end_date %>
+  <div class="form-group">
+    <%= f.label :end_date, "Data final", class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.datetime_select :end_date %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.submit "Salvar", class: "btn btn-primary" %>
 <% end %>
