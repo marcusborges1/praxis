@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :evaluation_cycles
   resources :answer_groups, only: [:edit, :update, :show]
   resources :evaluations
   resources :evaluation_models

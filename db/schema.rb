@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723045920) do
+ActiveRecord::Schema.define(version: 20170807120927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20170723045920) do
     t.index ["answer_group_id"], name: "index_answers_on_answer_group_id", using: :btree
     t.index ["option_id"], name: "index_answers_on_option_id", using: :btree
     t.index ["question_value_id"], name: "index_answers_on_question_value_id", using: :btree
+  end
+
+  create_table "evaluation_cycles", force: :cascade do |t|
+    t.datetime "initial_date"
+    t.datetime "end_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "evaluation_models", force: :cascade do |t|
