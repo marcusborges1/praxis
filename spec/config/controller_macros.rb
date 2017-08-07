@@ -5,6 +5,7 @@ module ControllerMacros
       admin = FactoryGirl.create(:position, name: 'Diretor')
       user = FactoryGirl.create(:user)
       user.positions << admin
+  	  @user = user
       sign_in user
     end
   end

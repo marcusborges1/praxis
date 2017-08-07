@@ -5,12 +5,12 @@ RSpec.describe AnswerGroupsController, type: :controller do
 
   let(:evaluation) { FactoryGirl.create(:evaluation) }
   let!(:question_value) { FactoryGirl.create(:question_value, evaluation_model: evaluation.evaluation_model) }
-  let(:user) { FactoryGirl.create(:user, sector: evaluation.evaluation_model.sector) }
+  # let(:user) { FactoryGirl.create(:user, sector: evaluation.evaluation_model.sector) }
 
   let(:valid_attributes) {
     {
       evaluation_id: evaluation.id,
-      user_id: user.id
+      user_id: @user.id
     }
   }
 
