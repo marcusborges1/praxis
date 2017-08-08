@@ -1,6 +1,7 @@
 class AnswerGroup < ApplicationRecord
   belongs_to :evaluation
   belongs_to :user
+  belongs_to :evaluation_target, class_name: 'User'
   has_many :answers, inverse_of: :answer_group, dependent: :destroy
   accepts_nested_attributes_for :answers
 
