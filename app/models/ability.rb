@@ -9,7 +9,7 @@ class Ability
 
     can [:read, :update, :edit], AnswerGroup, :user_id => user.id
     ## Position based authorization
-    if user.has_position?(Position.institutional_context.find_by(name: 'Diretor'))
+    if user.has_admin_privileges?
       can :manage, [Sector, Position, User, EvaluationModel, Question, Evaluation, Project]
     elsif user.has_position?(Position.institutional_context.find_by(name: 'Gerente'))
       can :manage, ProjectAllocation
