@@ -3,14 +3,13 @@ class AnswerGroup < ApplicationRecord
   belongs_to :user
   belongs_to :evaluation_target, class_name: 'User'
   has_many :answers, inverse_of: :answer_group, dependent: :destroy
+  validates_presence_of :answers, on: :update
   accepts_nested_attributes_for :answers
 
   after_create :create_answers
 
   def finished?
-    answered = true
-    answers.map { |answer| answered = false if answer.option.nil? }
-    answered
+    answers.pluck(:option_id).exclude?(nil)
   end
 
   private
