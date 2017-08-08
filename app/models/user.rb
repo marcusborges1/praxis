@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :answer_groups, dependent: :destroy
   belongs_to :sector
   belongs_to :monitor, class_name: "User" , required: false
 
@@ -23,9 +24,8 @@ class User < ApplicationRecord
     positions.include?(position)
   end
 
-  def has_admin_privileges
-    return true if has_position?(Position.institutional_context.find_by(name: 'Diretor')) && sector == Sector.people_management
-    return false
+  def has_admin_privileges?
+    has_position?(Position.institutional_context.find_by(name: 'Diretor')) && sector == Sector.people_management
   end
 
   def monitors
@@ -43,4 +43,5 @@ class User < ApplicationRecord
       errors.add(:positions, "must contain exactly one institutional user")
     end
   end
+
 end

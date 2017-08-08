@@ -22,7 +22,8 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#admins' do
+  describe '#has_admin_privileges?' do
+    
     let(:admin_position) { FactoryGirl.create(:position, :director) }
     before(:each) do 
       @admin =  FactoryGirl.create(:user, :admin)
@@ -31,8 +32,11 @@ RSpec.describe User, type: :model do
     end
 
     it "returns true if user has admin privileges" do
-      expect(@user.has_admin_privileges).to be false
-      expect(@admin.has_admin_privileges).to be true
+      expect(@admin.has_admin_privileges?).to be true
+    end
+
+    it "returns if common user has admin privileges" do 
+      expect(@user.has_admin_privileges?).to be false
     end
 
   end
