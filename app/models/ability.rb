@@ -6,6 +6,8 @@ class Ability
     can [:read,:update], User, :id => user.id
     ## Evaluation Authorization
     can :manage, Evaluation, :evaluation_model => {:sector_id => user.sector_id}
+    ## EvaluationAnswers Authorization
+    can [:update], AnswerGroup, :user_id => user.id
 
     ## Position based authorization
     if user.has_admin_privileges?
