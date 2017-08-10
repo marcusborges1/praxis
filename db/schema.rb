@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803194621) do
+ActiveRecord::Schema.define(version: 20170807122920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20170803194621) do
     t.index ["question_value_id"], name: "index_answers_on_question_value_id", using: :btree
   end
 
+  create_table "evaluation_cycles", force: :cascade do |t|
+    t.datetime "initial_date"
+    t.datetime "end_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "evaluation_models", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -53,6 +60,8 @@ ActiveRecord::Schema.define(version: 20170803194621) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "name"
+    t.integer  "evaluation_cycle_id"
+    t.index ["evaluation_cycle_id"], name: "index_evaluations_on_evaluation_cycle_id", using: :btree
     t.index ["evaluation_model_id"], name: "index_evaluations_on_evaluation_model_id", using: :btree
   end
 
@@ -83,6 +92,8 @@ ActiveRecord::Schema.define(version: 20170803194621) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "leader_id"
+    t.index ["leader_id"], name: "index_projects_on_leader_id", using: :btree
   end
 
   create_table "question_values", force: :cascade do |t|
@@ -132,9 +143,9 @@ ActiveRecord::Schema.define(version: 20170803194621) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.integer  "answer_group_id"
-    t.index ["answer_group_id"], name: "index_users_on_answer_group_id", using: :btree
+    t.integer  "monitor_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["monitor_id"], name: "index_users_on_monitor_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["sector_id"], name: "index_users_on_sector_id", using: :btree
   end
@@ -146,12 +157,13 @@ ActiveRecord::Schema.define(version: 20170803194621) do
   add_foreign_key "answers", "options"
   add_foreign_key "answers", "question_values"
   add_foreign_key "evaluation_models", "sectors"
+  add_foreign_key "evaluations", "evaluation_cycles"
   add_foreign_key "evaluations", "evaluation_models"
   add_foreign_key "options", "questions"
+  add_foreign_key "projects", "users", column: "leader_id"
   add_foreign_key "question_values", "evaluation_models"
   add_foreign_key "question_values", "questions"
   add_foreign_key "user_positions", "positions"
   add_foreign_key "user_positions", "users"
-  add_foreign_key "users", "answer_groups"
   add_foreign_key "users", "sectors"
 end

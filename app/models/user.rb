@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   has_many :answer_groups, dependent: :destroy
   belongs_to :sector
+  belongs_to :monitor, class_name: "User" , required: false
 
   has_many :project_allocations
   has_many :projects, through: :project_allocations
@@ -20,8 +21,16 @@ class User < ApplicationRecord
   delegate :name, to: :sector, prefix: true
 
   def has_position?(position)
-    return false if position == nil
-    user_positions.find_by(position_id: position.id).present?
+    positions.include?(position)
+  end
+
+  def has_admin_privileges?
+    has_position?(Position.institutional_context.find_by(name: 'Diretor')) && sector == Sector.people_management
+  end
+
+  def monitors
+    return Sector.organizational_presidency.advisors if sector == Sector.people_management
+    Sector.people_management.advisors
   end
 
   private
@@ -34,4 +43,5 @@ class User < ApplicationRecord
       errors.add(:positions, "must contain exactly one institutional user")
     end
   end
+
 end

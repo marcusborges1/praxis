@@ -2,15 +2,20 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Projeto - Detalhes</div>
     <div class="panel-body">
-      <p id="notice"><%= notice %></p>
+      <% unless notice.blank? %>
+        <div class="alert alert-success" role="alert"><%= notice %></div>
+      <% end %>
       <p>
         <strong>Name: </strong><%= @project.name %>
+      </p>
+      <p>
+        <strong>Líder do projeto: </strong><%= @project.leader.name %>
       </p>
       <p>
         <strong>Membros alocados:</strong>
         <ul>
           <% @project.users.each do |user| %>
-            <li><%= user.name %></li>
+            <li><%= link_to user.name, user %></li>
           <% end %>
         </ul>
       </p>
