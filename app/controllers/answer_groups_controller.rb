@@ -1,8 +1,7 @@
 class AnswerGroupsController < ApplicationController
   before_action :set_answer_group
   load_and_authorize_resource
-
-
+  
   def show
   end
 
