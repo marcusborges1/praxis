@@ -9,4 +9,4 @@ end
 end
 
 User.create(name: "teste", email: "teste@praxisconsultoria.org.br", password: "teste123",
-  sector: Sector.first, positions: [Position.find(3)])
+  sector: Sector.fourth, positions: [Position.find(3)])
