@@ -13,15 +13,25 @@
 
   <div class="form-group">
     <%= f.label :initial_date, "Data inicial", class: "col-sm-2 control-label" %>
-    <div class="col-sm-6">
-      <%= f.datetime_select :initial_date %>
+    <div class="col-sm-3">
+      <div class="input-group date" data-provide="datepicker">
+          <%= f.date_field :initial_date, class: "form-control" %>
+          <div class="input-group-addon">
+              <span class="glyphicon glyphicon-th"></span>
+          </div>
+      </div>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :end_date, "Data final", class: "col-sm-2 control-label" %>
-    <div class="col-sm-6">
-      <%= f.datetime_select :end_date %>
+    <div class="col-sm-3">
+      <div class="input-group date" data-provide="datepicker">
+          <%= f.date_field :end_date, class: "form-control" %>
+          <div class="input-group-addon">
+              <span class="glyphicon glyphicon-th"></span>
+          </div>
+      </div>
     </div>
   </div>
 
