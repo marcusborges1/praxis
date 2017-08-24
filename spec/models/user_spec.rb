@@ -6,24 +6,9 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:projects).through(:project_allocations) }
   it { is_expected.to have_many(:user_positions) }
   it { is_expected.to have_many(:positions).through(:user_positions) }
-  it { is_expected.to validate_presence_of(:name) }
-
-
-  let(:user) { FactoryGirl.create(:user) }
-  let(:position) { FactoryGirl.create(:position)}
-  
-  it 'boolean return of user position' do
-    expect(user.has_position?(user.positions.first)).to eq(true)
-    expect(user.has_position?(position)).to eq(false)
-  end
-  
-  it "belongs to sectors" do
-    association = User.reflect_on_association(:sector)
-    expect(association.macro).to eq :belongs_to
-  end
-
   it { is_expected.to have_many(:answer_groups).dependent(:destroy) }
 
+  it { is_expected.to validate_presence_of(:name) }
 
   describe "#has_position?(position)" do
     let(:right_position) { FactoryGirl.create(:position, name: "Diretor") }
@@ -40,9 +25,9 @@ RSpec.describe User, type: :model do
   end
 
   describe '#has_admin_privileges?' do
-    
     let(:admin_position) { FactoryGirl.create(:position, :director) }
-    before(:each) do 
+
+    before(:each) do
       @admin =  FactoryGirl.create(:user, :admin)
       @user = FactoryGirl.create(:user)
       @admin.positions << admin_position
@@ -52,12 +37,10 @@ RSpec.describe User, type: :model do
       expect(@admin.has_admin_privileges?).to be true
     end
 
-    it "returns if common user has admin privileges" do 
+    it "returns if common user has admin privileges" do
       expect(@user.has_admin_privileges?).to be false
     end
-
   end
-
 
   describe "#monitors" do
     before(:each) do
