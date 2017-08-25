@@ -10,6 +10,7 @@
           <th>Diretoria</th>
           <th>Cargo Institucional</th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
 
@@ -19,6 +20,7 @@
             <td><%= link_to user.name, user %></td>
             <td><%= user.sector_name %></td>
             <td><%= user.positions.institutional_context.first.name %></td>
+            <td><%= link_to "Adicionar acompanhantes", monitors_path(user)  %></td>
             <td>
               <div class="btn-toolbar pull-right">
                 <%= link_to edit_user_path(user), class: "btn btn-default" do %><i class="glyphicon glyphicon-edit"></i><% end %>

@@ -11,4 +11,9 @@ Rails.application.routes.draw do
   resources :evaluations
   resources :evaluation_models
   resources :projects
+
+  scope :users do
+    get '/monitors/:id', to: 'users#monitors', as: :monitors
+    patch '/add_monitors/:id', to: 'users#add_monitors', as: :add_monitors
+  end
 end

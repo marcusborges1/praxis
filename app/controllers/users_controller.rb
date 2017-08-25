@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :monitors]
   load_and_authorize_resource
 
   def index
@@ -37,6 +37,19 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to users_url, notice: 'Usuário foi excluído com sucesso.'
+  end
+
+  def monitors
+    @users = User.all
+  end
+
+  def add_monitors
+     byebug
+    for i in 0...params[:monitors][:user_id].count
+      user_id = params[:monitors][:user_id][i]
+      User.find(user_id).update_attributes(monitor_id: @user.id)
+    end
+    redirect_to users_path
   end
 
   private

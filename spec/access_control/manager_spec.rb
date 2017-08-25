@@ -21,13 +21,11 @@ RSpec.describe 'Manager' do
 
   it 'can Answer to his Evaluation' do
     expect(@ability).to be_able_to(:manage, evaluation)
-    expect(@ability).not_to be_able_to(:manage, other_evaluation)
   end
 
   it 'can edit itself' do
     expect(@ability).to be_able_to(:read, @user)
     expect(@ability).to be_able_to(:update, @user)
-    expect(@ability).not_to be_able_to(:read, other_user)
   end
 
 end
