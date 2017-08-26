@@ -34,4 +34,8 @@ RSpec.describe 'Admin' do
     expect(@ability).to be_able_to(:manage, Evaluation)
   end
 
+  it 'can set user monitors' do
+    expect(@ability).to be_able_to(:set, :monitors)
+  end
+
 end

@@ -40,16 +40,20 @@ class UsersController < ApplicationController
   end
 
   def monitors
-    @users = User.all
+    authorize! :set, :monitors
+    if @user.sector == Sector.people_management
+      @users = User.where.not(sector: Sector.people_management)
+    elsif @user.sector ==  Sector.organizational_presidency
+      @users = User.where(sector: Sector.people_management)
+    end
   end
 
   def add_monitors
-     byebug
     for i in 0...params[:monitors][:user_id].count
       user_id = params[:monitors][:user_id][i]
       User.find(user_id).update_attributes(monitor_id: @user.id)
     end
-    redirect_to users_path
+    redirect_to users_url, notice: 'Acompanhantes definidos com sucesso.'
   end
 
   private
