@@ -19,7 +19,7 @@ class EvaluationCyclesController < ApplicationController
     @evaluation_cycle = EvaluationCycle.new(evaluation_cycle_params)
 
     if @evaluation_cycle.save
-      redirect_to @evaluation_cycle, notice: 'Evaluation cycle was successfully created.'
+      redirect_to @evaluation_cycle, notice: "O ciclo de avaliação foi iniciado com sucesso."
     else
       render :new
     end
@@ -27,7 +27,7 @@ class EvaluationCyclesController < ApplicationController
 
   def update
     if @evaluation_cycle.update(evaluation_cycle_params)
-      redirect_to @evaluation_cycle, notice: 'Evaluation cycle was successfully updated.'
+      redirect_to @evaluation_cycle, notice: "O ciclo de avaliação foi atualizado com sucesso."
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class EvaluationCyclesController < ApplicationController
 
   def destroy
     @evaluation_cycle.destroy
-    redirect_to evaluation_cycles_url, notice: 'Evaluation cycle was successfully destroyed.'
+    redirect_to evaluation_cycles_url, notice: "O ciclo de avaliação foi apagado com sucesso."
   end
 
   private
