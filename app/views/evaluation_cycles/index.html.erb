@@ -2,13 +2,23 @@
   <div class="page-header">
     <h1>Ciclos de Avaliação</h1>
   </div>
-  <p id="notice"><%= notice %></p>
+
+  <% if notice %>
+    <div class="alert alert-success">
+      <p id="notice"><%= notice %></p>
+    </div>
+  <% end %>
+
+  <% unless EvaluationCycle.any_in_progress? %>
+    <p class="text-center alert alert-info">Nenhum ciclo de avaliação está em andamento no momento.</p>
+    <%= link_to 'Começar novo Ciclo de Avaliação', new_evaluation_cycle_path, class: "btn btn-primary" %>
+  <% end %>
 
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Data do início</th>
-        <th>Data do fim</th>
+        <th>Período</th>
+        <th>Finalizado</th>
         <th></th>
       </tr>
     </thead>
@@ -16,8 +26,9 @@
     <tbody>
       <% @evaluation_cycles.each do |evaluation_cycle| %>
         <tr>
-          <td><%= evaluation_cycle.initial_date %></td>
-          <td><%= evaluation_cycle.end_date %></td>
+          <td><%= format_datetime(evaluation_cycle.initial_date) %> - <%= format_datetime(evaluation_cycle.end_date) %></td>
+          <td><%= humanize_boolean(evaluation_cycle.finished?) %>
+          </td>
           <td>
             <div class="pull-right">
               <%= link_to edit_evaluation_cycle_path(evaluation_cycle), class: "btn btn-default" do %>
@@ -33,5 +44,4 @@
       <% end %>
     </tbody>
   </table>
-  <%= link_to 'Cadastrar novo Ciclo de Avaliação', new_evaluation_cycle_path, class: "btn btn-primary" %>
 </div>

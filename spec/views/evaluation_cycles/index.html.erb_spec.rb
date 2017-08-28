@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "evaluation_cycles/index", type: :view do
   before(:each) do
     assign(:evaluation_cycles, [
-      EvaluationCycle.create!(),
-      EvaluationCycle.create!()
+      FactoryGirl.create(:evaluation_cycle, :finished),
+      FactoryGirl.create(:evaluation_cycle, :in_progress)
     ])
   end
 

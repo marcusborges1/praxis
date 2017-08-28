@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "evaluation_cycles/edit", type: :view do
   before(:each) do
-    @evaluation_cycle = assign(:evaluation_cycle, EvaluationCycle.create!())
+    @evaluation_cycle = assign(:evaluation_cycle, FactoryGirl.create(:evaluation_cycle))
   end
 
   it "renders the edit evaluation_cycle form" do

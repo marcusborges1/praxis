@@ -5,13 +5,12 @@
     <div class="panel-body">
 
     <p>
-      <strong>Initial date:</strong>
-      <%= @evaluation_cycle.initial_date %>
+      <strong>Período:</strong>
+      <%= format_datetime(@evaluation_cycle.initial_date) %> - <%= format_datetime(@evaluation_cycle.end_date) %>
     </p>
 
     <p>
-      <strong>End date:</strong>
-      <%= @evaluation_cycle.end_date %>
+      <strong>Finalizado:</strong> <%= humanize_boolean(@evaluation_cycle.finished?) %>
     </p>
 
     <div class="panel-footer">

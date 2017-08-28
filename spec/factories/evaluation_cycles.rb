@@ -7,7 +7,7 @@ FactoryGirl.define do
     end
 
     trait :finished do
-      end_date { DateTime.now }
+      end_date { DateTime.yesterday }
       initial_date { end_date.last_week }
     end
   end
