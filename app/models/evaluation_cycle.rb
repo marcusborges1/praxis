@@ -13,6 +13,10 @@ class EvaluationCycle < ApplicationRecord
     where("end_date >= ?", DateTime.now).any?
   end
 
+  def self.in_progress_now
+    where("end_date >= ?", DateTime.now).take
+  end
+
   private
 
   def only_one_cycle_in_progress_per_time
