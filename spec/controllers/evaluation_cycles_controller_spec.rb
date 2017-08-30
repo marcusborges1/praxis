@@ -4,11 +4,17 @@ RSpec.describe EvaluationCyclesController, type: :controller do
   login_user
 
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      initial_date: DateTime.now,
+      end_date:     DateTime.tomorrow
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      initial_date: DateTime.tomorrow,
+      end_date:     DateTime.now
+    }
   }
 
   let(:valid_session) { {} }
@@ -69,14 +75,16 @@ RSpec.describe EvaluationCyclesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          end_date: DateTime.now.next_week
+        }
       }
 
       it "updates the requested evaluation_cycle" do
         evaluation_cycle = EvaluationCycle.create! valid_attributes
         put :update, params: {id: evaluation_cycle.to_param, evaluation_cycle: new_attributes}, session: valid_session
         evaluation_cycle.reload
-        skip("Add assertions for updated state")
+        expect(evaluation_cycle.end_date).to eq new_attributes[:end_date]
       end
 
       it "redirects to the evaluation_cycle" do
