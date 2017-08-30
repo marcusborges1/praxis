@@ -1,6 +1,6 @@
 module EvaluationCyclesHelper
-  def humanize_boolean(boolean)
-    boolean ? "Sim" : "Não"
+  def humanize_progress(boolean)
+    boolean ? "Finalizado" : "Em andamento"
   end
 
   def format_datetime(datetime)

@@ -2,7 +2,7 @@ class EvaluationCyclesController < ApplicationController
   before_action :set_evaluation_cycle, only: [:show, :edit, :update, :destroy]
 
   def index
-    @evaluation_cycles = EvaluationCycle.all
+    @evaluation_cycles = EvaluationCycle.order(created_at: :desc)
   end
 
   def show
