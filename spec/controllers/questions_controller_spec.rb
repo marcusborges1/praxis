@@ -6,7 +6,6 @@ RSpec.describe QuestionsController, type: :controller do
   let(:valid_attributes) {
     {
       description: "bar",
-      evaluation_factor: "baz",
       options_attributes: [
         { description: "option 1" },
         { description: "option 2" },
@@ -17,14 +16,14 @@ RSpec.describe QuestionsController, type: :controller do
   }
 
   let(:invalid_attributes) {
-    { name: "", description: "", evaluation_factor: "" }
+    { name: "", description: "" }
   }
 
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      question = Question.create! valid_attributes
+      Question.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
@@ -79,7 +78,7 @@ RSpec.describe QuestionsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        { description: "foo", evaluation_factor: "baz" }
+        { description: "foo" }
       }
 
       it "updates the requested question" do
