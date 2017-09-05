@@ -9,6 +9,9 @@ class Evaluation < ApplicationRecord
 
   after_create :create_answer_groups
 
+  delegate :duration_period, to: :evaluation_cycle, prefix: true
+  delegate :name, to: :evaluation_model, prefix: true
+
   def question_values
     QuestionValue.where(evaluation_model_id: evaluation_model.id)
   end

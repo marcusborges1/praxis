@@ -9,7 +9,6 @@
     </div>
   <% end %>
 
-
   <table class="table table-striped">
     <thead>
       <tr>
@@ -22,7 +21,7 @@
     <tbody>
       <% @evaluation_cycles.each do |evaluation_cycle| %>
         <tr>
-          <td><%= format_datetime(evaluation_cycle.initial_date) %> - <%= format_datetime(evaluation_cycle.end_date) %></td>
+          <td><%= evaluation_cycle.duration_period %></td>
           <td><%= humanize_progress(evaluation_cycle.finished?) %>
           </td>
           <td>
