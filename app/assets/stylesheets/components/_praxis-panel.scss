@@ -1,0 +1,20 @@
+.praxis-panel {
+  border: 0.5em solid;
+  border-color: #DC182C;
+  border-radius: 0px;
+
+  >.heading {
+    background-color: #DC182C;
+
+    >.heading-text {
+      margin-left: 0.5em;
+      padding-bottom: 0.5em;
+      color: white;
+    }
+  }
+
+  >.footer {
+    border-radius: 0px;
+    background-color: #D6D4D4;
+  }
+}
