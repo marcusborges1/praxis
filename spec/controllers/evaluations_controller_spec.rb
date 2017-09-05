@@ -8,19 +8,19 @@ RSpec.describe EvaluationsController, type: :controller do
 
   let(:valid_attributes) {
     {
-      name: Faker::Name.name,
-      start_date:  Faker::Date.between(3.days.ago, Date.today),
-      finish_date:  Faker::Date.between(2.days.ago, Date.tomorrow) ,
-      evaluation_model_id: evaluation_model.id,
-      evaluation_cycle_id: evaluation_cycle.id
+      name:                 Faker::Name.name,
+      start_date:           Faker::Date.between(3.days.ago, Date.today),
+      finish_date:          Faker::Date.between(2.days.ago, Date.tomorrow) ,
+      evaluation_model_id:  evaluation_model.id,
+      evaluation_cycle_id:  evaluation_cycle.id
     }
   }
 
   let(:invalid_attributes) {
     {
-      start_date: nil,
-      finish_date: nil,
-      evaluation_model_id: nil
+      start_date:           nil,
+      finish_date:          nil,
+      evaluation_model_id:  nil
     }
   }
 
