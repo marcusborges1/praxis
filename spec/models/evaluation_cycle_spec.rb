@@ -39,14 +39,14 @@ RSpec.describe EvaluationCycle, type: :model do
   end
 
   describe ".in_progress_now" do
-    it "returns the evaluation cycle in progress when exists one" do
-      evaluation_cycle_in_progress = FactoryGirl.create(:evaluation_cycle, :in_progress)
-      expect(EvaluationCycle.in_progress_now).to eq evaluation_cycle_in_progress
+    it "returns the evaluation cycles in progress when some exists" do
+      evaluation_cycles_in_progress = FactoryGirl.create_list(:evaluation_cycle, 2, :in_progress)
+      expect(EvaluationCycle.in_progress_now).to eq evaluation_cycles_in_progress
     end
 
     it "returns nil when does not exist one evaluation cycle in progress" do
       FactoryGirl.create(:evaluation_cycle, :finished)
-      expect(EvaluationCycle.in_progress_now).to be_nil
+      expect(EvaluationCycle.in_progress_now).to be_empty
     end
   end
 end
