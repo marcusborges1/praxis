@@ -3,12 +3,6 @@ require 'rails_helper'
 RSpec.describe EvaluationCycle, type: :model do
   it { is_expected.to have_many(:evaluations) }
 
-  it "has only one cycle in progress per time" do
-    FactoryGirl.create(:evaluation_cycle, :in_progress)
-    second_cycle_in_progress = FactoryGirl.build(:evaluation_cycle, :in_progress)
-    expect(second_cycle_in_progress).to_not be_valid
-  end
-
   it "can't have initial date bigger than end date" do
     evaluation_cycle = FactoryGirl.build(:evaluation_cycle, initial_date: DateTime.now,
                                                             end_date: DateTime.yesterday)
@@ -18,12 +12,6 @@ RSpec.describe EvaluationCycle, type: :model do
   it "can't have initial date equal to end date" do
     now = DateTime.now
     evaluation_cycle = FactoryGirl.build(:evaluation_cycle, initial_date: now, end_date: now)
-    expect(evaluation_cycle).to_not be_valid
-  end
-
-  it "can't be edited after finished" do
-    evaluation_cycle = FactoryGirl.create(:evaluation_cycle, :finished)
-    evaluation_cycle.initial_date = DateTime.now.last_month
     expect(evaluation_cycle).to_not be_valid
   end
 

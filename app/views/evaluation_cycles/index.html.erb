@@ -9,10 +9,6 @@
     </div>
   <% end %>
 
-  <% unless EvaluationCycle.any_in_progress? %>
-    <p class="text-center alert alert-info">Nenhum ciclo de avaliação está em andamento no momento.</p>
-    <%= link_to 'Começar novo Ciclo de Avaliação', new_evaluation_cycle_path, class: "btn btn-primary" %>
-  <% end %>
 
   <table class="table table-striped">
     <thead>
@@ -31,10 +27,8 @@
           </td>
           <td>
             <div class="pull-right">
-              <% unless evaluation_cycle.finished? %>
-                <%= link_to edit_evaluation_cycle_path(evaluation_cycle), class: "btn btn-default" do %>
-                  <span class="glyphicon glyphicon-edit"></span>
-                <% end %>
+              <%= link_to edit_evaluation_cycle_path(evaluation_cycle), class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-edit"></span>
               <% end %>
               <%= link_to evaluation_cycle, method: :delete, data: { confirm: 'Tem certeza?' },
                 class: "btn btn-danger" do %>
@@ -46,4 +40,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= link_to 'Começar novo Ciclo de Avaliação', new_evaluation_cycle_path, class: "btn btn-primary" %>
 </div>
