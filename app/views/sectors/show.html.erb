@@ -1,8 +1,6 @@
 <div class="col-md-6 col-md-offset-3">
-  <div class="praxis-panel  ">
-    <div class="heading">
-      <p class="heading-text">Diretoria - Detalhes</p>
-    </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Diretoria - Detalhes</div>
     <div class="panel-body">
       <p id="notice"><%= notice %></p>
 
@@ -13,8 +11,8 @@
         <b>Diretor:</b> <%#= @sector.director.name unless @sector.director.nil? %>
       </p>
     </div>
-    <div class="footer">
-      <%= link_to 'Editar Diretoria', edit_sector_path(@sector), class: "button" %>
-      <%= link_to 'Voltar', sectors_path, class: "button -white" %>
+    <div class="panel-footer">
+      <%= link_to 'Editar Diretoria', edit_sector_path(@sector), class: "btn btn-primary" %>
+      <%= link_to 'Voltar', sectors_path, class: "btn btn-default" %>
     </div>
 </div>

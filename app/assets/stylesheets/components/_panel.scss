@@ -1,0 +1,16 @@
+.panel.panel-primary  {
+  border: 0.5em solid;
+  border-color: #DC182C;
+  border-radius: 0px;
+
+  >.panel-heading  {
+    background-color: #DC182C;
+    border-radius: 0px;
+  }
+
+  >.panel-footer {
+      border-radius: 0px;
+      background-color: #D6D4D4;
+    }
+
+}
