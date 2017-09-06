@@ -2,7 +2,7 @@ require "rails_helper"
 require "cancan/matchers"
 
 RSpec.describe "Manager" do
-  let(:position) { FactoryGirl.create(:position, name: "Gerente") }
+  let(:manager_position) { FactoryGirl.create(:position, name: "Gerente") }
   let(:sector) { FactoryGirl.create(:sector)}
   let(:evaluation_model) { FactoryGirl.create(:evaluation_model, sector: sector) }
   let(:evaluation) { FactoryGirl.create(:evaluation, evaluation_model: evaluation_model,
@@ -12,8 +12,7 @@ RSpec.describe "Manager" do
   let(:evaluation_cycle) { FactoryGirl.create(:evaluation_cycle) }
 
   before(:each) do
-    @user = FactoryGirl.create(:user, sector: sector)
-    @user.positions << position
+    @user = FactoryGirl.create(:user, sector: sector, positions: [manager_position])
     @ability = Ability.new(@user)
   end
 
@@ -23,12 +22,21 @@ RSpec.describe "Manager" do
 
   it "can answer his evaluation" do
     expect(@ability).to be_able_to(:manage, evaluation)
+  end
+
+  it "can not answer evaluation of others" do
     expect(@ability).not_to be_able_to(:manage, other_evaluation)
   end
 
-  it "can edit itself" do
-    expect(@ability).to be_able_to(:read, @user)
-    expect(@ability).to be_able_to(:update, @user)
+  it "can see and update itself" do
+    expect(@ability).to be_able_to([:read, :update], @user)
+  end
+
+  it "can not see others" do
     expect(@ability).not_to be_able_to(:read, other_user)
+  end
+
+  it "can not manage evaluation cycles" do
+    expect(@ability).not_to be_able_to(:manage, EvaluationCycle)
   end
 end

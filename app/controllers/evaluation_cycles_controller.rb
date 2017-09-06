@@ -1,5 +1,6 @@
 class EvaluationCyclesController < ApplicationController
   before_action :set_evaluation_cycle, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     @evaluation_cycles = EvaluationCycle.order(created_at: :desc)
