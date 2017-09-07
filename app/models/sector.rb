@@ -11,8 +11,7 @@ class Sector < ApplicationRecord
     users.joins(:positions).where(positions: { name: "Assessor" })
   end
 
-  # def director
-  #   "Diretor" will be refactored
-  #   users.select { |user| user.position.institutional_context.first.name == "SDiretor" }.first
-  # end
+  def director
+    users.select { |user| user.positions.institutional_context.first.name == "Diretor" }.first
+  end
 end
