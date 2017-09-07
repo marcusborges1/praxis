@@ -7,6 +7,7 @@ RSpec.describe ProjectsController, type: :controller do
     {
       name:       Faker::App.name,
       leader_id:  FactoryGirl.create(:user).id,
+      manager_id: FactoryGirl.create(:user).id,
       user_ids:   FactoryGirl.create_list(:user, 3).map(&:id)
     }
   }
