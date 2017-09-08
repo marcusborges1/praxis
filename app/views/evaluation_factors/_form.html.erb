@@ -1,6 +1,6 @@
-<%= form_for(evaluation_factor) do |f| %>
+<%= form_for(evaluation_factor, html: { class: "form-horizontal" }) do |f| %>
   <% if evaluation_factor.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(evaluation_factor.errors.count, "error") %> prohibited this evaluation_factor from being saved:</h2>
 
       <ul>
@@ -11,7 +11,12 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.label :name, "Nome", class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :name, class: "form-control", placeholder: "Fator de Avaliação" %>
+    </div>
   </div>
+
+  <%= f.submit "Salvar", class: "btn btn-primary" %>
 <% end %>
