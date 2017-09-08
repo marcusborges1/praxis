@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    byebug
   end
 
   def new
@@ -46,7 +47,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:evaluation_factor, :description, options_attributes:
+      params.require(:question).permit(:evaluation_factor_id, :description, options_attributes:
                                        [:id, :description, :_destroy])
     end
 end

@@ -3,20 +3,11 @@ require 'rails_helper'
 RSpec.describe QuestionsController, type: :controller do
   login_user
 
-  let(:valid_attributes) {
-    {
-      description: "bar",
-      options_attributes: [
-        { description: "option 1" },
-        { description: "option 2" },
-        { description: "option 3" },
-        { description: "option 4" }
-      ]
-    }
-  }
+  let!(:evaluation_factor) { FactoryGirl.create(:evaluation_factor) }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:question, evaluation_factor: evaluation_factor) }
 
   let(:invalid_attributes) {
-    { name: "", description: "" }
+    { description: "" }
   }
 
   let(:valid_session) { {} }
@@ -58,7 +49,6 @@ RSpec.describe QuestionsController, type: :controller do
         expect {
           post :create, params: {question: valid_attributes}, session: valid_session
         }.to change(Question, :count).by(1)
-          .and change(Option, :count).by(4)
       end
 
       it "redirects to the created question" do
@@ -110,7 +100,6 @@ RSpec.describe QuestionsController, type: :controller do
       expect {
         delete :destroy, params: {id: question.to_param}, session: valid_session
       }.to change(Question, :count).by(-1)
-        .and change(Option, :count).by(-4)
     end
 
     it "redirects to the questions list" do
