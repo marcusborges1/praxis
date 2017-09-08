@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :answer_groups, only: [:edit, :update, :show]
+  resources :evaluation_factors
   resources :evaluations
   resources :evaluation_models
   root "welcome#index"
