@@ -8,7 +8,15 @@
         <b>Nome:</b> <%= @sector.name %>
       </p>
       <p>
-        <b>Diretor:</b> <%#= @sector.director.name unless @sector.director.nil? %>
+        <b>Diretor:</b> <%= @sector.director.name unless @sector.director.nil? %>
+      </p>
+      <p>
+        <b>Membros:</b>
+        <ul>
+          <% @sector.users.each do |member| %>
+            <li><%= member.name %></li>
+          <% end %>
+        </ul>
       </p>
     </div>
     <div class="panel-footer">

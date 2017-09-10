@@ -4,13 +4,15 @@ RSpec.describe AnswerGroupsController, type: :controller do
   login_user
 
   let(:evaluation) { FactoryGirl.create(:evaluation) }
-  let!(:question_value) { FactoryGirl.create(:question_value, evaluation_model: evaluation.evaluation_model) }
+  let(:question_value) { FactoryGirl.create(:question_value, evaluation_model: evaluation.evaluation_model) }
   let(:user) { FactoryGirl.create(:user, sector: evaluation.evaluation_model.sector) }
+  let(:evaluation_target) { FactoryGirl.create(:user, sector: evaluation.evaluation_model.sector) }
 
   let(:valid_attributes) {
     {
       evaluation_id: evaluation.id,
-      user_id: user.id
+      evaluation_target_id: evaluation_target.id,
+      user_id: @user.id
     }
   }
 
@@ -25,8 +27,8 @@ RSpec.describe AnswerGroupsController, type: :controller do
 
   describe "GET #edit" do
     it "returns a success response" do
-      answer_group = AnswerGroup.create! valid_attributes
-      get :edit, params: {id: answer_group.to_param}, session: valid_session
+      answer_group = AnswerGroup.create valid_attributes
+      get :edit, params: { id: answer_group.to_param }, session: valid_session
       expect(response).to be_success
     end
   end

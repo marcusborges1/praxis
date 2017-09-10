@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "welcome#index"
+
   devise_for :users
 
   resources :users
@@ -10,5 +11,6 @@ Rails.application.routes.draw do
   resources :evaluations
   resources :evaluation_models
   resources :evaluation_cycles
+  resources :projects
   resources :answer_groups, only: [:edit, :update, :show]
 end

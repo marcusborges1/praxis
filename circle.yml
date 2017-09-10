@@ -2,3 +2,12 @@ test:
   post:
     - bundle exec rubocop --format html -o $CIRCLE_ARTIFACTS/rubocop.html || true
     - bundle exec rails_best_practices -f html --output-file $CIRCLE_ARTIFACTS/best_practices_output.html || true
+
+deployment:
+  staging:
+    branch: master
+    commands:
+      - git push git@heroku.com:praxis-consultoria.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rails db:migrate --app praxis-consultoria
+    heroku:
+      appname: praxis-consultoria
