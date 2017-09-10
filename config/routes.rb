@@ -3,12 +3,14 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :sectors
   resources :users
+  resources :sectors
+  resources :projects
   resources :positions
   resources :questions
   resources :evaluations
   resources :evaluation_models
+  resources :evaluation_cycles
   resources :projects
   resources :answer_groups, only: [:edit, :update, :show]
   

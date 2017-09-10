@@ -1,0 +1,21 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Ciclo de Avaliação - Detalhes</div>
+    <p id="notice"><%= notice %></p>
+    <div class="panel-body">
+
+    <p>
+      <strong>Período:</strong>
+      <%= @evaluation_cycle.duration_period %>
+    </p>
+
+    <p>
+      <strong>Situação:</strong> <%= humanize_progress(@evaluation_cycle.finished?) %>
+    </p>
+
+    <div class="panel-footer">
+      <%= link_to 'Editar', edit_evaluation_cycle_path(@evaluation_cycle) %>
+      <%= link_to 'Voltar', evaluation_cycles_path %>
+    </div>
+  </div>
+</div>
