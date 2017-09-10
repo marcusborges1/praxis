@@ -49,6 +49,13 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <%= f.label :evaluation_cycle_id, "Ciclo de Avaliação", class: "col-md-2 control-label" %>
+        <div class="col-sm-5">
+            <%= f.collection_select :evaluation_cycle_id, EvaluationCycle.in_progress_now, :id, :duration_period, { prompt: "- Selecione -" }, class: "form-control" %>
+        </div>
+    </div>
+
     <div class="actions">
         <%= f.submit "Salvar", class: "btn btn-primary" %>
     </div>
