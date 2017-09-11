@@ -5,11 +5,10 @@ RSpec.describe "questions/new", type: :view do
     assign(:question, Question.new)
   end
 
-  xit "renders new question form" do
+  it "renders new question form" do
     render
 
     assert_select "form[action=?][method=?]", questions_path, "post" do
-      assert_select "input[name=?]", "question[evaluation_factor_id]"
       assert_select "textarea[name=?]", "question[description]"
     end
   end

@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe QuestionsController, type: :controller do
   login_user
 
-  let!(:evaluation_factor) { FactoryGirl.create(:evaluation_factor) }
-  let(:valid_attributes) { FactoryGirl.attributes_for(:question, evaluation_factor: evaluation_factor) }
+  let(:evaluation_factor) { FactoryGirl.create(:evaluation_factor) }
+  let(:valid_attributes) { FactoryGirl.attributes_for(:question, evaluation_factor_id: evaluation_factor.id) }
 
   let(:invalid_attributes) {
     { description: "" }

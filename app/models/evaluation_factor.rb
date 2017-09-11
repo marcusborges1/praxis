@@ -1,5 +1,4 @@
 class EvaluationFactor < ApplicationRecord
- belongs_to :question, required: false
-
- validates_presence_of :name
+  has_one :question, dependent: :destroy
+  validates_presence_of :name
 end

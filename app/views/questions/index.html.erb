@@ -17,8 +17,8 @@
     <tbody>
       <% @questions.each do |question| %>
         <tr>
-          <td><%= link_to question.evaluation_factor, question %></td>
-          <td><%= question.description %></td>
+          <td><%= link_to question.description, question %></td>
+          <td><%= question.evaluation_factor.name %></td>
           <td>
             <div class="btn-toolbar pull-right">
               <%= link_to edit_question_path(question), class: "btn btn-default" do %><i class="glyphicon glyphicon-edit"></i><% end %>

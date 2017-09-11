@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:evaluation_factor_id, :description, options_attributes:
-                                       [:id, :description, :_destroy])
+      params.require(:question).permit(:evaluation_factor_id, :description,
+                        options_attributes: [:id, :description, :_destroy])
     end
 end

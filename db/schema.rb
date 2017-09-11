@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818180652) do
+ActiveRecord::Schema.define(version: 20170911014127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,10 +40,8 @@ ActiveRecord::Schema.define(version: 20170818180652) do
 
   create_table "evaluation_factors", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "question_id"
-    t.index ["question_id"], name: "index_evaluation_factors_on_question_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "evaluation_models", force: :cascade do |t|
@@ -107,8 +105,10 @@ ActiveRecord::Schema.define(version: 20170818180652) do
 
   create_table "questions", force: :cascade do |t|
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "evaluation_factor_id"
+    t.index ["evaluation_factor_id"], name: "index_questions_on_evaluation_factor_id", using: :btree
   end
 
   create_table "sectors", force: :cascade do |t|
@@ -156,13 +156,13 @@ ActiveRecord::Schema.define(version: 20170818180652) do
   add_foreign_key "answers", "answer_groups"
   add_foreign_key "answers", "options"
   add_foreign_key "answers", "question_values"
-  add_foreign_key "evaluation_factors", "questions"
   add_foreign_key "evaluation_models", "sectors"
   add_foreign_key "evaluations", "evaluation_models"
   add_foreign_key "options", "questions"
   add_foreign_key "projects", "users", column: "leader_id"
   add_foreign_key "question_values", "evaluation_models"
   add_foreign_key "question_values", "questions"
+  add_foreign_key "questions", "evaluation_factors"
   add_foreign_key "user_positions", "positions"
   add_foreign_key "user_positions", "users"
   add_foreign_key "users", "answer_groups"

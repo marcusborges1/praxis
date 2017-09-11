@@ -11,9 +11,9 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :evaluation_factor, "Fator de avaliação", class: "col-sm-2 control-label" %>
+    <%= f.label :evaluation_factor_id, "Fator de avaliação", class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
-      <%= f.collection_select :evaluation_factor, EvaluationFactor.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
+      <%= f.collection_select :evaluation_factor_id, EvaluationFactor.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
     </div>
   </div>
 

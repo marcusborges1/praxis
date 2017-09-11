@@ -1,6 +1,12 @@
-<h1>Editing Evaluation Factor</h1>
-
-<%= render 'form', evaluation_factor: @evaluation_factor %>
-
-<%= link_to 'Show', @evaluation_factor %> |
-<%= link_to 'Back', evaluation_factors_path %>
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Editar Fator de Avaliação</div>
+    <div class="panel-body">
+      <%= render 'form', evaluation_factor: @evaluation_factor %>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Ver Detalhes', @evaluation_factor, class: "btn btn-primary" %>
+      <%= link_to 'Voltar', evaluation_factors_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>

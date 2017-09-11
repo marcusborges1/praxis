@@ -5,11 +5,10 @@ RSpec.describe "questions/edit", type: :view do
     @question = assign(:question, FactoryGirl.create(:question))
   end
 
-  xit "renders the edit question form" do
+  it "renders the edit question form" do
     render
 
     assert_select "form[action=?][method=?]", question_path(@question), "post" do
-      assert_select "input[name=?]", "question[evaluation_factor]"
       assert_select "textarea[name=?]", "question[description]"
     end
   end
