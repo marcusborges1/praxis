@@ -2,13 +2,11 @@ class EvaluationFactorsController < ApplicationController
   before_action :set_evaluation_factor, only: [:show, :edit, :update, :destroy]
 
   # GET /evaluation_factors
-  # GET /evaluation_factors.json
   def index
     @evaluation_factors = EvaluationFactor.all
   end
 
   # GET /evaluation_factors/1
-  # GET /evaluation_factors/1.json
   def show
   end
 
@@ -22,43 +20,29 @@ class EvaluationFactorsController < ApplicationController
   end
 
   # POST /evaluation_factors
-  # POST /evaluation_factors.json
   def create
     @evaluation_factor = EvaluationFactor.new(evaluation_factor_params)
 
-    respond_to do |format|
-      if @evaluation_factor.save
-        format.html { redirect_to @evaluation_factor, notice: 'Evaluation factor was successfully created.' }
-        format.json { render :show, status: :created, location: @evaluation_factor }
-      else
-        format.html { render :new }
-        format.json { render json: @evaluation_factor.errors, status: :unprocessable_entity }
-      end
+    if @evaluation_factor.save
+      redirect_to @evaluation_factor, notice: 'Evaluation factor was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /evaluation_factors/1
-  # PATCH/PUT /evaluation_factors/1.json
   def update
-    respond_to do |format|
-      if @evaluation_factor.update(evaluation_factor_params)
-        format.html { redirect_to @evaluation_factor, notice: 'Evaluation factor was successfully updated.' }
-        format.json { render :show, status: :ok, location: @evaluation_factor }
-      else
-        format.html { render :edit }
-        format.json { render json: @evaluation_factor.errors, status: :unprocessable_entity }
-      end
+    if @evaluation_factor.update(evaluation_factor_params)
+      redirect_to @evaluation_factor, notice: 'Evaluation factor was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /evaluation_factors/1
-  # DELETE /evaluation_factors/1.json
   def destroy
     @evaluation_factor.destroy
-    respond_to do |format|
-      format.html { redirect_to evaluation_factors_url, notice: 'Evaluation factor was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to evaluation_factors_url, notice: 'Evaluation factor was successfully destroyed.'
   end
 
   private
