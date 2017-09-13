@@ -6,5 +6,6 @@ class Question < ApplicationRecord
 
   validates_presence_of :description
 
-  delegate :description, to: :question_values, prefix: true
+  delegate :description, to: :question_value, prefix: true
+  delegate :name, to: :evaluation_factor, prefix: true
 end
