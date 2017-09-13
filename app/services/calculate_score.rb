@@ -1,4 +1,4 @@
 module CalculateScore
-  def individual_score
+  def self.individual_score
   end
 end
