@@ -1,11 +1,16 @@
 class Evaluation < ApplicationRecord
   has_many :answer_groups, dependent: :destroy
   belongs_to :evaluation_model
+  belongs_to :evaluation_cycle
+
   validates_presence_of :name
   validates_presence_of :start_date
   validates_presence_of :finish_date
 
   after_create :create_answer_groups
+
+  delegate :duration_period, to: :evaluation_cycle, prefix: true
+  delegate :name, to: :evaluation_model, prefix: true
 
   def question_values
     QuestionValue.where(evaluation_model_id: evaluation_model.id)

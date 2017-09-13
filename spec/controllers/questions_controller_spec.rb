@@ -38,7 +38,7 @@ RSpec.describe QuestionsController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       question = Question.create! valid_attributes
-      get :edit, params: {id: question.to_param}, session: valid_session
+      get :edit, params: { id: question.to_param }, session: valid_session
       expect(response).to be_success
     end
   end
@@ -47,7 +47,7 @@ RSpec.describe QuestionsController, type: :controller do
     context "with valid params" do
       it "creates a new Question" do
         expect {
-          post :create, params: {question: valid_attributes}, session: valid_session
+          post :create, params: { question: valid_attributes }, session: valid_session
         }.to change(Question, :count).by(1)
       end
 

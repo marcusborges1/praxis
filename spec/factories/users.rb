@@ -16,8 +16,7 @@ FactoryGirl.define do
     association :sector, :organizational_presidency
   end
 
-  trait :admin do 
+  trait :admin do
     association :sector, :people_management
   end
-
 end

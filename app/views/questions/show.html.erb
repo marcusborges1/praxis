@@ -10,10 +10,16 @@
         <b>Descrição:</b> <%= @question.description %>
       </p>
       <hr/>
+
       <% @question.options.each_with_index do |option, index| %>
-      <p>
-        <b>Opção <%= index + 1 %>:</b> <%= option.description %>
-      </p>
+        <div class="row">
+          <div class="col-sm-2">
+            <b>Opção <%= index + 1 %>:</b> <%= option.description %>
+          </div>
+          <div class="col-offset-sm-2 col-sm-2">
+            <b>Peso: </b><%= option.weight %>
+          </div>
+        </div>
       <% end %>
     </div>
     <div class="panel-footer">
