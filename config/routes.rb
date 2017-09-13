@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :questions
   resources :evaluations
   resources :evaluation_models
+  resources :evaluation_factors
   resources :evaluation_cycles
   resources :projects
   resources :answer_groups, only: [:edit, :update, :show]

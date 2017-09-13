@@ -45,6 +45,12 @@ ActiveRecord::Schema.define(version: 20170911154839) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "evaluation_factors", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "evaluation_models", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -110,10 +116,11 @@ ActiveRecord::Schema.define(version: 20170911154839) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string   "evaluation_factor"
     t.text     "description"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "evaluation_factor_id"
+    t.index ["evaluation_factor_id"], name: "index_questions_on_evaluation_factor_id", using: :btree
   end
 
   create_table "sectors", force: :cascade do |t|

@@ -1,6 +1,8 @@
 <div class="col-md-6 col-md-offset-3">
   <div class="page-header">
     <h1>Questões</h1>
+    <a href="#" class="btn btn-primary">Fatores de Avaliacao</a>
+    <%# <%= link_to 'Fatores de Avaliacao', evaluation_factor_path, class: "btn btn-primary" %1> %>
   </div>
   <p id="notice"><%= notice %></p>
   <table class="table table-striped">
@@ -15,8 +17,8 @@
     <tbody>
       <% @questions.each do |question| %>
         <tr>
-          <td><%= link_to question.evaluation_factor, question %></td>
-          <td><%= question.description %></td>
+          <td><%= link_to question.description, question %></td>
+          <td><%= question.evaluation_factor_name %></td>
           <td>
             <div class="btn-toolbar pull-right">
               <%= link_to edit_question_path(question), class: "btn btn-default" do %><i class="glyphicon glyphicon-edit"></i><% end %>
