@@ -46,6 +46,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6'
   gem 'factory_girl_rails', '~> 4.8'
   gem 'sendgrid-ruby'
+  gem 'mailcatcher'
 end
 
 group :development do
