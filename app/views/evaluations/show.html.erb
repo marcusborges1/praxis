@@ -38,6 +38,7 @@
                 <% if answer_group.answered %>
                   <td class="glyphicon glyphicon-ok"></td>
                   <td><%= link_to 'Ver Respostas', answer_group_path(answer_group), class: 'btn btn-default' %></td>
+                  <td><%= link_to 'Gerar Relatorio', answer_group_path(answer_group), class: 'btn btn-success' %></td>
                 <% else %>
                   <td class="glyphicon glyphicon-remove"></td>
                   <% if can? :update, answer_group %>
