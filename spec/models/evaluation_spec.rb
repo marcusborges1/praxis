@@ -15,12 +15,6 @@ RSpec.describe Evaluation, type: :model do
   let!(:users) { FactoryGirl.create_list(:user, 3,
                                          sector: evaluation.evaluation_model.sector) }
 
-  describe "after creation of an evaluation" do
-    it "creates answer groups" do
-      expect { evaluation.save }.to change(AnswerGroup, :count).by 6
-    end
-  end
-
   describe "#question_values" do
     it "returns parent evaluation model question values" do
       expect(evaluation.question_values.count).to eq 2

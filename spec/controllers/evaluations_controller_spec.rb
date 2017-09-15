@@ -5,14 +5,17 @@ RSpec.describe EvaluationsController, type: :controller do
 
   let(:evaluation_model) { FactoryGirl.create(:evaluation_model) }
   let(:evaluation_cycle) { FactoryGirl.create(:evaluation_cycle) }
+  let(:users) { FactoryGirl.create_list(:user, 2) }
 
   let(:valid_attributes) {
     {
       name:                 Faker::Name.name,
       start_date:           Faker::Date.between(3.days.ago, Date.today),
-      finish_date:          Faker::Date.between(2.days.ago, Date.tomorrow) ,
+      finish_date:          Faker::Date.between(2.days.ago, Date.tomorrow),
       evaluation_model_id:  evaluation_model.id,
-      evaluation_cycle_id:  evaluation_cycle.id
+      evaluation_cycle_id:  evaluation_cycle.id,
+      reviewer_id:          users.first.id,
+      evaluation_target_id: users.second.id
     }
   }
 
@@ -62,7 +65,7 @@ RSpec.describe EvaluationsController, type: :controller do
       it "creates a new Evaluation" do
         expect {
           post :create, params: {evaluation: valid_attributes}, session: valid_session
-        }.to change(Evaluation, :count).by(1)
+        }.to change(Evaluation, :count).by(1).and change(AnswerGroup, :count).by(1)
       end
 
       it "redirects to the created evaluation" do

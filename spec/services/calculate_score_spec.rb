@@ -14,6 +14,7 @@ RSpec.describe CalculateScore do
     question_value_1 = FactoryGirl.create(:question_value, question: question_1, evaluation_model: evaluation_model)
     question_value_2 = FactoryGirl.create(:question_value, question: question_2, evaluation_model: evaluation_model)
     evaluation = FactoryGirl.create(:evaluation, evaluation_cycle: evaluation_cycle, evaluation_model: evaluation_model)
+    evaluation.create_answer_group(reviewer_id: users.first.id, evaluation_target_id: users.second.id)
     @answer_group = evaluation.answer_groups.first
     @answer_group.answers.first.update(option: options_question_1.first)
     @answer_group.answers.second.update(option: options_question_2.second)
@@ -31,7 +32,7 @@ RSpec.describe CalculateScore do
       expect(@report[:name]).to eq(@answer_group.evaluation_target.name)
     end
 
-    it "calculates score of answer_group total" do
+    it "calculates score of answer_group factors" do
       score = 0
       @answer_group.answers.each { |answer| score += answer.option.weight*answer.question_value.value }
       expect(@report[:score]).to eq(score)

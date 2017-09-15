@@ -19,6 +19,7 @@ class EvaluationsController < ApplicationController
   def create
     @evaluation = Evaluation.new(evaluation_params)
     if @evaluation.save
+      @evaluation.create_answer_group(target_params)
       redirect_to @evaluation, notice: 'Avaliação criada com sucesso'
     else
       render :new
@@ -41,6 +42,10 @@ class EvaluationsController < ApplicationController
   private
   def set_evaluation
     @evaluation = Evaluation.find(params[:id])
+  end
+
+  def target_params
+    params.require(:evaluation).permit(:evaluation_target_id, :reviewer_id)
   end
 
   def evaluation_params
