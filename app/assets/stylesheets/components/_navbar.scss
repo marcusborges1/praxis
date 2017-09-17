@@ -20,8 +20,13 @@
 			background-color: #D2C7B6;
 			color: #DD192D;
 		}
+
+		a {
+			color: white; 
+		}
 	}
 }
+
 
 .navbar_dropdown_item:hover	{
 	background-color: #D2C7B6;
@@ -30,6 +35,7 @@
 	.dropdown_items {
 		margin-top: 0.5em;
 		display: table;
+
 
 		a {
 			color: #DD192D;
