@@ -1,6 +1,12 @@
 class EvaluationsController < ApplicationController
-  before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
+  before_action :set_evaluation, only: [:individual_report, :show, :edit, :update, :destroy]
   load_and_authorize_resource
+
+  def individual_report
+    answer_group = @evaluation.answer_groups.first
+    @user = User.find(answer_group.evaluation_target_id)
+    render pdf: "individual_report", layout: "pdf-reports.html.erb"
+  end
 
   def index
     @evaluations = Evaluation.all

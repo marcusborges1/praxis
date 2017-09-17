@@ -1,0 +1,38 @@
+<h1 class="text-center">Relatório de Avaliação do Membro</h1>
+<h4 class="text-center">Documento gerado em <%= Date.today.strftime("%d/%m/%Y") %></h4>
+<hr/>
+
+<h3>Geral</h3>
+<p><strong>Avaliado:</strong> <%= @user.name %></p>
+<p><strong>E-mail:</strong> <%= @user.email%></p>
+<p><strong>Diretoria:</strong> <%= @user.sector_name%></p>
+<p><strong>Cargo Atual:</strong> <%= @user.positions.institutional_context.first.name %></p>
+
+<br/>
+<br/>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Quesito</th>
+        <th>Média</th>
+        <th>Peso</th>
+        <th>Média com peso</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+</table>
+
+<br/>
+
+<p><strong>Total Final:<strong></p>
+<p><strong>Média Final:<strong></p>
