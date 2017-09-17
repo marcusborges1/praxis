@@ -16,6 +16,7 @@
 		>.dropdown_items {
 			width: inherit;
 			display: none;
+			// display: inline-block;
 			background-color: #D2C7B6;
 			color: #DD192D;
 		}
@@ -28,7 +29,7 @@
 
 	.dropdown_items {
 		margin-top: 0.5em;
-		display: block;
+		display: table;
 
 		a {
 			color: #DD192D;
