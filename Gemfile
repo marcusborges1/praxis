@@ -36,6 +36,8 @@ gem 'cocoon', '~> 1.2'
 gem 'humanize'
 gem 'devise', '~> 4.3'
 gem 'cancancan', '~> 2.0'
+gem 'wicked_pdf', '~> 1.1'
+gem 'wkhtmltopdf-binary', '~> 0.12.3.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'rails-jquery-autocomplete'
