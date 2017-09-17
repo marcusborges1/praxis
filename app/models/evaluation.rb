@@ -1,5 +1,6 @@
 class Evaluation < ApplicationRecord
   attr_accessor :evaluation_target_id, :reviewer_id
+
   has_many :answer_groups, dependent: :destroy
   belongs_to :evaluation_model
   belongs_to :evaluation_cycle
