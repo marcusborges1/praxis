@@ -3,8 +3,8 @@ class EvaluationsController < ApplicationController
   load_and_authorize_resource
 
   def individual_report
-    answer_group = @evaluation.answer_groups.first
-    @user = User.find(answer_group.evaluation_target_id)
+    @answer_group = @evaluation.answer_groups.first
+    @user = User.find(@answer_group.evaluation_target_id)
     render pdf: "individual_report", layout: "pdf-reports.html.erb"
   end
 

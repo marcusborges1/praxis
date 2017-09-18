@@ -22,13 +22,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+      <% @answer_group.answers.each do |answer| %>
+        <tr>
+          <td>manola</td>
+          <td>manolo</td>
+          <td>baz</td>
+          <td>bar</td>
+          <td>foo</td>
+        </tr>
+      <% end %>
     </tbody>
 </table>
 

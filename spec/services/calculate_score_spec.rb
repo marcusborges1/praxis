@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CalculateScore do
-  before(:all) {
+  before(:all) do
     sector = FactoryGirl.create(:sector)
     users = FactoryGirl.create_list(:user, 2, sector: sector)
     evaluation_model = FactoryGirl.create(:evaluation_model, sector: sector)
@@ -19,30 +19,24 @@ RSpec.describe CalculateScore do
     @answer_group.answers.first.update(option: options_question_1.first)
     @answer_group.answers.second.update(option: options_question_2.second)
     @answer_group.update(answered: true) if @answer_group.finished?
-  }
-
-  it "has answered answer_group" do
-    expect(@answer_group.answered).to eq(true)
   end
 
-  context "calculate score of single answer_group" do
-    before(:each) { @report = CalculateScore.individual_score(@answer_group) }
-
-    it "returns name of person's score" do
-      expect(@report[:name]).to eq(@answer_group.evaluation_target.name)
+  context ".individual_score" do
+    before(:each) do
+      @calculated_score = CalculateScore.individual_score(@answer_group)
     end
 
-    it "calculates score of answer_group factors" do
+    it "returns the score of answer_group factors" do
       score = 0
       @answer_group.answers.each { |answer| score += answer.option.weight*answer.question_value.value }
-      expect(@report[:score]).to eq(score)
+      expect(score).to eq(@calculated_score)
     end
 
-    it "calculates score only of said evaluation_factor" do
+    xit "calculates score only of said evaluation_factor" do
       evaluation_factor =  FactoryGirl.create(:evaluation_factor)
       @answer_group.answers.second.question.update(evaluation_factor: evaluation_factor)
-      report = CalculateScore.individual_score_of_factor(@answer_group, @evaluation_factor)
-      expect(report[:score]).not_to eq(@report[:score])
+      score = CalculateScore.individual_score_of_factor(@answer_group, @evaluation_factor)
+      expect(score).not_to eq(@calculated_score)
     end
   end
 end
