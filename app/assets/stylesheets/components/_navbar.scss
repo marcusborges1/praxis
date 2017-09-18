@@ -18,6 +18,7 @@
 			display: none;
 			// display: inline-block;
 			background-color: #D2C7B6;
+			position: absolute;
 			color: #DD192D;
 		}
 
@@ -31,12 +32,13 @@
 .navbar_dropdown_item:hover	{
 	background-color: #D2C7B6;
 	color: #DD192D;
+	position: relative;
+	z-index: 10000000000;
 
 	.dropdown_items {
 		margin-top: 0.5em;
 		display: table;
-
-
+		position: relative;
 		a {
 			color: #DD192D;
 		}
