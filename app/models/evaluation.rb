@@ -19,7 +19,7 @@ class Evaluation < ApplicationRecord
   def create_answer_groups
     users = evaluation_model.users
     users.each do |evaluation_target|
-      users.map { |user| AnswerGroup.create(evaluation: self, user: user, evaluation_target: evaluation_target) unless evaluation_target == user }
+      users.map { |user| AnswerGroup.create(evaluation: self, user: user, evaluation_target: evaluation_target) }
     end
   end
 
