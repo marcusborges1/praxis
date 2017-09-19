@@ -15,6 +15,7 @@ class EvaluationsController < ApplicationController
   end
 
   def show
+    @answer_groups = @evaluation.answer_groups.order(:user_id)
   end
 
   def new
@@ -27,7 +28,7 @@ class EvaluationsController < ApplicationController
   def create
     @evaluation = Evaluation.new(evaluation_params)
     if @evaluation.save
-      @evaluation.create_answer_group(target_params)
+      @evaluation.create_answer_groups
       redirect_to @evaluation, notice: 'Avaliação criada com sucesso'
     else
       render :new
