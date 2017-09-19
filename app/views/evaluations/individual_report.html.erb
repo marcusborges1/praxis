@@ -1,0 +1,39 @@
+<%= wicked_pdf_image_tag 'praxis-logo.png', width: "300px", class: "center-block" %>
+<h1 class="text-center">Relatório de Avaliação do Membro</h1>
+<h5 class="text-center">Documento gerado em <%= Date.today.strftime("%d/%m/%Y") %></h5>
+<hr/>
+
+<h3>Geral</h3>
+<p><strong>Avaliado:</strong> <%= @user.name %></p>
+<p><strong>E-mail:</strong> <%= @user.email%></p>
+<p><strong>Diretoria:</strong> <%= @user.sector_name%></p>
+<p><strong>Cargo Atual:</strong> <%= @user.positions.institutional_context.first.name %></p>
+
+<br/>
+<br/>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Quesito</th>
+        <th>Peso da resposta</th>
+        <th>Peso da questão</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @report.each do |report| %>
+        <tr>
+          <td><%= report[:evaluation_factor_name] %></td>
+          <td><%= report[:option_answered_weight] %></td>
+          <td><%= report[:question_weight] %></td>
+          <td><%= report[:score] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<br/>
+
+<p><strong>Total Final: <strong><%= @report.inject(0) { |sum, e| sum += e[:score] } %></p>
+<p><strong>Média Final: <strong></p>
