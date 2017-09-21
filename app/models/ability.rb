@@ -11,7 +11,7 @@ class Ability
 
     ## EvaluationAnswers Authorization
     can [:update], AnswerGroup, user_id: user.id
-    can [:read, :update, :edit], AnswerGroup, user_id: user.id
+    can [:read, :update, :edit, :list_unanswered], AnswerGroup, user_id: user.id
 
     ## Position based authorization
     if user.has_admin_privileges?

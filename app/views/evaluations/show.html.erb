@@ -43,9 +43,7 @@
                   <td><%= link_to 'Gerar Relatorio', individual_report_evaluation_path(answer_group.evaluation), target: "_blank", class: 'btn btn-success' %></td>
                 <% else %>
                   <td class="glyphicon glyphicon-remove"></td>
-                  <% if can? :update, answer_group %>
-                    <td><%= link_to 'Responder', edit_answer_group_path(answer_group), class: 'btn btn-default' %></td>
-                  <% end %>
+                  <td colspan="3"></td>
                 <% end %>
               </tr>
             </tbody>

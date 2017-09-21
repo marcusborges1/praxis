@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :projects
   resources :answer_groups, only: [:edit, :update, :show]
 
+  get '/unanswered', to: "answer_groups#list_unanswered"
+
   scope :users do
     get "/monitors/:id", to: "users#monitors", as: :monitors
     patch "/add_monitors/:id", to: "users#add_monitors", as: :add_monitors
