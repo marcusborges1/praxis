@@ -13,10 +13,10 @@
 
       <% @question.options.each_with_index do |option, index| %>
         <div class="row">
-          <div class="col-sm-2">
-            <b>Opção <%= index + 1 %>:</b> <%= option.description %>
+          <div class="col-sm-6">
+            <b>Opção <%= index + 1 %>:</b> <p><%= option.description %></p>
           </div>
-          <div class="col-offset-sm-2 col-sm-2">
+          <div class="col-sm-6">
             <b>Peso: </b><%= option.weight %>
           </div>
         </div>

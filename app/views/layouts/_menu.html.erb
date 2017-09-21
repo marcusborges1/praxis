@@ -30,6 +30,12 @@
         <%= link_to "Avaliações", evaluations_path, class: "nav-link" %>
       </li>
       <li>
+        <%= link_to unanswered_path do %>
+          <span class="nav-link">Responder Avaliações</span>
+          <span class="badge"><%= current_user.answer_groups.where(answered: false).count %></span>
+        <% end %>
+      </li>
+      <li>
         <%= link_to "Sair", destroy_user_session_path, class: "nav-link", method: :delete %>
       </li>
     </ul>

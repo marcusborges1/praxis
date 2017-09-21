@@ -53,7 +53,7 @@ RSpec.describe AnswerGroupsController, type: :controller do
 
       it "redirects to the parent evaluation" do
         put :update, params: {id: answer_group.to_param, answer_group: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(answer_group.evaluation)
+        expect(response).to redirect_to(unanswered_path)
       end
     end
 
