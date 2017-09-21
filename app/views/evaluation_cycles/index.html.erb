@@ -22,7 +22,7 @@
       <% @evaluation_cycles.each do |evaluation_cycle| %>
         <tr>
           <td><%= evaluation_cycle.duration_period %></td>
-          <td><%= humanize_progress(evaluation_cycle.finished?) %>
+          <td><%= link_to humanize_progress(evaluation_cycle.finished?), evaluation_cycle_path(evaluation_cycle) %>
           </td>
           <td>
             <div class="pull-right">
