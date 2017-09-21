@@ -24,8 +24,7 @@ class Evaluation < ApplicationRecord
   end
 
   def create_answer_group(evaluation_target_params)
-	  AnswerGroup.create(evaluation: self, user_id: evaluation_target_params[:reviewer_id],
+    AnswerGroup.create(evaluation: self, user_id: evaluation_target_params[:reviewer_id],
                       evaluation_target_id: evaluation_target_params[:evaluation_target_id])
   end
-
 end

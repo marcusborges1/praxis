@@ -1,5 +1,5 @@
 class AnswerGroupsController < ApplicationController
-  before_action :set_answer_group, unless: [:list_unanswered]
+  before_action :set_answer_group, unless: [:unanswered]
   load_and_authorize_resource
 
   def show
@@ -10,7 +10,7 @@ class AnswerGroupsController < ApplicationController
     @question_values = QuestionValue.where(evaluation_model_id: evaluation.evaluation_model_id)
   end
 
-  def list_unanswered
+  def unanswered
     @answer_groups = current_user.answer_groups.where(answered: false)
   end
 
