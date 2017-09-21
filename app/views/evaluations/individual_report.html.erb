@@ -1,6 +1,7 @@
 <%= wicked_pdf_image_tag 'praxis-logo.png', width: "300px", class: "center-block" %>
 <h1 class="text-center">Relatório de Avaliação do Membro</h1>
-<h5 class="text-center">Documento gerado em <%= Date.today.strftime("%d/%m/%Y") %></h5>
+<h5 class="text-center">Avaliação relativa ao ciclo de avaliação do período
+  <%= @answer_group.evaluation.evaluation_cycle.duration_period %></h5>
 <hr/>
 
 <h3>Geral</h3>
@@ -15,19 +16,19 @@
 <table class="table table-striped">
     <thead>
       <tr>
-        <th>Quesito</th>
-        <th>Peso da resposta</th>
+        <th>Fator Avaliado</th>
+        <th>Média das avaliações</th>
         <th>Peso da questão</th>
-        <th>Total</th>
+        <th>Média com peso</th>
       </tr>
     </thead>
     <tbody>
       <% @report.each do |report| %>
         <tr>
           <td><%= report[:evaluation_factor_name] %></td>
-          <td><%= report[:option_answered_weight] %></td>
+          <td><%= report[:answer_average] %></td>
           <td><%= report[:question_weight] %></td>
-          <td><%= report[:score] %></td>
+          <td><%= report[:answer_average_with_question_weight] %></td>
         </tr>
       <% end %>
     </tbody>
@@ -35,5 +36,5 @@
 
 <br/>
 
-<p><strong>Total Final: <strong><%= @report.inject(0) { |sum, e| sum += e[:score] } %></p>
+<p><strong>Total Final: <strong><%#= @report.inject(0) { |sum, e| sum += e[:score] } %></p>
 <p><strong>Média Final: <strong></p>
