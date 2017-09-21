@@ -4,7 +4,7 @@ FactoryGirl.define do
     email                   { Faker::Internet.email }
     password                "123qwe!@#"
     password_confirmation   "123qwe!@#"
-    sector                  { FactoryGirl.create(:sector) }
+    sector
     positions               { FactoryGirl.create_list(:position, 1) }
   end
 

@@ -28,7 +28,7 @@ class EvaluationsController < ApplicationController
     @evaluation = Evaluation.new(evaluation_params)
     if @evaluation.save
       @evaluation.create_answer_groups
-      redirect_to @evaluation, notice: 'Avaliação criada com sucesso'
+      redirect_to @evaluation, notice: "Avaliação criada com sucesso"
     else
       render :new
     end
@@ -36,7 +36,7 @@ class EvaluationsController < ApplicationController
 
   def update
     if @evaluation.update(evaluation_params)
-      redirect_to @evaluation, notice: 'Avaliação atualizada com sucesso'
+      redirect_to @evaluation, notice: "Avaliação atualizada com sucesso"
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class EvaluationsController < ApplicationController
 
   def destroy
     @evaluation.destroy
-    redirect_to evaluations_url, notice: 'Avaliação destruída com sucesso'
+    redirect_to evaluations_url, notice: "Avaliação destruída com sucesso"
   end
 
   private
