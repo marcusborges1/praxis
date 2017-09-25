@@ -5,7 +5,7 @@ class Sector < ApplicationRecord
   delegate :name, to: :evaluation_model, prefix: true
 
  	scope :people_management, -> { find_by(name: "GP") }
- 	scope :organizational_presidency, -> { find_by(name: "PRESI") }
+ 	scope :organizational_presidency, -> { find_by(name: "PRESORG") }
 
   def advisors
     users.joins(:positions).where(positions: { name: "Assessor" })

@@ -7,7 +7,7 @@ FactoryGirl.define do
     end
 
     trait :organizational_presidency do
-      name   "PRESI"
+      name   "PRESORG"
     end
   end
 end
