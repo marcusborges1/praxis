@@ -41,4 +41,11 @@ RSpec.describe "Manager" do
   it "can not manage evaluation cycles" do
     expect(@ability).not_to be_able_to(:manage, EvaluationCycle)
   end
+
+  it 'can create Evaluations' do 
+    expect(@ability).to be_able_to(:create, Evaluation)
+  end
+
+
+
 end

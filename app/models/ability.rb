@@ -33,5 +33,8 @@ class Ability
     elsif (user.sector == Sector.people_management || user.sector == Sector.organizational_presidency) && user.has_position?(Position.advisors)
       can :have, :monitors
     end
+
   end
+
+  
 end

@@ -19,4 +19,7 @@ RSpec.describe "User" do
     expect(@ability).not_to be_able_to(:read, another_answer_group)
     expect(@ability).not_to be_able_to(:update, another_answer_group)
   end
+
+  it 'director can create evaluations' do
+  end
 end

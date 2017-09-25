@@ -4,7 +4,7 @@
   Position.create(name: position_name, context: :institutional)
 end
 
-%w(DAF DIPRO MKT GP PRESI NEG Trainee).each do |sector_name|
+%w(DAF DIPRO MKT GP PRESORG NEG Trainee).each do |sector_name|
   Sector.create(name: sector_name)
 end
 
