@@ -1,0 +1,39 @@
+<%= form_for(evaluation_cycle, html: { class: "form-horizontal" }) do |f| %>
+  <% if evaluation_cycle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(evaluation_cycle.errors.count, "error") %> prohibited this evaluation_cycle from being saved:</h2>
+
+      <ul>
+      <% evaluation_cycle.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :initial_date, "Data inicial", class: "col-sm-2 control-label" %>
+    <div class="col-sm-3">
+      <div class="input-group date" data-provide="datepicker">
+          <%= f.date_field :initial_date, class: "form-control" %>
+          <div class="input-group-addon">
+              <span class="glyphicon glyphicon-th"></span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :end_date, "Data final", class: "col-sm-2 control-label" %>
+    <div class="col-sm-3">
+      <div class="input-group date" data-provide="datepicker">
+          <%= f.date_field :end_date, class: "form-control" %>
+          <div class="input-group-addon">
+              <span class="glyphicon glyphicon-th"></span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <%= f.submit "Salvar", class: "btn btn-primary" %>
+<% end %>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :monitors]
   load_and_authorize_resource
 
   def index
@@ -37,6 +37,23 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to users_url, notice: 'Usuário foi excluído com sucesso.'
+  end
+
+  def monitors
+    authorize! :set, :monitors
+    if @user.sector == Sector.people_management
+      @users = User.where.not(sector: Sector.people_management)
+    elsif @user.sector ==  Sector.organizational_presidency
+      @users = User.where(sector: Sector.people_management)
+    end
+  end
+
+  def add_monitors
+    for i in 0...params[:monitors][:user_id].count
+      user_id = params[:monitors][:user_id][i]
+      User.find(user_id).update_attributes(monitor_id: @user.id)
+    end
+    redirect_to users_url, notice: 'Acompanhantes definidos com sucesso.'
   end
 
   private

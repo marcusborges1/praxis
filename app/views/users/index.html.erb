@@ -10,6 +10,7 @@
           <th>Diretoria</th>
           <th>Cargo Institucional</th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
 
@@ -25,6 +26,9 @@
                 <%= link_to user, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger" do %><i class="glyphicon glyphicon-trash"></i><% end %>
               </div>
             </td>
+            <%  if (can? :set, :monitors) && (Ability.new(user).can? :have, :monitors)%>
+            <td><%= link_to "Adicionar acompanhantes", monitors_path(user)  %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

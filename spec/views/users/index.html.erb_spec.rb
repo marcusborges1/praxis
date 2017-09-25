@@ -6,6 +6,7 @@ RSpec.describe "users/index", type: :view do
   end
 
   it "renders a list of users" do
+    allow(view).to receive(:can?).and_return(true)
     render
   end
 end

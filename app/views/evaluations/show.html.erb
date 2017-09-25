@@ -4,6 +4,10 @@
     <p id="notice"><%= notice %></p>
     <div class="panel-body">
       <p>
+        <strong>Avaliação:</strong>
+        <%= @evaluation.name %>
+      </p>
+      <p>
         <strong>Data de Inicio:</strong>
         <%= @evaluation.start_date %>
       </p>
@@ -15,27 +19,35 @@
 
       <p>
         <strong>Modelo de Avaliação:</strong>
-        <%= @evaluation.evaluation_model.name %>
+        <%= @evaluation.evaluation_model_name %>
+      </p>
+
+      <p>
+        <strong>Ciclo da Avaliação:</strong>
+        <%= @evaluation.evaluation_cycle_duration_period %>
       </p>
       <p>
         <strong>Respostas</strong>
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Membro</th>
+              <th>Avaliado</th>
+              <th>Avaliador</th>
               <th>Respondido?</th>
             </tr>
           </thead>
-          <% @evaluation.answer_groups.each do |answer_group| %>
+          <% @answer_groups.each do |answer_group| %>
             <tbody>
               <tr>
+                <td><%= answer_group.evaluation_target.name %></td>
                 <td><%= answer_group.user.name %></td>
                 <% if answer_group.answered %>
                   <td class="glyphicon glyphicon-ok"></td>
                   <td><%= link_to 'Ver Respostas', answer_group_path(answer_group), class: 'btn btn-default' %></td>
+                  <td><%= link_to 'Gerar Relatorio', individual_report_evaluation_path(answer_group.evaluation), target: "_blank", class: 'btn btn-success' %></td>
                 <% else %>
                   <td class="glyphicon glyphicon-remove"></td>
-                  <td><%= link_to 'Responder', edit_answer_group_path(answer_group), class: 'btn btn-default' %></td>
+                  <td colspan="3"></td>
                 <% end %>
               </tr>
             </tbody>

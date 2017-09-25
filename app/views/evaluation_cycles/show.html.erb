@@ -1,0 +1,29 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Ciclo de Avaliação - Detalhes</div>
+    <p id="notice"><%= notice %></p>
+    <div class="panel-body">
+      <p>
+        <strong>Período:</strong>
+        <%= @evaluation_cycle.duration_period %>
+      </p>
+
+      <p>
+        <strong>Situação:</strong> <%= humanize_progress(@evaluation_cycle.finished?) %>
+      </p>
+
+      <p>
+        <strong>Avaliações vinculadas:</strong>
+        <ul>
+          <% @evaluation_cycle.evaluations.each do |evaluation| %>
+            <li><%= link_to evaluation.name, evaluation_path(evaluation) %></li>
+          <% end %>
+        </ul>
+      </p>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'Editar', edit_evaluation_cycle_path(@evaluation_cycle), class: "btn btn-primary" %>
+      <%= link_to 'Voltar', evaluation_cycles_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>

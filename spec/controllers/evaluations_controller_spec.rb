@@ -1,34 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe EvaluationsController, type: :controller do
-
-  # This should return the minimal set of attributes required to create a valid
-  # Evaluation. As you add validations to Evaluation, be sure to
-  # adjust the attributes here as well.
   login_user
 
-  let(:evaluation_model) { FactoryGirl.create(:evaluation_model) }
+  let(:sector)            { FactoryGirl.create(:sector) }
+  let(:evaluation_model)  { FactoryGirl.create(:evaluation_model, sector: sector) }
+  let(:evaluation_cycle)  { FactoryGirl.create(:evaluation_cycle) }
+  let(:users)             { FactoryGirl.create_list(:user, 2, sector: sector) }
 
   let(:valid_attributes) {
     {
-      name: Faker::Name.name,
-      start_date:  Faker::Date.between(3.days.ago, Date.today),
-      finish_date:  Faker::Date.between(2.days.ago, Date.tomorrow) ,
-      evaluation_model_id: evaluation_model.id
+      name:                 Faker::Name.name,
+      start_date:           Faker::Date.between(3.days.ago, Date.today),
+      finish_date:          Faker::Date.between(2.days.ago, Date.tomorrow),
+      evaluation_model_id:  evaluation_model.id,
+      evaluation_cycle_id:  evaluation_cycle.id
     }
   }
 
   let(:invalid_attributes) {
     {
-      start_date: nil,
-      finish_date: nil,
-      evaluation_model_id: nil
+      start_date:           nil,
+      finish_date:          nil,
+      evaluation_model_id:  nil
     }
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # EvaluationsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
@@ -66,7 +63,7 @@ RSpec.describe EvaluationsController, type: :controller do
     context "with valid params" do
       it "creates a new Evaluation" do
         expect {
-          post :create, params: {evaluation: valid_attributes}, session: valid_session
+          post :create, params: { evaluation: valid_attributes }, session: valid_session
         }.to change(Evaluation, :count).by(1)
       end
 

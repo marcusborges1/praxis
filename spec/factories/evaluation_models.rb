@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :evaluation_model do
     name                    { Faker::Name.name }
-    sector                  { FactoryGirl.create(:sector) }
+    sector
   end
 end
