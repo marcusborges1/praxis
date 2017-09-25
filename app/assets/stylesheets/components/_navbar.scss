@@ -53,6 +53,17 @@
 				
 		// 	}
 		// }
+		>.icon {
+			color: black;
+			display: inline-block;
+			width: 1em;
+		}
+
+		>.textinline {
+			display: inline-block;
+			text-decoration: none;
+			color: white;
+		}
 		
 		p {
 			margin-bottom: 0em;
