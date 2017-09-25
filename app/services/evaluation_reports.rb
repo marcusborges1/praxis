@@ -2,7 +2,7 @@ module EvaluationReports
   def self.individual_report_data(evaluation)
     report_data = []
 
-    answer_group = evaluation.answer_groups.take
+    answer_group = evaluation.answer_groups.where(answered: true).take
     target_id = answer_group.evaluation_target_id
 
     answer_group.answers.each do |answer|
@@ -23,7 +23,7 @@ module EvaluationReports
 
   def self.evaluation_answer_average(evaluation, target_id)
     # seleciona todos os grupos de respostas daquela avaliação
-    answer_groups = evaluation.answer_groups
+    answer_groups = evaluation.answer_groups.where(answered: true)
     right_answer_group_ids = answer_groups.where(evaluation_target_id: target_id).pluck(:id)
     # Pega as respostas de cada grupo de respostas
     answers = Answer.where(answer_group_id: right_answer_group_ids)
