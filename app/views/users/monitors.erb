@@ -20,7 +20,7 @@
         <%= fields_for :monitors do |ff| %>
           <% @users.each do |u| %>
              <%= ff.label :name, u.name, class: "col-sm-2 control-label" %>
-               <% if u.monitor_id = @user.id %>
+               <% if u.monitor_id == @user.id %>
                  <div class="col-sm-4">
                    <%= ff.check_box :user_id, {class: "form-control", multiple: true, checked: true} , u.id, nil %>
                  </div>
