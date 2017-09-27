@@ -3,19 +3,19 @@ class Ability
 
   def initialize(user)
     ## User can update itself
-    can :read, [User, Sector, Project, EvaluationModel, Evaluation]
+    can :read, [User, Sector, Project]
     can :update, User, id: user.id
 
     ## Evaluation Authorization
-    can :manage, Evaluation, evaluation_model: { sector_id: user.sector_id }
+    # can :manage, Evaluation, evaluation_model: { sector_id: user.sector_id }
 
     ## EvaluationAnswers Authorization
     can [:update], AnswerGroup, user_id: user.id
-    can [:read, :update, :edit, :unanswered], AnswerGroup, user_id: user.id
+    can %i[read update edit unanswered], AnswerGroup, user_id: user.id
 
     ## Position based authorization
     if user.has_admin_privileges?
-      can :manage, [Sector, Position, User, EvaluationModel, Question, Evaluation, Project]
+      can :manage, [Sector, Position, User, EvaluationModel, Question, Evaluation, Project, EvaluationFactor]
       can :set, :monitors
     end
 
