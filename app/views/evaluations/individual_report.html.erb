@@ -1,3 +1,9 @@
+<style>
+  .text-align-center {
+    text-align: center !important;
+  }
+</style>
+
 <%= wicked_pdf_image_tag 'praxis-logo.png', width: "300px", class: "center-block" %>
 <h1 class="text-center">Relatório de Avaliação do Membro</h1>
 <h5 class="text-center">Avaliação relativa ao ciclo de avaliação do período
@@ -10,7 +16,6 @@
 <p><strong>Diretoria:</strong> <%= @user.sector_name%></p>
 <p><strong>Cargo Atual:</strong> <%= @user.positions.institutional_context.first.name %></p>
 
-<br/>
 <br/>
 
 <table class="table table-striped">
@@ -26,9 +31,9 @@
       <% @report.each do |report| %>
         <tr>
           <td><%= report[:evaluation_factor_name] %></td>
-          <td><%= report[:answer_average] %></td>
-          <td><%= report[:question_weight] %></td>
-          <td><%= report[:answer_average_with_question_weight] %></td>
+          <td class="text-align-center"><%= report[:answer_average] %></td>
+          <td class="text-align-center"><%= report[:question_weight] %></td>
+          <td class="text-align-center"><%= report[:answer_average_with_question_weight] %></td>
         </tr>
       <% end %>
     </tbody>
