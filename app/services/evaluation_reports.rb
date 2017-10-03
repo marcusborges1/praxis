@@ -11,21 +11,25 @@ module EvaluationReports
       evaluation_factor = question.evaluation_factor
 
       data[:evaluation_factor_name] = evaluation_factor.name
-      data[:answer_average] = EvaluationReports.evaluation_answer_average(evaluation, target_id)
+      data[:answer_average] = EvaluationReports.evaluation_answer_average(evaluation, target_id, evaluation_factor)
       data[:question_weight] = question_value.value
-      data[:answer_average_with_question_weight] = EvaluationReports.evaluation_answer_average(evaluation, target_id) * question_value.value
+      data[:answer_average_with_question_weight] = EvaluationReports.evaluation_answer_average(evaluation, target_id, evaluation_factor) * question_value.value
 
       report_data << data
     end
     report_data
   end
 
-  def self.evaluation_answer_average(evaluation, target_id)
+  def self.evaluation_answer_average(evaluation, target_id, evaluation_factor)
     # seleciona todos os grupos de respostas daquela avaliação
-    answer_groups = evaluation.answer_groups.where(answered: true)
-    right_answer_group_ids = answer_groups.where(evaluation_target_id: target_id).pluck(:id)
+    answer_ids = evaluation.answer_groups.where(answered: true,
+                                             evaluation_target_id: target_id).map(&:answers).flatten.pluck(:id)
+    question_ids = Question.where(evaluation_factor: evaluation_factor).pluck(:id)
+    question_values = QuestionValue.where(answer_id: answer_ids, question_id: question_ids)
     # Pega as respostas de cada grupo de respostas
-    answers = Answer.where(answer_group_id: right_answer_group_ids)
+    # answers = Question.where(evaluation_factor: evaluation_factor).question_value.answers.where(ans)
+    # answers = Answer.where(question: Question.find_by(evaluation_factor: evaluation_factor),
+    #                        answer_group_id: answer_group_ids)
     options = answers.map(&:option)
     answer_weights = options.map(&:weight)
     answers_average = answer_weights.inject { |sum, e| sum += e } / answer_weights.length
@@ -38,8 +42,8 @@ module EvaluationReports
     number_of_evaluation_factors = evaluation_scores.length
 
     {
-      average_without_weight: answer_final_average/number_of_evaluation_factors,
-      average_with_weight: answer_final_average_with_weight/number_of_evaluation_factors
+      average_without_weight: (answer_final_average/number_of_evaluation_factors).round(2),
+      average_with_weight: (answer_final_average_with_weight/number_of_evaluation_factors).round(2)
     }
   end
 end
