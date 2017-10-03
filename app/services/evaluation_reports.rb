@@ -4,7 +4,6 @@ module EvaluationReports
 
     answer_group = evaluation.answer_groups.where(answered: true).take
     target_id = answer_group.evaluation_target_id
-
     answer_group.answers.each do |answer|
       data = {}
       question_value = answer.question_value

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :evaluations do
-    get "/individual_report", to: "evaluations#individual_report", on: :member
+    get "/individual_report/:user_id/:evaluation_target_id", to: "evaluations#individual_report", on: :member, as: :individual_report
   end
 
   resources :users
