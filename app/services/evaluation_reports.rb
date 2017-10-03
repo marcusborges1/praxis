@@ -28,6 +28,18 @@ module EvaluationReports
     answers = Answer.where(answer_group_id: right_answer_group_ids)
     options = answers.map(&:option)
     answer_weights = options.map(&:weight)
-    answer_weights.inject { |sum, e| sum += e } / answer_weights.length
+    answers_average = answer_weights.inject { |sum, e| sum += e } / answer_weights.length
+    answers_average.round(2)
+  end
+
+  def self.evaluation_final_averages(evaluation_scores)
+    answer_final_average = evaluation_scores.inject(0) { |result, e| result += e[:answer_average] }
+    answer_final_average_with_weight = evaluation_scores.inject(0) { |result, e| result += e[:answer_average_with_question_weight] }
+    number_of_evaluation_factors = evaluation_scores.length
+
+    {
+      average_without_weight: answer_final_average/number_of_evaluation_factors,
+      average_with_weight: answer_final_average_with_weight/number_of_evaluation_factors
+    }
   end
 end
