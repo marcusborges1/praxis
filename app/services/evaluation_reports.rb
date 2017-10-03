@@ -28,6 +28,7 @@ module EvaluationReports
     answers = Answer.where(answer_group_id: right_answer_group_ids)
     options = answers.map(&:option)
     answer_weights = options.map(&:weight)
-    answer_weights.inject { |sum, e| sum += e } / answer_weights.length
+    answers_average = answer_weights.inject { |sum, e| sum += e } / answer_weights.length
+    answers_average.round(2)
   end
 end
