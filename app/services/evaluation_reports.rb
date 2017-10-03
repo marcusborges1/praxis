@@ -38,8 +38,8 @@ module EvaluationReports
     number_of_evaluation_factors = evaluation_scores.length
 
     {
-      average_without_weight: answer_final_average/number_of_evaluation_factors,
-      average_with_weight: answer_final_average_with_weight/number_of_evaluation_factors
+      average_without_weight: (answer_final_average/number_of_evaluation_factors).round(2),
+      average_with_weight: (answer_final_average_with_weight/number_of_evaluation_factors).round(2)
     }
   end
 end
