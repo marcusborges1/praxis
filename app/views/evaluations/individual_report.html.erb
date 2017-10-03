@@ -17,9 +17,9 @@
     <thead>
       <tr>
         <th>Fator Avaliado</th>
-        <th>Média das avaliações</th>
+        <th>Média do fator sem peso</th>
         <th>Peso da questão</th>
-        <th>Média com peso</th>
+        <th>Média do fator com peso</th>
       </tr>
     </thead>
     <tbody>
@@ -36,5 +36,5 @@
 
 <br/>
 
-<p><strong>Total Final: <strong><%#= @report.inject(0) { |sum, e| sum += e[:score] } %></p>
-<p><strong>Média Final: <strong></p>
+<p><strong>Média Final sem peso: <strong><%= @final_averages[:average_without_weight] %></p>
+<p><strong>Média Final com peso: <strong><%= @final_averages[:average_with_weight] %></p>
