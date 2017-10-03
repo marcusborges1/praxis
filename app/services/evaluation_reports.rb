@@ -1,8 +1,8 @@
 module EvaluationReports
-  def self.individual_report_data(evaluation)
+  def self.individual_report_data(evaluation, evaluation_target_id)
     report_data = []
 
-    answer_group = evaluation.answer_groups.where(answered: true).take
+    answer_group = evaluation.answer_groups.find_by(evaluation_target_id: evaluation_target_id, answered: true)
     target_id = answer_group.evaluation_target_id
     answer_group.answers.each do |answer|
       data = {}
