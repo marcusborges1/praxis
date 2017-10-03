@@ -1,9 +1,3 @@
-<style>
-  .text-align-center {
-    text-align: center !important;
-  }
-</style>
-
 <%= wicked_pdf_image_tag 'praxis-logo.png', width: "300px", class: "center-block" %>
 <h1 class="text-center">Relatório de Avaliação do Membro</h1>
 <h5 class="text-center">Avaliação relativa ao ciclo de avaliação do período
@@ -21,19 +15,19 @@
 <table class="table table-striped">
     <thead>
       <tr>
-        <th>Fator Avaliado</th>
-        <th>Média do fator sem peso</th>
-        <th>Peso da questão</th>
-        <th>Média do fator com peso</th>
+        <th class="text-center">Fator Avaliado</th>
+        <th class="text-center">Média do fator sem peso</th>
+        <th class="text-center">Peso da questão</th>
+        <th class="text-center">Média do fator com peso</th>
       </tr>
     </thead>
     <tbody>
       <% @report.each do |report| %>
-        <tr>
-          <td><%= report[:evaluation_factor_name] %></td>
-          <td class="text-align-center"><%= report[:answer_average] %></td>
-          <td class="text-align-center"><%= report[:question_weight] %></td>
-          <td class="text-align-center"><%= report[:answer_average_with_question_weight] %></td>
+        <tr style="page-break-inside: avoid;">
+          <td class="text-center"><%= report[:evaluation_factor_name] %></td>
+          <td class="text-center"><%= report[:answer_average] %></td>
+          <td class="text-center"><%= report[:question_weight] %></td>
+          <td class="text-center"><%= report[:answer_average_with_question_weight] %></td>
         </tr>
       <% end %>
     </tbody>
