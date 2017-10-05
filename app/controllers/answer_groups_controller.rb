@@ -34,6 +34,8 @@ class AnswerGroupsController < ApplicationController
   end
 
   def answer_group_params
-    params.require(:answer_group).permit(:answered, :evaluation_id, :user_id, answers_attributes: [:id, :question_value_id, :option_id] )
+    params.require(:answer_group).permit(:answered, :evaluation_id, :user_id,
+                                         answers_attributes: [:id, :question_value_id, :option_id],
+                                         evaluation_comments_attributes: [:id, :comment])
   end
 end

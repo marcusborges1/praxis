@@ -17,6 +17,11 @@
         <% question_values.delete_at(0) %>
     <% end %>
 
+    <br/>
+    <%= f.fields_for :evaluation_comments do |evaluation_comment_field| %>
+      <%= render "evaluation_comment_field", f: evaluation_comment_field %>
+    <% end %>
+
     <div class="actions">
         <%= f.submit "Responder", class: "btn btn-primary" %>
     </div>
