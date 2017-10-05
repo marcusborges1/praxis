@@ -30,14 +30,13 @@ module EvaluationReports
     average_responses.round(2)
   end
 
-  def self.evaluation_final_averages(evaluation_scores)
-    answer_final_average = evaluation_scores.inject(0) { |result, e| result += e[:answer_average] }
-    answer_final_average_with_weight = evaluation_scores.inject(0) { |result, e| result += e[:answer_average_with_question_weight] }
-    number_of_evaluation_factors = evaluation_scores.length
+  def self.evaluation_final_sums(evaluation_scores)
+    answer_final_sum = evaluation_scores.inject(0) { |result, e| result += e[:answer_average] }
+    answer_final_sum_with_weight = evaluation_scores.inject(0) { |result, e| result += e[:answer_average_with_question_weight] }
 
     {
-      average_without_weight: (answer_final_average/number_of_evaluation_factors).round(2),
-      average_with_weight: (answer_final_average_with_weight/number_of_evaluation_factors).round(2)
+      average_without_weight: answer_final_sum.round(2),
+      average_with_weight: answer_final_sum_with_weight.round(2)
     }
   end
 end
