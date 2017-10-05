@@ -9,7 +9,7 @@ RSpec.describe AnswerGroup, type: :model do
   it { is_expected.to belong_to(:evaluation) }
   it { is_expected.to belong_to(:user) }
   it { is_expected.to validate_presence_of(:answers).on(:update) }
-
+  it { is_expected.to have_one(:evaluation_comment) }
 
   context "when creating answer_groups" do
     it "should create answers" do
