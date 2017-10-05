@@ -8,6 +8,7 @@ class AnswerGroup < ApplicationRecord
   validates_presence_of :answers, on: :update
 
   accepts_nested_attributes_for :answers
+  accepts_nested_attributes_for :evaluation_comment
 
   after_create :create_answers
   after_create :notify_users
