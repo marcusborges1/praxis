@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :evaluation_comment do
-    comment "The force is strong in this one"
+    comment { Faker::Hobbit.quote }
     answer_group
   end
 end
