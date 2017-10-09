@@ -5,10 +5,10 @@
 <hr/>
 
 <h3>Geral</h3>
-<p><strong>Avaliado:</strong> <%= @user.name %></p>
-<p><strong>E-mail:</strong> <%= @user.email%></p>
-<p><strong>Diretoria:</strong> <%= @user.sector_name%></p>
-<p><strong>Cargo Atual:</strong> <%= @user.positions.institutional_context.first.name %></p>
+<p><strong>Avaliado:</strong> <%= @evaluated_user.name %></p>
+<p><strong>E-mail:</strong> <%= @evaluated_user.email%></p>
+<p><strong>Diretoria:</strong> <%= @evaluated_user.sector_name%></p>
+<p><strong>Cargo Atual:</strong> <%= @evaluated_user.positions.institutional_context.first.name %></p>
 
 <br/>
 
@@ -37,3 +37,8 @@
 
 <p><strong>Soma das médias sem peso: <strong><%= @final_sums[:average_without_weight] %></p>
 <p><strong>Soma das médias com peso: <strong><%= @final_sums[:average_with_weight] %></p>
+
+<br/>
+
+<h4>Comentários:</h4>
+<p><%= @answer_group.evaluation_comment.try(:comment) %></p>
