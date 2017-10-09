@@ -18,7 +18,7 @@
     <% end %>
 
     <br/>
-    <%= f.fields_for :evaluation_comments do |evaluation_comment_field| %>
+    <%= f.fields_for :evaluation_comment do |evaluation_comment_field| %>
       <%= render "evaluation_comment_field", f: evaluation_comment_field %>
     <% end %>
 
