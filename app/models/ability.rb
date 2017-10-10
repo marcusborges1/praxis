@@ -17,6 +17,7 @@ class Ability
     if user.has_admin_privileges?
       can :manage, [Sector, Position, User, EvaluationModel, Question, Evaluation, Project, EvaluationFactor]
       can :set, :monitors
+      can :read, AnswerGroup
     end
 
     if user.has_position?(Position.institutional_context.find_by(name: 'Diretor'))
