@@ -1,5 +1,5 @@
 class EvaluationsController < ApplicationController
-  before_action :set_evaluation, only: [:individual_report, :show, :edit, :update, :destroy]
+  before_action :set_evaluation, only: [:answer_groups, :individual_report, :show, :edit, :update, :destroy]
   load_and_authorize_resource
 
   def individual_report
@@ -10,12 +10,16 @@ class EvaluationsController < ApplicationController
     render pdf: "individual_report", layout: "pdf-reports.html.erb"
   end
 
+  def answer_groups
+    @answer_groups =  AnswerGroup.joins(:evaluation).where(evaluation_target_id: params[:user_id],
+                                                           evaluation_id: @evaluation.id)
+  end
+
   def index
     @evaluations = Evaluation.all
   end
 
   def show
-    @answer_groups = @evaluation.answer_groups.order(:user_id)
   end
 
   def new
