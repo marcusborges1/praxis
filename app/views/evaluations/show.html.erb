@@ -32,23 +32,15 @@
           <thead>
             <tr>
               <th>Avaliado</th>
-              <th>Avaliador</th>
-              <th>Respondido?</th>
+              <th></th>
             </tr>
           </thead>
-          <% @answer_groups.each do |answer_group| %>
+          <% @evaluation.members.each do |member| %>
             <tbody>
               <tr>
-                <td><%= answer_group.evaluation_target.name %></td>
-                <td><%= answer_group.user.name %></td>
-                <% if answer_group.answered %>
-                  <td class="glyphicon glyphicon-ok"></td>
-                  <td><%= link_to 'Ver Respostas', answer_group_path(answer_group), class: 'btn btn-default' %></td>
-                  <td><%= link_to 'Gerar Relatorio', individual_report_evaluation_path(answer_group.evaluation, answer_group.user, answer_group.evaluation_target), target: "_blank", class: 'btn btn-success' %></td>
-                <% else %>
-                  <td class="glyphicon glyphicon-remove"></td>
-                  <td colspan="3"></td>
-                <% end %>
+                <td><%= member.name %></td>
+                <td><%= link_to 'Ver Respostas', answer_group_path(member.answer_groups.first), target: "_blank", 
+                  class: 'btn btn-default' %></td>
               </tr>
             </tbody>
           <% end %>
