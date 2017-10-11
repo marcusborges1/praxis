@@ -43,15 +43,21 @@ class UsersController < ApplicationController
     authorize! :set, :monitors
     if @user.sector == Sector.people_management
       @users = User.where.not(sector: Sector.people_management)
-    elsif @user.sector ==  Sector.organizational_presidency
+    elsif @user.sector == Sector.organizational_presidency
       @users = User.where(sector: Sector.people_management)
     end
   end
 
   def add_monitors
-    for i in 0...params[:monitors][:user_id].count
-      user_id = params[:monitors][:user_id][i]
-      User.find(user_id).update_attributes(monitor_id: @user.id)
+    if params[:monitors]
+      User.where(id: params[:monitors][:user_id]).each do |user_has_monitor|
+        unless user_has_monitor.monitors.nil?
+          user_has_monitor.monitors.push(@user) unless user_has_monitor.monitors.find(@user.id).nil?
+        end
+      end
+      User.where.not(id: params[:monitors][:user_id]).each do |user|
+        user.monitors.delete(@user)
+      end
     end
     redirect_to users_url, notice: 'Acompanhantes definidos com sucesso.'
   end
@@ -63,6 +69,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :sector_id, :password_confirmation,
-                                   :monitor_id, :position_ids)
+                                   :monitor_id, :position_ids, :monitors)
     end
 end

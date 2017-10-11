@@ -6,31 +6,30 @@ class Ability
     can :read, [User, Sector, Project]
     can :update, User, id: user.id
 
-    ## Evaluation Authorization
-    # can :manage, Evaluation, evaluation_model: { sector_id: user.sector_id }
-
     ## EvaluationAnswers Authorization
     can [:update], AnswerGroup, user_id: user.id
     can %i[read update edit unanswered], AnswerGroup, user_id: user.id
 
     ## Position based authorization
     if user.has_admin_privileges?
-      can :manage, [Sector, Position, User, EvaluationModel, Question, Evaluation, Project, EvaluationFactor]
+      can :manage, :all
       can :set, :monitors
     end
 
-    if user.has_position?(Position.institutional_context.find_by(name: 'Diretor'))
-      can :manage, [Sector, Position, User, EvaluationModel, Question, Evaluation, Project, EvaluationCycle]
+    if user.is_director?
+      can :manage, [Sector, Position, User, EvaluationModel, Question, Project, EvaluationCycle]
+      can :read, AnswerGroup, user_id: user.sector.users.pluck(:id)
+      can :read, Evaluation, evaluation_model: { sector_id: user.sector }
 
-    elsif user.has_position?(Position.institutional_context.find_by(name: 'Gerente'))
+    elsif user.is_manager?
       can :manage, [ProjectAllocation, Evaluation]
 
-    elsif user.has_position?(Position.institutional_context.find_by(name: 'Diretor')) || user.has_position?(Position.institutional_context.find_by(name: 'Presidente'))
+    elsif user.is_director? || user.is_president?
       can :manage, Sector
       can :manage, User
       can :manage, Evaluation
 
-    elsif (user.sector == Sector.people_management || user.sector == Sector.organizational_presidency) && user.has_position?(Position.advisors)
+    elsif (user.sector == Sector.people_management || user.sector == Sector.organizational_presidency) && user.is_advisor?
       can :have, :monitors
     end
   end

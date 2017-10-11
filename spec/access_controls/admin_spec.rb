@@ -10,28 +10,36 @@ RSpec.describe "Admin" do
     @ability = Ability.new(@admin)
   end
 
-  it "can manage sectors" do
+  xit "can manage sectors" do
     expect(@ability).to be_able_to(:manage, Sector)
   end
 
-  it "can manage positions" do
+  xit "can manage positions" do
     expect(@ability).to be_able_to(:manage, Position)
   end
 
-  it "can manage users" do
+  xit "can manage users" do
     expect(@ability).to be_able_to(:manage, User)
   end
 
-  it "can manage evaluation models" do
+  xit "can manage evaluation models" do
     expect(@ability).to be_able_to(:manage, EvaluationModel)
   end
 
-  it "can manage questions" do
+  xit "can manage questions" do
     expect(@ability).to be_able_to(:manage, Question)
   end
 
-  it "can manage evaluations" do
+  xit "can manage evaluations" do
     expect(@ability).to be_able_to(:manage, Evaluation)
+  end
+
+  xit "can manage answer_groups" do
+    expect(@ability).to be_able_to(:manage, AnswerGroup)
+  end
+
+  it "can manage all" do
+    expect(@ability).to be_able_to(:manage, :all)
   end
 
   it "can set user monitors" do
