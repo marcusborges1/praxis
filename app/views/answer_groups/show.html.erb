@@ -13,7 +13,7 @@
         <strong>Respostas das Questões:</strong>
         <div class="list-group">
           <% @answer_group.answers.each do |answer| %>
-            <a href="#" class="list-group-item">
+            <a class="list-group-item">
               <h5 class="list-group-item-heading"><%= answer.question_value.description %></h5>
               <p class="list-group-item-text"><%= answer.option.weight unless answer.option.nil? %></p>
             </a>

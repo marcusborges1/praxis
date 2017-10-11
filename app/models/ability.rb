@@ -14,6 +14,7 @@ class Ability
     if user.has_admin_privileges?
       can :manage, :all
       can :set, :monitors
+      can :read, AnswerGroup
     end
 
     if user.is_director?
