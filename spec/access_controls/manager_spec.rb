@@ -21,24 +21,7 @@ RSpec.describe "Manager" do
     expect(@ability).to be_able_to(:manage, ProjectAllocation)
   end
 
-  it "can answer his evaluation" do
-    expect(@ability).to be_able_to(:manage, evaluation)
-  end
-
-  it "can see and update itself" do
-    expect(@ability).to be_able_to([:read, :update], @user)
-  end
-
-  it "can not answer evaluation of others" do
-    someone_else_evaluation = FactoryGirl.create(:evaluation)
-    expect(@ability).not_to be_able_to(:update, someone_else_evaluation.answer_groups.first)
-  end
-
   it "can not manage other users" do
     expect(@ability).not_to be_able_to(:manage, other_user)
-  end
-
-  it "can not manage evaluation cycles" do
-    expect(@ability).not_to be_able_to(:manage, EvaluationCycle)
   end
 end
