@@ -36,13 +36,12 @@ class User < ApplicationRecord
     positions.include?(Position.institutional_context.find_by(name: "Presidente"))
   end
 
-  def has_admin_privileges?
-    is_director? && sector == Sector.people_management
+  def is_monitor?
+    sector == Sector.people_management || sector == Sector.organizational_presidency
   end
 
-  def monitors
-    return Sector.organizational_presidency.sector.advisors if sector == Sector.people_management
-    Sector.people_management.sector.advisors
+  def has_admin_privileges?
+    is_director? && sector == Sector.people_management
   end
 
   private

@@ -17,6 +17,11 @@ class Ability
       can :read, AnswerGroup
     end
 
+    if user.is_monitor?
+      can :read, AnswerGroup, evaluation_target_id: User.where(monitor: user).pluck(:id)
+      can %i[read individual_report], Evaluation
+    end
+
     if user.is_director?
       can :manage, [Sector, Position, User, EvaluationModel, Question, Project, EvaluationCycle]
       can :read, AnswerGroup, user_id: user.sector.users.pluck(:id)

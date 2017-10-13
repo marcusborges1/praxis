@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   login_user
 
-  let(:sector_id) { FactoryGirl.create(:sector).id }
+  let(:sector) { FactoryGirl.create(:sector) }
   let(:position_ids) { FactoryGirl.create_list(:position, 1).map(&:id).first }
 
   let(:valid_attributes) {
     {
       name: Faker::Name.name,
-      sector_id: sector_id,
+      sector_id: sector.id,
       position_ids: position_ids,
       email: Faker::Internet.email,
       password: "123qwe!@#",
@@ -116,6 +116,58 @@ RSpec.describe UsersController, type: :controller do
       user = User.create! valid_attributes
       delete :destroy, params: {id: user.to_param}, session: valid_session
       expect(response).to redirect_to(users_url)
+    end
+  end
+
+  describe "GET #monitors" do
+    let(:users) { FactoryGirl.create_list(:user, 2) }
+    let(:sector) { FactoryGirl.create(:sector, name: "GP") }
+    let(:position_ids) { FactoryGirl.create_list(:position, 1).map(&:id).first }
+
+    let(:valid_attributes) {
+      {
+        name: Faker::Name.name,
+        sector_id: sector.id,
+        position_ids: position_ids,
+        email: Faker::Internet.email,
+        password: "123qwe!@#",
+        password_confirmation: "123qwe!@#"
+      }
+    }
+
+    it "returns a success response" do
+      people_management_member = User.create! valid_attributes
+      get :monitors, params: {id: people_management_member.id}, session: valid_session
+      expect(response).to be_success
+    end
+  end
+
+  describe "PATCH #add_monitors" do
+    let(:users) { FactoryGirl.create_list(:user, 2) }
+    let(:sector) { FactoryGirl.create(:sector, name: "GP") }
+    let(:position_ids) { FactoryGirl.create_list(:position, 1).map(&:id).first }
+
+    let(:valid_attributes) {
+      {
+        name: Faker::Name.name,
+        sector_id: sector.id,
+        position_ids: position_ids,
+        email: Faker::Internet.email,
+        password: "123qwe!@#",
+        password_confirmation: "123qwe!@#"
+      }
+    }
+
+    it "returns a success response" do
+      people_management_member = User.create! valid_attributes
+      patch :add_monitors, params: {id: people_management_member.id, monitors: users.pluck(:id)}, session: valid_session
+      expect(response).to be_success
+    end
+
+    xit "updates people monitored for requested user" do
+      people_management_member = User.create! valid_attributes
+      patch :monitors, params: { id: people_management_member.id, monitors: { "user_id": users } }, session: valid_session
+      expect(response).to be_success
     end
   end
 
