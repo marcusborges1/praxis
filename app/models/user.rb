@@ -40,6 +40,10 @@ class User < ApplicationRecord
     sector == Sector.people_management || sector == Sector.organizational_presidency
   end
 
+  def monitored
+    User.where(monitor: self)
+  end
+
   def has_admin_privileges?
     is_director? && sector == Sector.people_management
   end

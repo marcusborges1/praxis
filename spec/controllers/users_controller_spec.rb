@@ -124,17 +124,6 @@ RSpec.describe UsersController, type: :controller do
     let(:sector) { FactoryGirl.create(:sector, name: "GP") }
     let(:position_ids) { FactoryGirl.create_list(:position, 1).map(&:id).first }
 
-    let(:valid_attributes) {
-      {
-        name: Faker::Name.name,
-        sector_id: sector.id,
-        position_ids: position_ids,
-        email: Faker::Internet.email,
-        password: "123qwe!@#",
-        password_confirmation: "123qwe!@#"
-      }
-    }
-
     it "returns a success response" do
       people_management_member = User.create! valid_attributes
       get :monitors, params: {id: people_management_member.id}, session: valid_session
@@ -147,27 +136,16 @@ RSpec.describe UsersController, type: :controller do
     let(:sector) { FactoryGirl.create(:sector, name: "GP") }
     let(:position_ids) { FactoryGirl.create_list(:position, 1).map(&:id).first }
 
-    let(:valid_attributes) {
-      {
-        name: Faker::Name.name,
-        sector_id: sector.id,
-        position_ids: position_ids,
-        email: Faker::Internet.email,
-        password: "123qwe!@#",
-        password_confirmation: "123qwe!@#"
-      }
-    }
-
-    xit "returns a success response" do
+    it "returns a success response" do
       people_management_member = User.create! valid_attributes
       patch :add_monitors, params: {id: people_management_member.id, monitors: { user_id: users.pluck(:id) }}, session: valid_session
-      expect(response).to be_success
+      expect(response).to redirect_to(users_url)
     end
 
-    xit "updates people monitored for requested user" do
+    it "updates people monitored for requested user" do
       people_management_member = User.create! valid_attributes
-      patch :monitors, params: { id: people_management_member.id}, session: valid_session
-      expect(response).to be_success
+      patch :add_monitors, params: { id: people_management_member.id, monitors: { user_id: users.pluck(:id) }}, session: valid_session
+      expect(people_management_member.monitored.count).to eq(2)
     end
   end
 

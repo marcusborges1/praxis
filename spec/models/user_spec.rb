@@ -20,8 +20,73 @@ RSpec.describe User, type: :model do
     end
 
     it "returns false if the user is not a director" do
-      user.positions = []
+      user.positions = [advisor_position]
       expect(user.is_director?).to be false
+    end
+  end
+
+  describe "#is_advisor?" do
+    let(:advisor_position) { FactoryGirl.create(:position, name: "Assessor") }
+    let(:director_position) { FactoryGirl.create(:position, name: "Diretor") }
+    let(:user) { FactoryGirl.create(:user, positions: [advisor_position]) }
+
+    it "returns true when the user is an advisor" do
+      expect(user.is_advisor?).to be true
+    end
+
+    it "returns false if the user is not an advisor" do
+      user.positions = [director_position]
+      expect(user.is_advisor?).to be false
+    end
+  end
+
+  describe "#is_manager?" do
+    let(:manager_position) { FactoryGirl.create(:position, name: "Gerente") }
+    let(:advisor_position) { FactoryGirl.create(:position, name: "Assessor") }
+    let(:user) { FactoryGirl.create(:user, positions: [manager_position]) }
+
+    it "returns true when the user is a manager" do
+      expect(user.is_manager?).to be true
+    end
+
+    it "returns false if the user is not a manager" do
+      user.positions = [advisor_position]
+      expect(user.is_manager?).to be false
+    end
+  end
+
+  describe "#is_president?" do
+    let(:president_position) { FactoryGirl.create(:position, name: "Presidente") }
+    let(:advisor_position) { FactoryGirl.create(:position, name: "Assessor") }
+    let(:user) { FactoryGirl.create(:user, positions: [president_position]) }
+
+    it "returns true when the user is a president" do
+      expect(user.is_president?).to be true
+    end
+
+    it "returns false if the user is not a president" do
+      user.positions = [advisor_position]
+      expect(user.is_president?).to be false
+    end
+  end
+
+  describe "#is_monitor?" do
+    let(:people_management) { FactoryGirl.create(:sector, name: "GP") }
+    let(:organizational_presidency) { FactoryGirl.create(:sector, name: "PRESORG") }
+    let(:people_management_member) { FactoryGirl.create(:user, sector: people_management) }
+    let(:organizational_presidency_member) { FactoryGirl.create(:user, sector: organizational_presidency) }
+    let(:user) { FactoryGirl.create(:user) }
+
+    it "returns true when the user is a monitor" do
+      expect(people_management_member.is_monitor?).to be true
+    end
+
+    it "returns false if the user is not a monitor" do
+      expect(organizational_presidency_member.is_monitor?).to be true
+    end
+
+    it "returns false if the user is not a monitor" do
+      expect(user.is_monitor?).to be false
     end
   end
 
@@ -45,22 +110,14 @@ RSpec.describe User, type: :model do
 
   describe "#monitors" do
     before(:each) do
-      advisor_position = FactoryGirl.create(:position, :advisor)
-      organizational_presidency = FactoryGirl.create(:sector, :organizational_presidency)
-      @people_management_member = FactoryGirl.create(:user, :people_management, positions: [advisor_position])
-      @organizational_presidency_members = FactoryGirl.create_pair(:user, sector: organizational_presidency, positions: [advisor_position])
+      @users =  FactoryGirl.create_list(:user, 2)
+      @people_management = FactoryGirl.create(:sector, name: "GP")
+      @people_management_member = FactoryGirl.create(:user, sector: @people_management)
     end
 
-    context "when user belongs to people management sector" do
-      xit "people management members have monitors" do
-        expect(@people_management_member.monitors).to match_array(@organizational_presidency_members)
-      end
-    end
-
-    context "when user does not belongs to people management sector" do
-      xit "returns advisors of people management sector" do
-        expect(@organizational_presidency_members.first.monitors).to contain_exactly(@people_management_member)
-      end
+    it "returns members monitored by user" do
+      @users.map{|user| user.update(monitor: @people_management_member)}
+      expect(@people_management_member.monitored.count).to eq(2)
     end
   end
 end
