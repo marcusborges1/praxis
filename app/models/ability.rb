@@ -18,8 +18,8 @@ class Ability
     end
 
     if user.is_monitor?
-      can :read, AnswerGroup, evaluation_target_id: User.where(monitor: user).pluck(:id)
-      can %i[read individual_report], Evaluation
+      can %i[read individual_report], AnswerGroup, evaluation_target_id: User.where(monitor: user).pluck(:id)
+      can :read, Evaluation
     end
 
     if user.is_director?
