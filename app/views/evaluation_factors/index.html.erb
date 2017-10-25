@@ -17,8 +17,18 @@
           <td><%= link_to evaluation_factor.name, evaluation_factor %></td>
           <td>
             <div class="btn-toolbar pull-right">
-              <%= link_to edit_evaluation_factor_path(evaluation_factor), class: "btn btn-default" do %><i class="glyphicon glyphicon-edit"></i><% end %>
-              <%= link_to evaluation_factor, method: :delete, data: { confirm: 'Tem certeza?' }, class: "btn btn-danger" do %><i class="glyphicon glyphicon-trash"></i><% end %>
+              <%= link_to edit_evaluation_factor_path(evaluation_factor),
+                data: { toggle: 'tooltip' },
+                title: "Editar Fator de Avaliação",
+                class: "btn btn-default" do %>
+                  <i class="glyphicon glyphicon-edit"></i>
+                <% end %>
+              <%= link_to evaluation_factor, method: :delete,
+                data: { confirm: 'Tem certeza?', toggle: 'tooltip' }
+                title: "Editar Projeto",
+                class: "btn btn-danger" do %>
+                  <i class="glyphicon glyphicon-trash"></i>
+              <% end %>
             </div>
           </td>
         </tr>
