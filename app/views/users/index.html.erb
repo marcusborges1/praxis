@@ -10,7 +10,6 @@
           <th>Diretoria</th>
           <th>Cargo Institucional</th>
           <th></th>
-          <th></th>
         </tr>
       </thead>
 
@@ -22,17 +21,22 @@
             <td><%= user.positions.institutional_context.first.name %></td>
             <td>
               <div class="btn-toolbar pull-right">
-                <%= link_to edit_user_path(user), class: "btn btn-default" do %><i class="glyphicon glyphicon-edit"></i><% end %>
-                <%= link_to user, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger" do %><i class="glyphicon glyphicon-trash"></i><% end %>
+                <%= link_to edit_user_path(user), class: "btn btn-default" do %><i data-toggle="tooltip" title="Editar Membro" class="glyphicon glyphicon-edit"></i><% end %>
+                <%  if (can? :set, :monitors) && (Ability.new(user).can? :have, :monitors)%>
+                  <%= link_to monitors_path(user), class: "btn btn-info" do %><i data-toggle="tooltip" title="Adicionar acompanhante" class="glyphicon glyphicon-user"></i><% end %>
+                <% else %>
+                  <%= link_to monitors_path(user), class: "btn btn-default disabled" do %><i data-toggle="tooltip" title="Adicionar acompanhante" class="glyphicon glyphicon-user"></i><% end %>
+                <% end %>
+                <%= link_to user, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger" do %><i data-toggle="tooltip" title="Deletar Membro" class="glyphicon glyphicon-trash"></i><% end %>
               </div>
             </td>
-            <%  if (can? :set, :monitors) && (Ability.new(user).can? :have, :monitors)%>
-            <td><%= link_to "Adicionar acompanhantes", monitors_path(user)  %></td>
-            <% end %>
           </tr>
         <% end %>
       </tbody>
     </table>
 
   <%= link_to "Cadastrar novo Membro", new_user_path, class: "btn btn-primary" %>
+  <br>
+  <br>
+  <br>
 </div>
