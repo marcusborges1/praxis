@@ -23,8 +23,11 @@ class Evaluation < ApplicationRecord
     end
   end
 
-  def create_answer_group(evaluation_target_params)
-    AnswerGroup.create(evaluation: self, user_id: evaluation_target_params[:reviewer_id],
-                      evaluation_target_id: evaluation_target_params[:evaluation_target_id])
+  def members
+    evaluation_model.sector.users
   end
+  # def create_answer_group(evaluation_target_params)
+  #   AnswerGroup.create(evaluation: self, user_id: evaluation_target_params[:reviewer_id],
+  #                     evaluation_target_id: evaluation_target_params[:evaluation_target_id])
+  # end
 end

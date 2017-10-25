@@ -5,30 +5,29 @@
 <hr/>
 
 <h3>Geral</h3>
-<p><strong>Avaliado:</strong> <%= @user.name %></p>
-<p><strong>E-mail:</strong> <%= @user.email%></p>
-<p><strong>Diretoria:</strong> <%= @user.sector_name%></p>
-<p><strong>Cargo Atual:</strong> <%= @user.positions.institutional_context.first.name %></p>
+<p><strong>Avaliado:</strong> <%= @evaluated_user.name %></p>
+<p><strong>E-mail:</strong> <%= @evaluated_user.email%></p>
+<p><strong>Diretoria:</strong> <%= @evaluated_user.sector_name%></p>
+<p><strong>Cargo Atual:</strong> <%= @evaluated_user.positions.institutional_context.first.name %></p>
 
-<br/>
 <br/>
 
 <table class="table table-striped">
     <thead>
       <tr>
-        <th>Fator Avaliado</th>
-        <th>Média das avaliações</th>
-        <th>Peso da questão</th>
-        <th>Média com peso</th>
+        <th class="text-center">Fator Avaliado</th>
+        <th class="text-center">Média do fator sem peso</th>
+        <th class="text-center">Peso da questão</th>
+        <th class="text-center">Média do fator com peso</th>
       </tr>
     </thead>
     <tbody>
       <% @report.each do |report| %>
-        <tr>
-          <td><%= report[:evaluation_factor_name] %></td>
-          <td><%= report[:answer_average] %></td>
-          <td><%= report[:question_weight] %></td>
-          <td><%= report[:answer_average_with_question_weight] %></td>
+        <tr style="page-break-inside: avoid;">
+          <td class="text-center"><%= report[:evaluation_factor_name] %></td>
+          <td class="text-center"><%= report[:answer_average] %></td>
+          <td class="text-center"><%= report[:question_weight] %></td>
+          <td class="text-center"><%= report[:answer_average_with_question_weight] %></td>
         </tr>
       <% end %>
     </tbody>
@@ -36,5 +35,10 @@
 
 <br/>
 
-<p><strong>Total Final: <strong><%#= @report.inject(0) { |sum, e| sum += e[:score] } %></p>
-<p><strong>Média Final: <strong></p>
+<p><strong>Soma das médias sem peso: <strong><%= @final_sums[:average_without_weight] %></p>
+<p><strong>Soma das médias com peso: <strong><%= @final_sums[:average_with_weight] %></p>
+
+<br/>
+
+<h4>Comentários:</h4>
+<p><%= @answer_group.evaluation_comment.try(:comment) %></p>

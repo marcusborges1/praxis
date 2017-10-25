@@ -1,14 +1,13 @@
 class EvaluationFactorsController < ApplicationController
-  before_action :set_evaluation_factor, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_evaluation_factor, only: %i[show edit update destroy]
+  load_and_authorize_resource
   # GET /evaluation_factors
   def index
     @evaluation_factors = EvaluationFactor.all
   end
 
   # GET /evaluation_factors/1
-  def show
-  end
+  def show; end
 
   # GET /evaluation_factors/new
   def new
@@ -16,8 +15,7 @@ class EvaluationFactorsController < ApplicationController
   end
 
   # GET /evaluation_factors/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /evaluation_factors
   def create
@@ -46,13 +44,14 @@ class EvaluationFactorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_evaluation_factor
-      @evaluation_factor = EvaluationFactor.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def evaluation_factor_params
-      params.require(:evaluation_factor).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_evaluation_factor
+    @evaluation_factor = EvaluationFactor.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def evaluation_factor_params
+    params.require(:evaluation_factor).permit(:name)
+  end
 end

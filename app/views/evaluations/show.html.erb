@@ -1,6 +1,6 @@
 <div class="col-md-6 col-md-offset-3">
   <div class="panel panel-primary">
-    <div class="panel-heading">Modelo de Avaliação - Detalhes</div>
+    <div class="panel-heading">Avaliação - Detalhes</div>
     <p id="notice"><%= notice %></p>
     <div class="panel-body">
       <p>
@@ -32,23 +32,15 @@
           <thead>
             <tr>
               <th>Avaliado</th>
-              <th>Avaliador</th>
-              <th>Respondido?</th>
+              <th></th>
             </tr>
           </thead>
-          <% @answer_groups.each do |answer_group| %>
+          <% @evaluation.members.each do |member| %>
             <tbody>
               <tr>
-                <td><%= answer_group.evaluation_target.name %></td>
-                <td><%= answer_group.user.name %></td>
-                <% if answer_group.answered %>
-                  <td class="glyphicon glyphicon-ok"></td>
-                  <td><%= link_to 'Ver Respostas', answer_group_path(answer_group), class: 'btn btn-default' %></td>
-                  <td><%= link_to 'Gerar Relatorio', individual_report_evaluation_path(answer_group.evaluation), target: "_blank", class: 'btn btn-success' %></td>
-                <% else %>
-                  <td class="glyphicon glyphicon-remove"></td>
-                  <td colspan="3"></td>
-                <% end %>
+                <td><%= member.name %></td>
+                <td><%= link_to 'Ver Respostas', answer_group_user_evaluation_path(@evaluation, member.answer_groups.first, member), target: "_blank",
+                  class: 'btn btn-default' %></td>
               </tr>
             </tbody>
           <% end %>
@@ -58,7 +50,7 @@
 
       <div class="panel-footer">
         <%= link_to 'Editar', edit_evaluation_path(@evaluation), class: "btn btn-primary" %>
-        <%= link_to 'Back', evaluations_path, class: "btn btn-default" %>
+        <%= link_to 'Voltar', evaluations_path, class: "btn btn-default" %>
       </div>
     </div>
   </div>
