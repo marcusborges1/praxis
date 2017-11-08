@@ -6,13 +6,17 @@ Rails.application.routes.draw do
   resources :answer_groups, only: [:edit, :update, :show] do
     get "/individual_report/:user_id/:evaluation_target_id", to: "answer_groups#individual_report", on: :member, as: :individual_report
   end
+  
+  resources :evaluations do
+    get "/individual_report/:user_id/:evaluation_target_id", to: "evaluations#individual_report", on: :member, as: :individual_report
+    get "/answer_groups/:answer_group_id/users/:user_id", to: "evaluations#answer_groups", on: :member, as: :answer_group_user
+  end
 
   resources :users
   resources :sectors
   resources :projects
   resources :positions
   resources :questions
-  resources :evaluations
   resources :evaluation_models
   resources :evaluation_factors
   resources :evaluation_cycles
