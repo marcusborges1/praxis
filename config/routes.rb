@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "welcome#index"
+  root "answer_groups#unanswered"
 
   devise_for :users
 

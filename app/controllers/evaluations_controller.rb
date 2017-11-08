@@ -2,19 +2,6 @@ class EvaluationsController < ApplicationController
   before_action :set_evaluation, only: [:answer_groups, :individual_report, :show, :edit, :update, :destroy]
   load_and_authorize_resource
 
-  def individual_report
-    @answer_group = @evaluation.answer_groups.find_by(user_id: params[:user_id], evaluation_target_id: params[:evaluation_target_id])
-    @evaluated_user = User.find(@answer_group.evaluation_target_id)
-    @report = EvaluationReports.individual_report_data(@evaluation, params[:evaluation_target_id])
-    @final_sums = EvaluationReports.evaluation_final_sums(@report)
-    render pdf: "individual_report", layout: "pdf-reports.html.erb"
-  end
-
-  def answer_groups
-    @answer_groups =  AnswerGroup.joins(:evaluation).where(evaluation_target_id: params[:user_id],
-                                                           evaluation_id: @evaluation.id)
-  end
-
   def index
     @evaluations = Evaluation.all
   end
@@ -50,6 +37,19 @@ class EvaluationsController < ApplicationController
   def destroy
     @evaluation.destroy
     redirect_to evaluations_url, notice: "Avaliação destruída com sucesso"
+  end
+  
+  def individual_report
+    @answer_group = @evaluation.answer_groups.find_by(user_id: params[:user_id], evaluation_target_id: params[:evaluation_target_id])
+    @evaluated_user = User.find(@answer_group.evaluation_target_id)
+    @report = EvaluationReports.individual_report_data(@evaluation, params[:evaluation_target_id])
+    @final_sums = EvaluationReports.evaluation_final_sums(@report)
+    render pdf: "individual_report", layout: "pdf-reports.html.erb"
+  end
+
+  def answer_groups
+    @answer_groups =  AnswerGroup.joins(:evaluation).where(evaluation_target_id: params[:user_id],
+                                                           evaluation_id: @evaluation.id)
   end
 
   private
