@@ -15,15 +15,14 @@
 </nav>
 
 <nav class="praxis-navbar -margin">
-  <div class="navbar_dropdown_item"><span>Membros</span>
-    <div class="dropdown_items"> <a href="<%= users_path %>">Membros</a> </div>
+  <div class="navbar_dropdown_item"><a href="<%= users_path %>">Membros</a>
     <div class="dropdown_items"> <a href="<%= positions_path %>">Cargos</a> </div>
     <div class="dropdown_items"> <a href="<%= sectors_path %>">Diretorias</a> </div>
   </div>
-  <div class="navbar_dropdown_item"> <span> Avaliação </span>
-    <div class="dropdown_items"> <a href="<%= questions_path %>">Questões</a> </div>
-    <div class="dropdown_items"> <a href="<%= evaluations_path %>">Avaliações</a> </div>
+  <div class="navbar_dropdown_item"> <a href="<%= evaluations_path %>">Avaliações</a>
+    <div class="dropdown_items"> <a href="<%= evaluation_cycles_path %>">Ciclos de Avaliação</a> </div>
     <div class="dropdown_items"> <a href="<%= evaluation_models_path %>">Modelos de Avaliação</a> </div>
+    <div class="dropdown_items"> <a href="<%= questions_path %>">Questões</a> </div>
   </div>
   <div class="navbar_dropdown_item"> <a href="<%= projects_path %>"> Projetos </a>
   </div>
