@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   resources :questions
   resources :evaluation_models
   resources :evaluation_factors
-  resources :evaluation_cycles
+  resources :evaluation_cycles do
+    get "/ranking", to: "evaluation_cycles#ranking", on: :member
+  end
   resources :projects
   resources :answer_groups, only: [:edit, :update, :show]
 
