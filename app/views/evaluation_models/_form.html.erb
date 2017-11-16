@@ -18,6 +18,13 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :context, "Tipo de Modelo", class: "col-sm-2 control-label" %>
+    <div class="col-sm-6">
+      <%= f.select :context, EvaluationModel.contexts.keys.map { |key| [t("enum.evaluation_model.context.#{key}"), key] } %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :sector_id, "Diretoria Alvo", class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
       <%= f.collection_select :sector_id, Sector.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
