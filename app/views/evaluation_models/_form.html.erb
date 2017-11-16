@@ -24,15 +24,15 @@
     </div>
   </div>
 
-  <div class="form-group">
+  <div id="sector-target" class="form-group">
     <%= f.label :sector_id, "Diretoria Alvo", class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
       <%= f.collection_select :sector_id, Sector.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :sector_id, "Projeto Alvo", class: "col-sm-2 control-label" %>
+  <div id="project-target" class="form-group">
+    <%= f.label :project_id, "Projeto Alvo", class: "col-sm-2 control-label" %>
     <div class="col-sm-3">
       <%= f.collection_select :project_id, Project.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
     </div>
@@ -52,3 +52,26 @@
     <%= f.submit "Salvar", class: "btn btn-primary pull-right" %>
   </div>
 <% end %>
+
+<script>
+  var targetOptions = $("#evaluation_model_context option");
+
+  for (var i = 0; i < targetOptions.length; i++) {
+    if (!targetOptions[i].selected) {
+      $("#" + targetOptions[i].value + "-target").hide();
+    }
+  }
+
+  $("#evaluation_model_context").change(function() {
+    if (this.value === "project") {
+      $("#project-target").show();
+      $("#sector-target").hide();
+    } else if (this.value === "sector") {
+      $("#sector-target").show();
+      $("#project-target").hide();
+    } else {
+      $("#sector-target").hide();
+      $("#project-target").hide();
+    }
+  });
+</script>

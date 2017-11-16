@@ -1,7 +1,7 @@
 <div class="nested-fields">
   <div class="form-group">
     <%= f.label :question_id, "Questão", class: "col-md-2 control-label" %>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <%= f.collection_select :question_id, Question.all, :id, :description, { prompt: "- Selecione -" }, class: "form-control" %>
     </div>
 
