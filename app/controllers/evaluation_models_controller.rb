@@ -4,7 +4,7 @@ class EvaluationModelsController < ApplicationController
 
   # GET /evaluation_models
   def index
-    @evaluation_models = EvaluationModel.all
+    @evaluation_models = EvaluationModel.paginate(page: params[:page])
   end
 
   # GET /evaluation_models/1
@@ -54,7 +54,7 @@ class EvaluationModelsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def evaluation_model_params
-    params.require(:evaluation_model).permit(:name, :sector_id, :project_id, :context, 
+    params.require(:evaluation_model).permit(:name, :sector_id, :project_id, :context,
                                              question_values_attributes: [ :id, :value, :question_id, :_destroy ] )
   end
 end

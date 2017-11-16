@@ -3,7 +3,7 @@ class SectorsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @sectors = Sector.includes(:users)
+    @sectors = Sector.includes(:users).paginate(page: params[:page])
   end
 
   def show

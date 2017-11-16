@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.includes(:sector).all.order(:name)
+    @users = User.includes(:sector, :positions, :user_positions)
+                 .paginate(page: params[:page])
+                 .order(:name)
   end
 
   def show

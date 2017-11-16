@@ -16,7 +16,7 @@ class EvaluationsController < ApplicationController
   end
 
   def index
-    @evaluations = Evaluation.all
+    @evaluations = Evaluation.paginate(page: params[:page])
   end
 
   def show
