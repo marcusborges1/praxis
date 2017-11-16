@@ -1,5 +1,6 @@
 class AnswerGroup < ApplicationRecord
   has_many :answers, inverse_of: :answer_group, dependent: :destroy
+  has_one :evaluation_comment
   belongs_to :user
   belongs_to :evaluation
   belongs_to :evaluation_target, class_name: 'User'
@@ -7,6 +8,7 @@ class AnswerGroup < ApplicationRecord
   validates_presence_of :answers, on: :update
 
   accepts_nested_attributes_for :answers
+  accepts_nested_attributes_for :evaluation_comment, update_only: true
 
   after_create :create_answers
   after_create :notify_users

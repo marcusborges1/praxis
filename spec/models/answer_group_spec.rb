@@ -8,11 +8,12 @@ RSpec.describe AnswerGroup, type: :model do
 
   it { is_expected.to belong_to(:evaluation) }
   it { is_expected.to belong_to(:user) }
+  it { is_expected.to have_one(:evaluation_comment) }
   it { is_expected.to validate_presence_of(:answers).on(:update) }
-
+  it { is_expected.to accept_nested_attributes_for(:evaluation_comment) }
 
   context "when creating answer_groups" do
-    it "should create answers" do
+    it "creates answers" do
       expect { answer_group.save }.to change(Answer, :count).by 1
     end
   end
@@ -25,7 +26,7 @@ RSpec.describe AnswerGroup, type: :model do
       expect(answer_group.finished?).to eq false
     end
 
-    it "returns true if option from answers of answer group in not nil" do
+    it "returns true if option from answers of answer group is not nil" do
       answer_group.answers.first.update(option: option)
       expect(answer_group.finished?).to eq true
     end

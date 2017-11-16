@@ -21,7 +21,12 @@
           <td><%= link_to 'Ver Questões', evaluation_model %></td>
           <td>
             <div class="btn-toolbar pull-right">
-              <%= link_to edit_evaluation_model_path(evaluation_model), class: "btn btn-default" do %><i class="glyphicon glyphicon-edit"></i><% end %>
+              <%= link_to edit_evaluation_model_path(evaluation_model),
+                data: { toggle: 'tooltip' },
+                title: "Editar Projeto",
+                class: "btn btn-default" do %>
+                  <i class="glyphicon glyphicon-edit"></i>
+                <% end %>
               <%= link_to evaluation_model, method: :delete, data: { confirm: 'Tem certeza?' } , class: "btn btn-danger" do %><i class="glyphicon glyphicon-trash"></i><% end %>
             </div>
           </td>

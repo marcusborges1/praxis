@@ -14,6 +14,7 @@ class AnswerGroupsController < ApplicationController
   end
 
   def edit
+    @answer_group.evaluation_comment ||= EvaluationComment.new
     evaluation = Evaluation.find(@answer_group.evaluation_id)
     @question_values = QuestionValue.where(evaluation_model_id: evaluation.evaluation_model_id)
   end
@@ -42,6 +43,8 @@ class AnswerGroupsController < ApplicationController
   end
 
   def answer_group_params
-    params.require(:answer_group).permit(:answered, :evaluation_id, :user_id, answers_attributes: [:id, :question_value_id, :option_id] )
+    params.require(:answer_group).permit(:answered, :evaluation_id, :user_id,
+                                         answers_attributes: [:id, :question_value_id, :option_id],
+                                         evaluation_comment_attributes: [:id, :comment])
   end
 end

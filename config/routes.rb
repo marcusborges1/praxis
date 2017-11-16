@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :answer_groups, only: [:edit, :update, :show] do
-    get "/individual_report/:user_id/:evaluation_target_id", to: "answer_groups#individual_report", on: :member, as: :individual_report
+  resources :evaluations do
+    get "/individual_report/:user_id/:evaluation_target_id", to: "evaluations#individual_report", on: :member, as: :individual_report
+    get "/answer_groups/:answer_group_id/users/:user_id", to: "evaluations#answer_groups", on: :member, as: :answer_group_user
   end
 
   resources :users
@@ -15,8 +16,11 @@ Rails.application.routes.draw do
   resources :evaluations
   resources :evaluation_models
   resources :evaluation_factors
-  resources :evaluation_cycles
+  resources :evaluation_cycles do
+    get "/ranking", to: "evaluation_cycles#ranking", on: :member
+  end
   resources :projects
+  resources :answer_groups, only: [:edit, :update, :show]
 
   get '/unanswered', to: "answer_groups#unanswered"
 

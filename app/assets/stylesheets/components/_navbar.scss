@@ -1,0 +1,124 @@
+.praxis-navbar	{
+	width: 100%;
+	background-color: #DD192D;
+
+	&.-margin {	
+		height: 3.5em;
+		margin-top: 0.5em;
+		margin-bottom: 2em;
+	}
+
+	>.logo	{
+		margin: 0em 6em 1em 2em;
+		width: 20%;
+	}
+
+	>.balls	{
+	   	-ms-transform: rotate(45deg); /* IE 9 */
+	   	-webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+		transform: rotate(45deg);
+		height: 4em;
+		margin: 0em 1em 1em 1em;
+	}
+
+	>.title {
+		font-family: 'Pigiarniq Italic';
+		color: #F9F3F3;
+
+		display: inline-block;
+
+		margin: 0 auto;
+		margin-top: 2em;
+		// font-size: 2em;
+	}
+
+
+	> .info-box	{
+		display: inline-block;
+		float: right;
+
+		font-family: 'Pigiarniq';
+		color: white;
+		font-size: 1.3em;
+
+		height: 90%;
+		width: 20%;
+
+		margin: 1em 1em 0em 0em;
+
+		// >.links	{
+		// 	a{
+		// 	text-decoration: none;
+		// 	color: white;
+				
+		// 	}
+		// }
+		>.icon {
+			color: black;
+			display: inline-block;
+			width: 1em;
+		}
+
+		>.textinline {
+			display: inline-block;
+			text-decoration: none;
+			color: white;
+		}
+		
+		p {
+			margin-bottom: 0em;
+		}
+
+		a {
+			display: block;
+			text-decoration: none;
+			color: white;
+		}
+
+		a:hover{
+			text-decoration: underline;
+		}
+		// background-color: blue;
+	}
+
+	>.navbar_dropdown_item	{
+		font-family: 'Pigiarniq Italic';
+		font-size: 1.5em;
+		color: white;
+
+		display: inline-block;
+		padding: 0.5em 1em 0.5em 1em;
+
+		>.dropdown_items {
+			width: inherit;
+			display: none;
+			// display: inline-block;
+			background-color: #D2C7B6;
+			position: absolute;
+			color: #DD192D;
+		}
+
+		a {
+			color: white; 
+		}
+	}
+}
+
+
+.navbar_dropdown_item:hover	{
+	background-color: #D2C7B6;
+	color: #DD192D;
+	position: relative;
+	z-index: 10000000000;
+
+	.dropdown_items {
+		margin-top: 0.5em;
+		display: table;
+		position: relative;
+		a {
+			color: #DD192D;
+		}
+	}
+
+
+}
