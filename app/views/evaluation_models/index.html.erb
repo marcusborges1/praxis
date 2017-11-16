@@ -17,9 +17,9 @@
     <tbody>
       <% @evaluation_models.each do |evaluation_model| %>
         <tr>
-          <td><%= link_to evaluation_model.name, evaluation_model_path(evaluation_model), target: "_blank" %></td>
+          <td><%= link_to evaluation_model.name, evaluation_model_path(evaluation_model) %></td>
           <td><%= t("enum.evaluation_model.context.#{evaluation_model.context}") %></td>
-          <td><%= evaluation_model.target_name %></td>
+          <td><%= evaluation_model.try(:target_name) %></td>
           <td><%= link_to 'Ver Questões', evaluation_model %></td>
           <td>
             <div class="btn-toolbar pull-right">

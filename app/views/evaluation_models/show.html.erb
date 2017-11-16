@@ -15,7 +15,7 @@
 
             <p>
                 <strong>Alvo:</strong>
-                <%= @evaluation_model.target_name %>
+                <%= @evaluation_model.try(:target_name) %>
             </p>
 
             <p>
