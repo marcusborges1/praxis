@@ -9,7 +9,7 @@ class Evaluation < ApplicationRecord
   validates_presence_of :start_date
   validates_presence_of :finish_date
 
-  after_save :create_answer_groups
+  after_create :create_answer_groups
 
   delegate :duration_period, to: :evaluation_cycle, prefix: true
   delegate :name, to: :evaluation_model, prefix: true
