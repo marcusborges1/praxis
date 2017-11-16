@@ -1,3 +1,7 @@
+<%= content_for :javascript do %>
+  <%= javascript_include_tag "evaluation_models" %>
+<% end %>
+
 <%= form_for(evaluation_model, html: { class: "form-horizontal" }) do |f| %>
   <% if evaluation_model.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
@@ -52,26 +56,3 @@
     <%= f.submit "Salvar", class: "btn btn-primary pull-right" %>
   </div>
 <% end %>
-
-<script>
-  var targetOptions = $("#evaluation_model_context option");
-
-  for (var i = 0; i < targetOptions.length; i++) {
-    if (!targetOptions[i].selected) {
-      $("#" + targetOptions[i].value + "-target").hide();
-    }
-  }
-
-  $("#evaluation_model_context").change(function() {
-    if (this.value === "project") {
-      $("#project-target").show();
-      $("#sector-target").hide();
-    } else if (this.value === "sector") {
-      $("#sector-target").show();
-      $("#project-target").hide();
-    } else {
-      $("#sector-target").hide();
-      $("#project-target").hide();
-    }
-  });
-</script>
