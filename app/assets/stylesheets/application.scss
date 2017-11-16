@@ -1,4 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import 'components/*';
 @import "reports";
+@import "components/_button";
+@import "components/_fonts";
+@import "components/_navbar";
+@import "components/_page-header";
+@import "components/_panel";
+@import "components/_table";
