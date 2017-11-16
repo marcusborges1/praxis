@@ -7,7 +7,9 @@ class EvaluationModel < ApplicationRecord
 
   accepts_nested_attributes_for :question_values, allow_destroy: true
 
-  validates_presence_of :name
+  validates :name, presence: true
+  validates :context, presence: true
+  validate :must_have_one_target
 
   enum context: [:sector, :project, :user]
 
@@ -16,5 +18,13 @@ class EvaluationModel < ApplicationRecord
 
   def users
     User.where(sector: sector)
+  end
+
+  private
+
+  def must_have_one_target
+    if sector.nil? && project.nil?
+      errors.add(:base, "can't exists without a target")
+    end
   end
 end
