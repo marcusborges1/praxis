@@ -10,6 +10,7 @@ RSpec.describe "positions/index", type: :view do
   end
 
   it "renders a list of positions" do
+    allow(view).to receive_messages(will_paginate: nil)
     render
     assert_select "tr>th", text: "Nome", count: 1
 

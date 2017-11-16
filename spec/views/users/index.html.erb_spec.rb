@@ -7,6 +7,7 @@ RSpec.describe "users/index", type: :view do
 
   it "renders a list of users" do
     allow(view).to receive(:can?).and_return(true)
+    allow(view).to receive_messages(will_paginate: nil)
     render
   end
 end
