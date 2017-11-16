@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :positions
   resources :questions
+  resources :evaluations
   resources :evaluation_models
   resources :evaluation_factors
   resources :evaluation_cycles do

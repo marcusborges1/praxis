@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.includes(:sector).all
+    @users = User.includes(:sector).all.order(:name)
   end
 
   def show
@@ -40,25 +40,31 @@ class UsersController < ApplicationController
   end
 
   def monitors
-    authorize! :set, :monitors
     if @user.sector == Sector.people_management
-      @users = User.where.not(sector: Sector.people_management)
-    elsif @user.sector ==  Sector.organizational_presidency
-      @users = User.where(sector: Sector.people_management)
+      @users = User.where.not(sector: Sector.people_management).order(:name)
+    else
+      @users = User.where(sector: Sector.people_management).order(:name)
     end
   end
 
   def add_monitors
-    for i in 0...params[:monitors][:user_id].count
-      user_id = params[:monitors][:user_id][i]
-      User.find(user_id).update_attributes(monitor_id: @user.id)
+    if monitor_params
+      User.where(id: monitor_params[:user_id]).update_all(monitor_id: @user.id)
+      User.where.not(id: monitor_params[:user_id]).map{ |user| user.update(monitor_id: nil) if user.monitor == @user }
+      redirect_to users_url, notice: 'Acompanhantes definidos com sucesso.'
+    else
+      @user.errors.add(:base, :invalid, message: "Erro ao atualizar monitores: não pode ser vazio")
+      redirect_to monitors_url, notice: 'Não foi possivel realizar a operação: acompanhados não pode ser vazio'
     end
-    redirect_to users_url, notice: 'Acompanhantes definidos com sucesso.'
   end
 
   private
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def monitor_params
+      params.require(:monitors).permit(user_id: []) if params.key?('monitors')
     end
 
     def user_params
