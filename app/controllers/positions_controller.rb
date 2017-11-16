@@ -3,7 +3,7 @@ class PositionsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @positions = Position.all.order(:name)
+    @positions = Position.paginate(page: params[:page]).order(:name)
   end
 
   def show

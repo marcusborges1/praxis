@@ -7,7 +7,7 @@ class EvaluationCyclesController < ApplicationController
   end
 
   def index
-    @evaluation_cycles = EvaluationCycle.order(created_at: :desc)
+    @evaluation_cycles = EvaluationCycle.paginate(page: params[:page]).order(created_at: :desc)
   end
 
   def show

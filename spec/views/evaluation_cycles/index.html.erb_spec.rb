@@ -9,6 +9,7 @@ RSpec.describe "evaluation_cycles/index", type: :view do
   end
 
   it "renders a list of evaluation_cycles" do
+    allow(view).to receive_messages(will_paginate: nil)
     render
   end
 end

@@ -1,59 +1,61 @@
-<div class="col-md-6 col-md-offset-3">
-    <div class="page-header">
-        <h1>Membros</h1>
-    </div>
-    <p id="notice"><%= notice %></p>
-     <table class="table table-striped">
-      <thead>
+<div class="col-md-8 col-md-offset-2">
+  <div class="page-header">
+      <h1>Membros</h1>
+  </div>
+  <p id="notice"><%= notice %></p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Diretoria</th>
+        <th>Cargo Institucional</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
         <tr>
-          <th>Nome</th>
-          <th>Diretoria</th>
-          <th>Cargo Institucional</th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <td><%= link_to user.name, user %></td>
-            <td><%= user.sector_name %></td>
-            <td><%= user.positions.institutional_context.first.name %></td>
-            <td>
-              <div class="btn-toolbar pull-right">
-                <%= link_to edit_user_path(user),
+          <td><%= link_to user.name, user %></td>
+          <td><%= user.sector_name %></td>
+          <td><%= user.positions.institutional_context.first.name %></td>
+          <td>
+            <div class="btn-toolbar pull-right">
+              <%= link_to edit_user_path(user),
+                  data: { toggle: "tooltip" },
+                  title: "Editar Membro",
+                  class: "btn btn-default" do %>
+                    <i class="glyphicon glyphicon-edit"></i>
+              <% end %>
+              <%  if (can? :set, :monitors) && (Ability.new(user).can? :have, :monitors)%>
+                <%= link_to monitors_path(user),
                     data: { toggle: "tooltip" },
-                    title: "Editar Membro",
-                    class: "btn btn-default" do %>
-                      <i class="glyphicon glyphicon-edit"></i>
+                    title: "Adicionar acompanhante",
+                    class: "btn btn-info" do %>
+                      <i class="glyphicon glyphicon-user"></i>
                 <% end %>
-                <%  if (can? :set, :monitors) && (Ability.new(user).can? :have, :monitors)%>
-                  <%= link_to monitors_path(user),
-                      data: { toggle: "tooltip" },
-                      title: "Adicionar acompanhante",
-                      class: "btn btn-info" do %>
-                        <i class="glyphicon glyphicon-user"></i>
-                  <% end %>
-                <% else %>
-                  <%= link_to monitors_path(user),
-                      data: { toggle: "tooltip" },
-                      title: "Adicionar acompanhante",
-                      class: "btn btn-default disabled" do %>
-                        <i class="glyphicon glyphicon-user"></i>
-                  <% end %>
+              <% else %>
+                <%= link_to monitors_path(user),
+                    data: { toggle: "tooltip" },
+                    title: "Adicionar acompanhante",
+                    class: "btn btn-default disabled" do %>
+                      <i class="glyphicon glyphicon-user"></i>
                 <% end %>
-                <%= link_to user, method: :delete,
-                    data: { confirm: 'Você tem certeza?', toggle: 'tooltip' },
-                    title: "Deletar membro",
-                    class: "btn btn-danger" do %>
-                      <i class="glyphicon glyphicon-trash"></i>
-                <% end %>
-              </div>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
+              <% end %>
+              <%= link_to user, method: :delete,
+                  data: { confirm: 'Você tem certeza?', toggle: 'tooltip' },
+                  title: "Deletar membro",
+                  class: "btn btn-danger" do %>
+                    <i class="glyphicon glyphicon-trash"></i>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= will_paginate @users %>
+  </div>
   <%= link_to "Cadastrar novo Membro", new_user_path, class: "btn btn-primary" %>
 </div>

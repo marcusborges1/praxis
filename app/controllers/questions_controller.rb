@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @questions = Question.all
+    @questions = Question.paginate(page: params[:page])
   end
 
   def show

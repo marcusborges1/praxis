@@ -1,4 +1,4 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-8 col-md-offset-2">
   <div class="page-header">
     <h1>Ciclos de Avaliação</h1>
   </div>
@@ -45,5 +45,8 @@
       <% end %>
     </tbody>
   </table>
+  <div>
+    <%= will_paginate @evaluation_cycles %>
+  </div>
   <%= link_to 'Começar novo Ciclo de Avaliação', new_evaluation_cycle_path, class: "btn btn-primary" %>
 </div>

@@ -1,4 +1,4 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-8 col-md-offset-2">
   <div class="page-header">
     <h1>Questões</h1>
     <%= link_to 'Fatores de Avaliacao', evaluation_factors_path, class: "btn btn-primary" %>
@@ -38,5 +38,8 @@
       <% end %>
     </tbody>
   </table>
+  <div>
+    <%= will_paginate @questions %>
+  </div>
   <%= link_to 'Cadastrar nova questão', new_question_path, class: "btn btn-primary" %>
 </div>
