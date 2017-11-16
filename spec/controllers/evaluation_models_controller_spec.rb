@@ -11,6 +11,7 @@ RSpec.describe EvaluationModelsController, type: :controller do
     {
       name: Faker::Name.name,
       sector_id: sector.id,
+      context: "sector",
       question_values_attributes: [
         { value: 1, question_id: question_1.id },
         { value: 2, question_id: question_2.id }
