@@ -16,8 +16,8 @@ class EvaluationModel < ApplicationRecord
   delegate :name, to: :position, prefix: true
   delegate :name, to: :target, prefix: true
 
-  def users
-    User.where(sector: sector)
+  def target_users
+    target.users
   end
 
   def target

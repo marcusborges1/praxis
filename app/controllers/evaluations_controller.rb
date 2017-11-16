@@ -32,7 +32,6 @@ class EvaluationsController < ApplicationController
   def create
     @evaluation = Evaluation.new(evaluation_params)
     if @evaluation.save
-      @evaluation.create_answer_groups
       redirect_to @evaluation, notice: "Avaliação criada com sucesso"
     else
       render :new

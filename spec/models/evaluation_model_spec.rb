@@ -41,4 +41,18 @@ RSpec.describe EvaluationModel, type: :model do
       expect(evaluation_model.target).to eq sector
     end
   end
+
+  describe "#target_users" do
+    it "returns the users of that project in a project context" do
+      evaluation_model.project = project
+      evaluation_model.context = "project"
+      expect(evaluation_model.target_users).to eq project.users
+    end
+
+    it "returns the users of that sector in a sector context" do
+      evaluation_model.sector = sector
+      evaluation_model.context = "sector"
+      expect(evaluation_model.target_users).to eq sector.users
+    end
+  end
 end
