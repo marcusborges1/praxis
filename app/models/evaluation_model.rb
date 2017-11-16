@@ -1,7 +1,9 @@
 class EvaluationModel < ApplicationRecord
   has_many :question_values, inverse_of: :evaluation_model, dependent: :destroy
   has_one :evaluation, dependent: :destroy
-  belongs_to :sector
+
+  belongs_to :sector, optional: true
+  belongs_to :project, optional: true
 
   accepts_nested_attributes_for :question_values, allow_destroy: true
 

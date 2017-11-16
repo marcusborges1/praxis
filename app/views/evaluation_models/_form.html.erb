@@ -31,6 +31,13 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <%= f.label :sector_id, "Projeto Alvo", class: "col-sm-2 control-label" %>
+    <div class="col-sm-3">
+      <%= f.collection_select :project_id, Project.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
+    </div>
+  </div>
+
   <%= f.fields_for :question_values do |fields_form| %>
     <%= render "question_value_fields", f: fields_form %>
   <% end %>
