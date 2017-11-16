@@ -7,6 +7,8 @@ class EvaluationModel < ApplicationRecord
 
   validates_presence_of :name
 
+  enum context: [:sector, :project, :user]
+
   delegate :name, to: :position, prefix: true
   delegate :name, to: :sector, prefix: true
 
