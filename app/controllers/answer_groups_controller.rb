@@ -2,6 +2,14 @@ class AnswerGroupsController < ApplicationController
   before_action :set_answer_group, unless: [:unanswered]
   load_and_authorize_resource
 
+  def individual_report
+    @user = User.find(@answer_group.evaluation_target_id)
+    @evaluation = @answer_group.evaluation
+    @report = EvaluationReports.individual_report_data(@evaluation, params[:evaluation_target_id])
+    @final_sums = EvaluationReports.evaluation_final_sums(@report)
+    render pdf: "individual_report", layout: "pdf-reports.html.erb"
+  end
+
   def show
   end
 

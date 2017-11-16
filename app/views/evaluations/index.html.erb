@@ -25,8 +25,18 @@
                     <td><%= link_to 'Ver Respostas', evaluation %></td>
                     <td>
                         <div class="btn-toolbar pull-right">
-                            <%= link_to edit_evaluation_path(evaluation), class: "btn btn-default" do %><i class="glyphicon glyphicon-edit"></i><% end %>
-                            <%= link_to evaluation, method: :delete, data: { confirm: 'Tem certeza?' } , class: "btn btn-danger" do %><i class="glyphicon glyphicon-trash"></i><% end %>
+                            <%= link_to edit_evaluation_path(evaluation),
+                                data: { toggle: 'tooltip' },
+                                title: "Editar Avaliação",
+                                class: "btn btn-default" do %>
+                                    <i class="glyphicon glyphicon-edit"></i>
+                            <% end %>
+                            <%= link_to evaluation, method: :delete,
+                                data: { toggle: 'tooltip', confirm: 'Tem certeza?' },
+                                title: "Editar Avaliação",
+                                class: "btn btn-danger" do %>
+                                    <i class="glyphicon glyphicon-trash"></i>
+                            <% end %>
                         </div>
                     </td>
                 </tr>

@@ -14,6 +14,7 @@
       <tr>
         <th>Período</th>
         <th>Situação</th>
+        <th>Ranking</th>
         <th></th>
       </tr>
     </thead>
@@ -22,14 +23,19 @@
       <% @evaluation_cycles.each do |evaluation_cycle| %>
         <tr>
           <td><%= evaluation_cycle.duration_period %></td>
-          <td><%= link_to humanize_progress(evaluation_cycle.finished?), evaluation_cycle_path(evaluation_cycle) %>
-          </td>
+          <td><%= link_to humanize_progress(evaluation_cycle.finished?), evaluation_cycle_path(evaluation_cycle) %></td>
+          <td><%= link_to "Visualizar", ranking_evaluation_cycle_path(evaluation_cycle) %></td>
           <td>
             <div class="pull-right">
-              <%= link_to edit_evaluation_cycle_path(evaluation_cycle), class: "btn btn-default" do %>
+              <%= link_to edit_evaluation_cycle_path(evaluation_cycle),
+                data: { toggle: 'tooltip' },
+                title: "Editar Ciclo de Avaliação",
+                class: "btn btn-default" do %>
                 <span class="glyphicon glyphicon-edit"></span>
               <% end %>
-              <%= link_to evaluation_cycle, method: :delete, data: { confirm: 'Tem certeza?' },
+              <%= link_to evaluation_cycle, method: :delete,
+                data: { confirm: 'Tem certeza?', toggle: 'tooltip' },
+                title: "Editar Ciclo de Avaliação",
                 class: "btn btn-danger" do %>
                   <span class="glyphicon glyphicon-trash"></span>
               <% end %>

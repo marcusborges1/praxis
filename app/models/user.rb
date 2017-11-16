@@ -20,17 +20,32 @@ class User < ApplicationRecord
 
   delegate :name, to: :sector, prefix: true
 
-  def has_position?(position)
-    positions.include?(position)
+  def is_director?
+    positions.include?(Position.institutional_context.find_by(name: "Diretor"))
+  end
+
+  def is_advisor?
+    positions.include?(Position.institutional_context.find_by(name: "Assessor"))
+  end
+
+  def is_manager?
+    positions.include?(Position.institutional_context.find_by(name: "Gerente"))
+  end
+
+  def is_president?
+    positions.include?(Position.institutional_context.find_by(name: "Presidente"))
+  end
+
+  def is_monitor?
+    sector == Sector.people_management || sector == Sector.organizational_presidency
+  end
+
+  def monitored
+    User.where(monitor: self)
   end
 
   def has_admin_privileges?
-    has_position?(Position.institutional_context.find_by(name: 'Diretor')) && sector == Sector.people_management
-  end
-
-  def monitors
-    return Sector.organizational_presidency.advisors if sector == Sector.people_management
-    Sector.people_management.advisors
+    is_director? && sector == Sector.people_management
   end
 
   private

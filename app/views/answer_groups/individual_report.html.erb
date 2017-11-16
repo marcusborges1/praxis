@@ -24,10 +24,10 @@
     <tbody>
       <% @report.each do |report| %>
         <tr style="page-break-inside: avoid;">
-          <td class="text-center"><%= report[:evaluation_factor_name] %></td>
-          <td class="text-center"><%= report[:answer_average] %></td>
-          <td class="text-center"><%= report[:question_weight] %></td>
-          <td class="text-center"><%= report[:answer_average_with_question_weight] %></td>
+          <td class="text-center"><%= report["evaluation_factor_name"] %></td>
+          <td class="text-center"><%= report["answer_average"] %></td>
+          <td class="text-center"><%= report["question_weight"] %></td>
+          <td class="text-center"><%= report["answer_average_with_question_weight"] %></td>
         </tr>
       <% end %>
     </tbody>
@@ -35,8 +35,8 @@
 
 <br/>
 
-<p><strong>Soma das médias sem peso: <strong><%= @final_sums[:average_without_weight] %></p>
-<p><strong>Soma das médias com peso: <strong><%= @final_sums[:average_with_weight] %></p>
+<p><strong>Soma das médias sem peso: <strong><%= @final_sums["average_without_weight"] %></p>
+<p><strong>Soma das médias com peso: <strong><%= @final_sums["average_with_weight"] %></p>
 
 <br/>
 
