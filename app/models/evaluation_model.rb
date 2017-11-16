@@ -14,10 +14,15 @@ class EvaluationModel < ApplicationRecord
   enum context: [:sector, :project, :user]
 
   delegate :name, to: :position, prefix: true
-  delegate :name, to: :sector, prefix: true
+  delegate :name, to: :target, prefix: true
 
   def users
     User.where(sector: sector)
+  end
+
+  def target
+    return sector if context == "sector"
+    project
   end
 
   private

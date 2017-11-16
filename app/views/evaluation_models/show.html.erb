@@ -9,17 +9,28 @@
             </p>
 
             <p>
-                <strong>Diretoria Alvo:</strong>
-                <%= @evaluation_model.sector_name %>
+              <strong>Tipo:</strong>
+              <%= t("enum.evaluation_model.context.#{@evaluation_model.context}") %>
             </p>
 
-            <div id="accordion" role="tablist" aria-multiselectable="true">
+            <p>
+                <strong>Alvo:</strong>
+                <%= @evaluation_model.target_name %>
+            </p>
+
+            <p>
+              <strong>Questões:</strong>
+            </p>
+
+            <div id="accordion" class="col-md-offset-1" role="tablist" aria-multiselectable="true">
+              <ul>
                 <% @evaluation_model.question_values.each_with_index do |question_value, index| %>
+                  <li>
                     <% index_name = (index+1).humanize.capitalize %>
                     <div class="card">
                         <div class="card-header" role="tab" id="heading<%= index_name %>">
                             <h5 class="mb-0">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index_name %>" aria-expanded="true" aria-controls="collapse<%= index_name %>">
+                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index_name %>" aria-expanded="true" aria-controls="collapse<%= index_name %>">
                                     Questão <%=" #{ index + 1 }" %>
                                 </a>
                             </h5>
@@ -36,14 +47,16 @@
                             </div>
                         </div>
                     </div>
+                  </li>
                 <% end %>
+                <ul>
             </div>
         </div>
 
 
         <div class="panel-footer">
             <%= link_to 'Editar', edit_evaluation_model_path(@evaluation_model), class: "btn btn-primary" %>
-            <%= link_to 'Back', evaluation_models_path, class: "btn btn-default" %>
+            <%= link_to 'Voltar', evaluation_models_path, class: "btn btn-default" %>
         </div>
     </div>
 </div>
