@@ -11,17 +11,15 @@ class EvaluationModel < ApplicationRecord
   validates :context, presence: true
   validate :must_have_one_target
 
-  enum context: [:sector, :project, :user]
+  enum context: %i[sector project user]
 
   delegate :name, to: :position, prefix: true
   delegate :name, to: :target, prefix: true
 
-  def target_users
-    target.users
-  end
+  delegate :users, to: :target, prefix: true
 
   def target
-    return sector if context == "sector"
+    return sector if context == 'sector'
     project
   end
 

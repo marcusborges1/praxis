@@ -5,9 +5,9 @@ class Evaluation < ApplicationRecord
   belongs_to :evaluation_model
   belongs_to :evaluation_cycle
 
-  validates_presence_of :name
-  validates_presence_of :start_date
-  validates_presence_of :finish_date
+  validates :name, presence: true
+  validates :start_date, presence: true
+  validates :finish_date, presence: true
 
   after_create :create_answer_groups
 

@@ -1,5 +1,5 @@
 class EvaluationModelsController < ApplicationController
-  before_action :set_evaluation_model, only: [:show, :edit, :update, :destroy]
+  before_action :set_evaluation_model, only: %i[show edit update destroy]
   load_and_authorize_resource
 
   def index
@@ -38,12 +38,13 @@ class EvaluationModelsController < ApplicationController
   end
 
   private
+
   def set_evaluation_model
     @evaluation_model = EvaluationModel.find(params[:id])
   end
 
   def evaluation_model_params
     params.require(:evaluation_model).permit(:name, :sector_id, :project_id, :context,
-                                             question_values_attributes: [ :id, :value, :question_id, :_destroy ] )
+                                             question_values_attributes: %i[id value question_id _destroy])
   end
 end

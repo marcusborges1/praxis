@@ -1,13 +1,13 @@
 FactoryGirl.define do
   factory :sector do
-    name     "DAF"
+    name 'DAF'
 
     trait :people_management do
-      name   "GP"
+      name   'GP'
     end
 
     trait :organizational_presidency do
-      name   "PRESI"
+      name   'PRESI'
     end
   end
 end

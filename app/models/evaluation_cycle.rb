@@ -3,14 +3,14 @@ class EvaluationCycle < ApplicationRecord
 
   validate :initial_date_less_than_end_date
 
-  scope :in_progress_now, -> { where("end_date >= ?", DateTime.now) }
+  scope :in_progress_now, -> { where('end_date >= ?', DateTime.now) }
 
   def finished?
     end_date < DateTime.now
   end
 
   def self.any_in_progress?
-    where("end_date >= ?", DateTime.now).any?
+    where('end_date >= ?', DateTime.now).any?
   end
 
   def duration_period
@@ -26,6 +26,6 @@ class EvaluationCycle < ApplicationRecord
   end
 
   def format_datetime(datetime)
-    datetime.strftime("%d/%m/%Y")
+    datetime.strftime('%d/%m/%Y')
   end
 end

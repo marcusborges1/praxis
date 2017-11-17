@@ -1,5 +1,5 @@
 module EvaluationCycleRanking
-  def self.generate(evaluation_cycle)
+  def self.generate(_evaluation_cycle)
     ActiveRecord::Base.connection
                       .execute("select
                                     user_name,

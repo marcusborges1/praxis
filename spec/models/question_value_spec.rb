@@ -6,5 +6,5 @@ RSpec.describe QuestionValue, type: :model do
   it { should belong_to(:evaluation_model) }
   it { should belong_to(:question) }
   it { should have_many(:answers).dependent(:destroy) }
-  it { should validate_presence_of(:value)  }
+  it { should validate_presence_of(:value) }
 end

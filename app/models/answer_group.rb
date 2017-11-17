@@ -5,7 +5,7 @@ class AnswerGroup < ApplicationRecord
   belongs_to :evaluation
   belongs_to :evaluation_target, class_name: 'User'
 
-  validates_presence_of :answers, on: :update
+  validates :answers, presence: { on: :update }
 
   accepts_nested_attributes_for :answers
   accepts_nested_attributes_for :evaluation_comment, update_only: true
@@ -25,6 +25,6 @@ class AnswerGroup < ApplicationRecord
   end
 
   def notify_users
-    NotificationsMailer.new_evaluation_available(self.user_id, self.evaluation_id).deliver_now
+    NotificationsMailer.new_evaluation_available(user_id, evaluation_id).deliver_now
   end
 end

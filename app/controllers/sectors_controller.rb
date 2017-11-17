@@ -1,20 +1,18 @@
 class SectorsController < ApplicationController
-  before_action :set_sector, only: [:show, :edit, :update, :destroy]
+  before_action :set_sector, only: %i[show edit update destroy]
   load_and_authorize_resource
 
   def index
     @sectors = Sector.includes(:users).paginate(page: params[:page])
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @sector = Sector.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @sector = Sector.new(sector_params)
@@ -40,11 +38,12 @@ class SectorsController < ApplicationController
   end
 
   private
-    def set_sector
-      @sector = Sector.find(params[:id])
-    end
 
-    def sector_params
-      params.require(:sector).permit(:name)
-    end
+  def set_sector
+    @sector = Sector.find(params[:id])
+  end
+
+  def sector_params
+    params.require(:sector).permit(:name)
+  end
 end

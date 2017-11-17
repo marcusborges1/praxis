@@ -1,6 +1,6 @@
 class EvaluationFactor < ApplicationRecord
   has_one :question, dependent: :destroy
-  validates_presence_of :name
+  validates :name, presence: true
 
   delegate :name, to: :question, prefix: true
 end
