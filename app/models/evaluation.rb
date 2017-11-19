@@ -9,8 +9,6 @@ class Evaluation < ApplicationRecord
   validates :start_date, presence: true
   validates :finish_date, presence: true
 
-  after_create :create_answer_groups
-
   delegate :duration_period, to: :evaluation_cycle, prefix: true
   delegate :name, to: :evaluation_model, prefix: true
 
@@ -22,12 +20,18 @@ class Evaluation < ApplicationRecord
     evaluation_model.target_users
   end
 
-  private
-
-  def create_answer_groups
-    users = evaluation_model.target_users
-    users.each do |evaluation_target|
-      users.map { |user| AnswerGroup.create(evaluation: self, user: user, evaluation_target: evaluation_target) }
+  
+  def create_answer_groups(target=nil)
+    if individual?
+      create_individual_answer_groups(target.to_i, self)
+    else
+      members.each { |target_user| create_individual_answer_groups(target_user, self) }
     end
+  end
+
+  private
+  
+  def create_individual_answer_groups(target, evaluation)
+    members.each { |user| AnswerGroup.create(evaluation: evaluation, user: user, evaluation_target_id: target) }
   end
 end

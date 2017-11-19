@@ -19,8 +19,7 @@ class EvaluationModel < ApplicationRecord
   delegate :users, to: :target, prefix: true
 
   def target
-    return sector if context == 'sector'
-    project
+    context == 'sector' ? sector : project
   end
 
   private
