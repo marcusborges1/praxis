@@ -20,6 +20,10 @@ class User < ApplicationRecord
 
   delegate :name, to: :sector, prefix: true
 
+  def unanswered_answer_group
+    AnswerGroup.where(user: self, answered: false).all
+  end
+
   def is_director?
     positions.include?(Position.institutional_context.find_by(name: 'Diretor'))
   end
