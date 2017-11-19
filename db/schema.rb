@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116042156) do
+ActiveRecord::Schema.define(version: 20171119122929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,10 +74,11 @@ ActiveRecord::Schema.define(version: 20171116042156) do
     t.date     "start_date"
     t.date     "finish_date"
     t.integer  "evaluation_model_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "name"
     t.integer  "evaluation_cycle_id"
+    t.boolean  "individual",          default: false
     t.index ["evaluation_cycle_id"], name: "index_evaluations_on_evaluation_cycle_id", using: :btree
     t.index ["evaluation_model_id"], name: "index_evaluations_on_evaluation_model_id", using: :btree
   end
