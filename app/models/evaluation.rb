@@ -25,7 +25,7 @@ class Evaluation < ApplicationRecord
     if individual?
       create_individual_answer_groups(target.to_i, self)
     else
-      members.each { |target_user| create_individual_answer_groups(target_user, self) }
+      members.each { |target_user| create_individual_answer_groups(target_user.id, self) }
     end
   end
 
