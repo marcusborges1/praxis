@@ -11,7 +11,7 @@ class EvaluationModel < ApplicationRecord
   validates :context, presence: true
   validate :must_have_one_target
 
-  enum context: %i[sector project user]
+  enum context: %i[sector project]
 
   delegate :name, to: :position, prefix: true
   delegate :name, to: :target, prefix: true
