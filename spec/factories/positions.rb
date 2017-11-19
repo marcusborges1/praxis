@@ -8,12 +8,11 @@ FactoryGirl.define do
     end
 
     trait :advisor do
-      name    "Assessor"
+      name    'Assessor'
     end
 
     trait :director do
-      name    "Diretor"
+      name    'Diretor'
     end
-
   end
 end

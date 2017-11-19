@@ -7,5 +7,5 @@ class Position < ApplicationRecord
 
   scope :advisors, -> { find_by(name: 'Assessor') }
 
-  enum context: [:institutional, :project], _suffix: true
+  enum context: %i[institutional project], _suffix: true
 end

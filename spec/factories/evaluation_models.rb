@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :evaluation_model do
     name                    { Faker::Name.name }
-    context                 "project" 
+    context                 'project'
     sector
     project
   end

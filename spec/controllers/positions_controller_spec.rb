@@ -7,78 +7,77 @@ RSpec.describe PositionsController, type: :controller do
   let(:invalid_attributes) { FactoryGirl.attributes_for(:position, name: nil, context: nil) }
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "returns a success response" do
+  describe 'GET #index' do
+    it 'returns a success response' do
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
   end
 
-  describe "GET #show" do
-    it "returns a success response" do
+  describe 'GET #show' do
+    it 'returns a success response' do
       position = Position.create! valid_attributes
-      get :show, params: {id: position.to_param}, session: valid_session
+      get :show, params: { id: position.to_param }, session: valid_session
       expect(response).to be_success
     end
   end
 
-  describe "GET #new" do
-    it "returns a success response" do
+  describe 'GET #new' do
+    it 'returns a success response' do
       get :new, params: {}, session: valid_session
       expect(response).to be_success
     end
   end
 
-  describe "GET #edit" do
-    it "returns a success response" do
+  describe 'GET #edit' do
+    it 'returns a success response' do
       position = Position.create! valid_attributes
-      get :edit, params: {id: position.to_param}, session: valid_session
+      get :edit, params: { id: position.to_param }, session: valid_session
       expect(response).to be_success
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        {name: "Gestor"}
-      }
-
-      it "updates the requested position" do
-        position = Position.create! valid_attributes
-        put :update, params: {id: position.to_param, position: new_attributes}, session: valid_session
-        position.reload
-        expect(position.name).to eq("Gestor")
+  describe 'PUT #update' do
+    context 'with valid params' do
+      let(:new_attributes) do
+        { name: 'Gestor' }
       end
 
-      it "redirects to the position" do
+      it 'updates the requested position' do
         position = Position.create! valid_attributes
-        put :update, params: {id: position.to_param, position: valid_attributes}, session: valid_session
+        put :update, params: { id: position.to_param, position: new_attributes }, session: valid_session
+        position.reload
+        expect(position.name).to eq('Gestor')
+      end
+
+      it 'redirects to the position' do
+        position = Position.create! valid_attributes
+        put :update, params: { id: position.to_param, position: valid_attributes }, session: valid_session
         expect(response).to redirect_to(position)
       end
     end
 
-    context "with invalid params" do
+    context 'with invalid params' do
       it "returns a success response (i.e. to display the 'edit' template)" do
         position = Position.create! valid_attributes
-        put :update, params: {id: position.to_param, position: invalid_attributes}, session: valid_session
+        put :update, params: { id: position.to_param, position: invalid_attributes }, session: valid_session
         expect(response).to be_success
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested position" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested position' do
       position = Position.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: position.to_param}, session: valid_session
-      }.to change(Position, :count).by(-1)
+      expect do
+        delete :destroy, params: { id: position.to_param }, session: valid_session
+      end.to change(Position, :count).by(-1)
     end
 
-    it "redirects to the positions list" do
+    it 'redirects to the positions list' do
       position = Position.create! valid_attributes
-      delete :destroy, params: {id: position.to_param}, session: valid_session
+      delete :destroy, params: { id: position.to_param }, session: valid_session
       expect(response).to redirect_to(positions_url)
     end
   end
-
 end
