@@ -39,8 +39,15 @@
             <tbody>
               <tr>
                 <td><%= member.name %></td>
-                <td><%= link_to 'Ver Respostas', answer_group_user_evaluation_path(@evaluation, member.answer_groups.first, member), target: "_blank",
+                
+                <% if member.monitor == current_user %>
+                  <td><%= link_to 'Ver Respostas', answer_group_user_evaluation_path(@evaluation, member.answer_groups.first, member), target: "_blank",
                   class: 'btn btn-default' %></td>
+                <% else %>
+                  <td>
+                    <span class="btn btn-default disabled">Ver Respostas</span>
+                  </td>
+                <% end %>
               </tr>
             </tbody>
           <% end %>

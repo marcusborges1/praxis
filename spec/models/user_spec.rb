@@ -10,67 +10,67 @@ RSpec.describe User, type: :model do
 
   it { is_expected.to validate_presence_of(:name) }
 
-  describe '#is_director?' do
+  describe '#director?' do
     let(:director_position) { FactoryGirl.create(:position, name: 'Diretor') }
     let(:advisor_position) { FactoryGirl.create(:position, name: 'Assessor') }
     let(:user) { FactoryGirl.create(:user, positions: [director_position]) }
 
     it 'returns true when the user is a director' do
-      expect(user.is_director?).to be true
+      expect(user.director?).to be true
     end
 
     it 'returns false if the user is not a director' do
       user.positions = [advisor_position]
-      expect(user.is_director?).to be false
+      expect(user.director?).to be false
     end
   end
 
-  describe '#is_advisor?' do
+  describe '#advisor?' do
     let(:advisor_position) { FactoryGirl.create(:position, name: 'Assessor') }
     let(:director_position) { FactoryGirl.create(:position, name: 'Diretor') }
     let(:user) { FactoryGirl.create(:user, positions: [advisor_position]) }
 
     it 'returns true when the user is an advisor' do
-      expect(user.is_advisor?).to be true
+      expect(user.advisor?).to be true
     end
 
     it 'returns false if the user is not an advisor' do
       user.positions = [director_position]
-      expect(user.is_advisor?).to be false
+      expect(user.advisor?).to be false
     end
   end
 
-  describe '#is_manager?' do
+  describe '#manager?' do
     let(:manager_position) { FactoryGirl.create(:position, name: 'Gerente') }
     let(:advisor_position) { FactoryGirl.create(:position, name: 'Assessor') }
     let(:user) { FactoryGirl.create(:user, positions: [manager_position]) }
 
     it 'returns true when the user is a manager' do
-      expect(user.is_manager?).to be true
+      expect(user.manager?).to be true
     end
 
     it 'returns false if the user is not a manager' do
       user.positions = [advisor_position]
-      expect(user.is_manager?).to be false
+      expect(user.manager?).to be false
     end
   end
 
-  describe '#is_president?' do
+  describe '#president?' do
     let(:president_position) { FactoryGirl.create(:position, name: 'Presidente') }
     let(:advisor_position) { FactoryGirl.create(:position, name: 'Assessor') }
     let(:user) { FactoryGirl.create(:user, positions: [president_position]) }
 
     it 'returns true when the user is a president' do
-      expect(user.is_president?).to be true
+      expect(user.president?).to be true
     end
 
     it 'returns false if the user is not a president' do
       user.positions = [advisor_position]
-      expect(user.is_president?).to be false
+      expect(user.president?).to be false
     end
   end
 
-  describe '#is_monitor?' do
+  describe '#monitor?' do
     let(:people_management) { FactoryGirl.create(:sector, name: 'GP') }
     let(:organizational_presidency) { FactoryGirl.create(:sector, name: 'PRESORG') }
     let(:people_management_member) { FactoryGirl.create(:user, sector: people_management) }
@@ -78,15 +78,15 @@ RSpec.describe User, type: :model do
     let(:user) { FactoryGirl.create(:user) }
 
     it 'returns true when the user is a monitor' do
-      expect(people_management_member.is_monitor?).to be true
+      expect(people_management_member.monitor?).to be true
     end
 
     it 'returns false if the user is not a monitor' do
-      expect(organizational_presidency_member.is_monitor?).to be true
+      expect(organizational_presidency_member.monitor?).to be true
     end
 
     it 'returns false if the user is not a monitor' do
-      expect(user.is_monitor?).to be false
+      expect(user.monitor?).to be false
     end
   end
 
