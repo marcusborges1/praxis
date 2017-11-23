@@ -23,12 +23,12 @@ class Ability
     end
 
     if user.director?
-      can :manage, [Sector, Position, User, EvaluationModel, Question, Project, EvaluationCycle]
+      can :manage, [Sector, Position, User, EvaluationModel, Question, EvaluationCycle]
       can :read, AnswerGroup, user_id: user.sector.users.pluck(:id)
       can :read, Evaluation, evaluation_model: { sector_id: user.sector }
 
     elsif user.manager?
-      can :manage, [ProjectAllocation, Evaluation]
+      can :manage, [ProjectAllocation, Evaluation, Project]
 
     elsif user.director? || user.president?
       can :manage, Sector
