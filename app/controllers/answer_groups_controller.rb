@@ -2,16 +2,7 @@ class AnswerGroupsController < ApplicationController
   before_action :set_answer_group, unless: [:unanswered]
   load_and_authorize_resource
 
-  def individual_report
-    @user = User.find(@answer_group.evaluation_target_id)
-    @evaluation = @answer_group.evaluation
-    @report = EvaluationReports.individual_report_data(@evaluation, params[:evaluation_target_id])
-    @final_sums = EvaluationReports.evaluation_final_sums(@report)
-    render pdf: "individual_report", layout: "pdf-reports.html.erb"
-  end
-
-  def show
-  end
+  def show; end
 
   def edit
     @answer_group.evaluation_comment ||= EvaluationComment.new
@@ -44,7 +35,7 @@ class AnswerGroupsController < ApplicationController
 
   def answer_group_params
     params.require(:answer_group).permit(:answered, :evaluation_id, :user_id,
-                                         answers_attributes: [:id, :question_value_id, :option_id],
-                                         evaluation_comment_attributes: [:id, :comment])
+                                         answers_attributes: %i[id question_value_id option_id],
+                                         evaluation_comment_attributes: %i[id comment])
   end
 end

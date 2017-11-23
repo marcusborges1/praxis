@@ -4,7 +4,7 @@ FactoryGirl.define do
     leader      { FactoryGirl.create(:user) }
     manager     { FactoryGirl.create(:user) }
     factory :project_with_users do
-      users     { FactoryGirl.create_list(:user, 3) }
+      users { FactoryGirl.create_list(:user, 3) }
     end
   end
 end

@@ -1,5 +1,5 @@
 module EvaluationHelper
   def humanize_boolean(boolean)
-    boolean ? "Sim" : "Não"
+    boolean ? 'Sim' : 'Não'
   end
 end

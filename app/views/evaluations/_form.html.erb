@@ -1,3 +1,7 @@
+<%= content_for :javascript do %>
+  <%= javascript_include_tag "evaluation" %>
+<% end %>
+
 <%= form_for(evaluation, html: { class: "form-horizontal" }) do |f| %>
     <% if evaluation.errors.any? %>
         <div id="error_explanation">
@@ -56,19 +60,19 @@
         </div>
     </div>
 
-    <!-- <div class="form-group">
-        <%#= f.label :evaluation_target_id, "Avaliado", class: "col-md-2 control-label" %>
+    <div class="form-group">
+        <%= f.label :individual, "Individual", class: "col-md-2 control-label" %>
         <div class="col-sm-5">
-            <%#= f.collection_select :evaluation_target_id, User.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
+            <%= f.check_box("individual", {class: "form-check-input"}, true, nil) %>
         </div>
     </div>
 
-    <div class="form-group">
-        <%#= f.label :reviewer_id, "Avaliador", class: "col-md-2 control-label" %>
+    <div id="target" class="form-group">
+        <%= f.label :evaluation_target_id, "Avaliado", class: "col-md-2 control-label" %>
         <div class="col-sm-5">
-            <%#= f.collection_select :reviewer_id, User.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
+            <%= f.collection_select :evaluation_target_id, User.all, :id, :name, { prompt: "- Selecione -" }, class: "form-control" %>
         </div>
-    </div> -->
+    </div>
 
     <div class="actions">
         <%= f.submit "Salvar", class: "btn btn-primary" %>

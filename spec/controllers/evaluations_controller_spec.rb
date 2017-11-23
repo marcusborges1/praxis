@@ -8,7 +8,7 @@ RSpec.describe EvaluationsController, type: :controller do
   let(:evaluation_cycle)  { FactoryGirl.create(:evaluation_cycle) }
   let(:users)             { FactoryGirl.create_list(:user, 2, sector: sector) }
 
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     {
       name:                 Faker::Name.name,
       start_date:           Faker::Date.between(3.days.ago, Date.today),
@@ -16,113 +16,113 @@ RSpec.describe EvaluationsController, type: :controller do
       evaluation_model_id:  evaluation_model.id,
       evaluation_cycle_id:  evaluation_cycle.id
     }
-  }
+  end
 
-  let(:invalid_attributes) {
+  let(:invalid_attributes) do
     {
       start_date:           nil,
       finish_date:          nil,
       evaluation_model_id:  nil
     }
-  }
+  end
 
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "returns a success response" do
+  describe 'GET #index' do
+    it 'returns a success response' do
       Evaluation.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
   end
 
-  describe "GET #show" do
-    it "returns a success response" do
+  describe 'GET #show' do
+    it 'returns a success response' do
       evaluation = Evaluation.create! valid_attributes
-      get :show, params: {id: evaluation.to_param}, session: valid_session
+      get :show, params: { id: evaluation.to_param }, session: valid_session
       expect(response).to be_success
     end
   end
 
-  describe "GET #new" do
-    it "returns a success response" do
+  describe 'GET #new' do
+    it 'returns a success response' do
       get :new, params: {}, session: valid_session
       expect(response).to be_success
     end
   end
 
-  describe "GET #edit" do
-    it "returns a success response" do
+  describe 'GET #edit' do
+    it 'returns a success response' do
       evaluation = Evaluation.create! valid_attributes
-      get :edit, params: {id: evaluation.to_param}, session: valid_session
+      get :edit, params: { id: evaluation.to_param }, session: valid_session
       expect(response).to be_success
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Evaluation" do
-        expect {
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Evaluation' do
+        expect do
           post :create, params: { evaluation: valid_attributes }, session: valid_session
-        }.to change(Evaluation, :count).by(1)
+        end.to change(Evaluation, :count).by(1)
       end
 
-      it "redirects to the created evaluation" do
-        post :create, params: {evaluation: valid_attributes}, session: valid_session
+      it 'redirects to the created evaluation' do
+        post :create, params: { evaluation: valid_attributes }, session: valid_session
         expect(response).to redirect_to(Evaluation.last)
       end
     end
 
-    context "with invalid params" do
+    context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {evaluation: invalid_attributes}, session: valid_session
+        post :create, params: { evaluation: invalid_attributes }, session: valid_session
         expect(response).to be_success
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
+  describe 'PUT #update' do
+    context 'with valid params' do
+      let(:new_attributes) do
         {
           start_date: Faker::Date.between(2.days.ago, Date.tomorrow)
         }
-      }
+      end
 
-      it "updates the requested evaluation" do
+      it 'updates the requested evaluation' do
         evaluation = Evaluation.create! valid_attributes
-        put :update, params: {id: evaluation.to_param, evaluation: new_attributes}, session: valid_session
+        put :update, params: { id: evaluation.to_param, evaluation: new_attributes }, session: valid_session
         evaluation.reload
         expect(evaluation.start_date).to eq new_attributes[:start_date]
       end
 
-      it "redirects to the evaluation" do
+      it 'redirects to the evaluation' do
         evaluation = Evaluation.create! valid_attributes
-        put :update, params: {id: evaluation.to_param, evaluation: valid_attributes}, session: valid_session
+        put :update, params: { id: evaluation.to_param, evaluation: valid_attributes }, session: valid_session
         expect(response).to redirect_to(evaluation)
       end
     end
 
-    context "with invalid params" do
+    context 'with invalid params' do
       it "returns a success response (i.e. to display the 'edit' template)" do
         evaluation = Evaluation.create! valid_attributes
-        put :update, params: {id: evaluation.to_param, evaluation: invalid_attributes}, session: valid_session
+        put :update, params: { id: evaluation.to_param, evaluation: invalid_attributes }, session: valid_session
         expect(response).to be_success
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested evaluation" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested evaluation' do
       evaluation = Evaluation.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: evaluation.to_param}, session: valid_session
-      }.to change(Evaluation, :count).by(-1)
+      expect do
+        delete :destroy, params: { id: evaluation.to_param }, session: valid_session
+      end.to change(Evaluation, :count).by(-1)
     end
 
-    it "redirects to the evaluations list" do
+    it 'redirects to the evaluations list' do
       evaluation = Evaluation.create! valid_attributes
-      delete :destroy, params: {id: evaluation.to_param}, session: valid_session
+      delete :destroy, params: { id: evaluation.to_param }, session: valid_session
       expect(response).to redirect_to(evaluations_url)
     end
   end

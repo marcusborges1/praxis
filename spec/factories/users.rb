@@ -2,10 +2,10 @@ FactoryGirl.define do
   factory :user do
     name                    { Faker::Name.name }
     email                   { Faker::Internet.email }
-    password                "123qwe!@#"
-    password_confirmation   "123qwe!@#"
+    password                '123qwe!@#'
+    password_confirmation   '123qwe!@#'
     sector
-    positions               { FactoryGirl.create_list(:position, 1) }
+    positions { FactoryGirl.create_list(:position, 1) }
   end
 
   trait :people_management do

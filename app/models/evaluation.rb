@@ -1,13 +1,12 @@
 class Evaluation < ApplicationRecord
-  attr_accessor :evaluation_target_id, :reviewer_id
-
   has_many :answer_groups, dependent: :destroy
   belongs_to :evaluation_model
   belongs_to :evaluation_cycle
+  belongs_to :evaluation_target, class_name: 'User', optional: true
 
-  validates_presence_of :name
-  validates_presence_of :start_date
-  validates_presence_of :finish_date
+  validates :name, presence: true
+  validates :start_date, presence: true
+  validates :finish_date, presence: true
 
   after_create :create_answer_groups
 
@@ -21,13 +20,17 @@ class Evaluation < ApplicationRecord
   def members
     evaluation_model.target_users
   end
-
+  
   private
-
   def create_answer_groups
-    users = evaluation_model.target_users
-    users.each do |evaluation_target|
-      users.map { |user| AnswerGroup.create(evaluation: self, user: user, evaluation_target: evaluation_target) }
+    if individual?
+      create_individual_answer_groups(evaluation_target, self)
+    else
+      members.each { |target_user| create_individual_answer_groups(target_user, self) }
     end
+  end
+  
+  def create_individual_answer_groups(target, evaluation)
+    members.each { |user| AnswerGroup.create(evaluation: evaluation, user: user, evaluation_target: target) }
   end
 end

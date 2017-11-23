@@ -3,13 +3,11 @@ class QuestionValue < ApplicationRecord
   belongs_to :evaluation_model, inverse_of: :question_values
   belongs_to :question
 
-  validates_presence_of :value
+  validates :value, presence: true
 
   def options
     Option.where(question: question)
   end
 
-  def description
-    question.description
-  end
+  delegate :description, to: :question
 end

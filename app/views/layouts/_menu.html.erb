@@ -5,12 +5,18 @@
   <%= image_tag("bolas_cinzas.png", class:'balls') %>
   <div class='info-box'>
     <p>Olá, <%= current_user.name %>!</p> 
-    <div class='icon'><span class="glyphicon glyphicon-user"></span></div>
-    <a class='textinline' href="<% users_path(current_user) %>">Ver meus dados</a>
-    <br>
-    <div class='icon'><span class="glyphicon glyphicon-off"></span></div>
-    <%= link_to "Sair", destroy_user_session_path, {method: :delete, class: 'textinline'} %>
-    <!-- <a class='links' method="DELETE" href="<% destroy_user_session_path %>">Sair</a> -->
+    <%= link_to user_path(current_user) do %>
+      <i class="glyphicon glyphicon-user"></i>
+      <span class="textinline">Ver meus dados</span>
+    <% end %>
+    <%= link_to unanswered_path do %>
+      <span class="badge"><%= current_user.unanswered_answer_group.count %></span>
+      <span class="textinline">Responder Avaliações</span>
+    <% end %>
+    <%= link_to destroy_user_session_path, { method: :delete } do %>
+      <i class="glyphicon glyphicon-log-out"></i>
+      <span>Sair</span>
+    <% end %>
   </div>
 </nav>
 

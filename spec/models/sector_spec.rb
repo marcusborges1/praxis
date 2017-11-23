@@ -4,28 +4,28 @@ RSpec.describe Sector, type: :model do
   it { is_expected.to have_many(:users) }
   it { is_expected.to validate_presence_of(:name) }
 
-  describe ".advisors" do
-    let(:advisor_position) { FactoryGirl.create(:position, name: "Assessor") }
-    let(:consultant_position) { FactoryGirl.create(:position, name: "Consultor") }
+  describe '.advisors' do
+    let(:advisor_position) { FactoryGirl.create(:position, name: 'Assessor') }
+    let(:consultant_position) { FactoryGirl.create(:position, name: 'Consultor') }
     let(:sector) { FactoryGirl.create(:sector) }
     let(:advisor_users) { FactoryGirl.create_list(:user, 2, sector: sector, positions: [advisor_position]) }
     let(:consultant_users) { FactoryGirl.create_list(:user, 2, sector: sector, positions: [consultant_position]) }
 
-    it "returns the advisors of that sector" do
+    it 'returns the advisors of that sector' do
       expect(sector.advisors).to match_array(advisor_users)
     end
 
-    it "does not returns non advisors of that sector" do
+    it 'does not returns non advisors of that sector' do
       expect(sector.advisors).to_not match_array(consultant_users)
     end
   end
 
-  describe "#director" do
+  describe '#director' do
     let(:sector) { FactoryGirl.create(:sector) }
     let(:some_position) { FactoryGirl.create(:position) }
-    let(:director_position) { FactoryGirl.create(:position, name: "Diretor") }
+    let(:director_position) { FactoryGirl.create(:position, name: 'Diretor') }
 
-    it "returns the director of that sector" do
+    it 'returns the director of that sector' do
       FactoryGirl.create_list(:user, 2, positions: [some_position], sector: sector)
       director = FactoryGirl.create(:user, positions: [director_position], sector: sector)
       expect(sector.director).to eq(director)

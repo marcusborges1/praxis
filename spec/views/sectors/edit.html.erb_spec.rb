@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe "sectors/edit", type: :view do
+RSpec.describe 'sectors/edit', type: :view do
   before(:each) do
-    @sector = assign(:sector, Sector.create!(name: "Name"))
+    @sector = assign(:sector, Sector.create!(name: 'Name'))
   end
 
-  it "renders the edit sector form" do
+  it 'renders the edit sector form' do
     render
 
-    assert_select "form[action=?][method=?]", sector_path(@sector), "post" do
+    assert_select 'form[action=?][method=?]', sector_path(@sector), 'post' do
     end
   end
 end

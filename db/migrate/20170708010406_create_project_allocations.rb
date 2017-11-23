@@ -7,6 +7,6 @@ class CreateProjectAllocations < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :project_allocations, [:project_id, :user_id]
+    add_index :project_allocations, %i[project_id user_id]
   end
 end

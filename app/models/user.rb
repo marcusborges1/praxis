@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   has_many :answer_groups, dependent: :destroy
   belongs_to :sector
-  belongs_to :monitor, class_name: "User" , required: false
+  belongs_to :monitor, class_name: 'User', required: false
 
   has_many :project_allocations
   has_many :projects, through: :project_allocations
@@ -20,20 +20,24 @@ class User < ApplicationRecord
 
   delegate :name, to: :sector, prefix: true
 
+  def unanswered_answer_group
+    AnswerGroup.where(user: self, answered: false).all
+  end
+
   def is_director?
-    positions.include?(Position.institutional_context.find_by(name: "Diretor"))
+    positions.include?(Position.institutional_context.find_by(name: 'Diretor'))
   end
 
   def is_advisor?
-    positions.include?(Position.institutional_context.find_by(name: "Assessor"))
+    positions.include?(Position.institutional_context.find_by(name: 'Assessor'))
   end
 
   def is_manager?
-    positions.include?(Position.institutional_context.find_by(name: "Gerente"))
+    positions.include?(Position.institutional_context.find_by(name: 'Gerente'))
   end
 
   def is_president?
-    positions.include?(Position.institutional_context.find_by(name: "Presidente"))
+    positions.include?(Position.institutional_context.find_by(name: 'Presidente'))
   end
 
   def is_monitor?
@@ -49,14 +53,14 @@ class User < ApplicationRecord
   end
 
   private
+
   def has_at_least_one_position
-    errors.add(:positions, "must be at least one") if position_ids.blank?
+    errors.add(:positions, 'must be at least one') if position_ids.blank?
   end
 
   def has_exactly_one_institutional_position
     if positions.institutional_context.length != 1
-      errors.add(:positions, "must contain exactly one institutional user")
+      errors.add(:positions, 'must contain exactly one institutional user')
     end
   end
-
 end

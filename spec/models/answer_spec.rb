@@ -7,9 +7,9 @@ RSpec.describe Answer, type: :model do
   it { is_expected.to belong_to(:option) }
   it { is_expected.to belong_to(:question_value) }
 
-  describe "when updating object" do
+  describe 'when updating object' do
     let!(:answer) { FactoryGirl.create(:answer) }
-    it "should validate option before update" do
+    it 'should validate option before update' do
       answer.option = nil
       expect(answer).not_to be_valid
     end
