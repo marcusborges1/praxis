@@ -26,6 +26,7 @@ module EvaluationCycleRanking
                                         on e.id = ansg.evaluation_id
                                     left join evaluation_cycles ec
                                         on ec.id = e.evaluation_cycle_id
+                                    where ec.id = #{evaluation_cycle.id}
                                     group by u.id, ef.id, q.id) scores
                                 group by scores.user_name
                                 order by score desc;")
