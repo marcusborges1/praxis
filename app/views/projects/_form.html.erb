@@ -24,7 +24,7 @@
 
   <div class="form-group">
     <%= f.label :users, "Membros alocados", class: "col-sm-2 control-label" %>
-    <%= f.collection_check_boxes(:user_ids, User.all, :id, :name, include_hidden: false) do |b| %>
+    <%= f.collection_check_boxes(:user_ids, User.all.order(:name), :id, :name, include_hidden: false) do |b| %>
       <div class="col-sm-offset-2">
         <div class="checkbox">
           <%= b.label("data-value": b.value) { b.check_box(class: "allocated-members-checkbox") + b.text } %>
