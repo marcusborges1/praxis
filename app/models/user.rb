@@ -24,23 +24,23 @@ class User < ApplicationRecord
     AnswerGroup.where(user: self, answered: false).all
   end
 
-  def is_director?
+  def director?
     positions.include?(Position.institutional_context.find_by(name: 'Diretor'))
   end
 
-  def is_advisor?
+  def advisor?
     positions.include?(Position.institutional_context.find_by(name: 'Assessor'))
   end
 
-  def is_manager?
+  def manager?
     positions.include?(Position.institutional_context.find_by(name: 'Gerente'))
   end
 
-  def is_president?
+  def president?
     positions.include?(Position.institutional_context.find_by(name: 'Presidente'))
   end
 
-  def is_monitor?
+  def monitor?
     sector == Sector.people_management || sector == Sector.organizational_presidency
   end
 
@@ -49,7 +49,7 @@ class User < ApplicationRecord
   end
 
   def has_admin_privileges?
-    is_director? && sector == Sector.people_management
+    director? && sector == Sector.people_management
   end
 
   private

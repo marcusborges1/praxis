@@ -17,25 +17,25 @@ class Ability
       can :read, AnswerGroup
     end
 
-    if user.is_monitor?
+    if user.monitor?
       can %i[read individual_report], AnswerGroup, evaluation_target_id: User.where(monitor: user).pluck(:id)
       can :read, Evaluation
     end
 
-    if user.is_director?
-      can :manage, [Sector, Position, User, EvaluationModel, Question, Project, EvaluationCycle]
+    if user.director?
+      can :manage, [Sector, Position, User, EvaluationModel, Question, EvaluationCycle]
       can :read, AnswerGroup, user_id: user.sector.users.pluck(:id)
       can :read, Evaluation, evaluation_model: { sector_id: user.sector }
 
-    elsif user.is_manager?
-      can :manage, [ProjectAllocation, Evaluation]
+    elsif user.manager?
+      can :manage, [ProjectAllocation, Evaluation, Project]
 
-    elsif user.is_director? || user.is_president?
+    elsif user.director? || user.president?
       can :manage, Sector
       can :manage, User
       can :manage, Evaluation
 
-    elsif (user.sector == Sector.people_management || user.sector == Sector.organizational_presidency) && user.is_advisor?
+    elsif (user.sector == Sector.people_management || user.sector == Sector.organizational_presidency) && user.advisor?
       can :have, :monitors
     end
   end
