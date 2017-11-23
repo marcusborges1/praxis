@@ -1,6 +1,6 @@
 class AnswerGroup < ApplicationRecord
   has_many :answers, inverse_of: :answer_group, dependent: :destroy
-  has_one :evaluation_comment
+  has_one :evaluation_comment, dependent: :destroy
   belongs_to :user
   belongs_to :evaluation
   belongs_to :evaluation_target, class_name: 'User'
