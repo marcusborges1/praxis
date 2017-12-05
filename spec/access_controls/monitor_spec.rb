@@ -15,6 +15,6 @@ RSpec.describe 'Monitor' do
   it 'can read accompanied individual_reports' do
     @users = FactoryGirl.create_list(:user, 2)
     @users.map { |user| user.update(monitor: @monitor) }
-    expect(@ability).to be_able_to(:individual_report, AnswerGroup, evaluation_target_id: User.where(monitor: @monitor).pluck(:id))
+    expect(@ability).to be_able_to(:manage, Evaluation)
   end
 end

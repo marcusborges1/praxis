@@ -13,17 +13,15 @@ class Ability
     ## Position based authorization
     if user.has_admin_privileges?
       can :manage, :all
-      can :set, :monitors
-      can :read, AnswerGroup
     end
 
     if user.monitor?
-      can %i[read individual_report], AnswerGroup, evaluation_target_id: User.where(monitor: user).pluck(:id)
-      can :read, Evaluation
+      can :read, AnswerGroup, evaluation_target_id: User.where(monitor: user).pluck(:id)
+      can :manage, Evaluation, members: User.where(monitor: user).pluck(:id)
     end
 
     if user.director?
-      can :manage, [Sector, Position, User, EvaluationModel, Question, EvaluationCycle]
+      can :manage, [Sector, Position, User, EvaluationModel, Question]
       can :read, AnswerGroup, user_id: user.sector.users.pluck(:id)
       can :read, Evaluation, evaluation_model: { sector_id: user.sector }
 
