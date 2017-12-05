@@ -18,7 +18,14 @@ class Evaluation < ApplicationRecord
   end
 
   def members
-    evaluation_model.target_users
+    if individual?
+      answer_groups.map{ |answer_group| answer_group.evaluation_target }.uniq
+    else
+      evaluation_model.target_users
+    end
+  end
+
+  def individual_member
   end
   
   private

@@ -40,7 +40,7 @@
               <tr>
                 <td><%= member.name %></td>
                 
-                <% if member.monitor == current_user %>
+                <% if member.monitor == current_user || current_user.has_admin_privileges? %>
                   <td><%= link_to 'Ver Respostas', answer_group_user_evaluation_path(@evaluation, member.answer_groups.first, member), target: "_blank",
                   class: 'btn btn-default' %></td>
                 <% else %>
